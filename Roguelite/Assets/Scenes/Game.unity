@@ -3074,7 +3074,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.5904e-41, y: 0, z: 0, w: -435421}
+  m_BoundingSphereOverride: {x: 2.3877232e-38, y: -6.9e-44, z: -6.9e-44, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -11146,11 +11146,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1431270627786104883, guid: 8ded6c3414abaeb4e8310d87f929b653,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1431270627786104885, guid: 8ded6c3414abaeb4e8310d87f929b653,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11206,15 +11201,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1431270627786104886, guid: 8ded6c3414abaeb4e8310d87f929b653,
-        type: 3}
-      propertyPath: m_Material
+    - target: {fileID: 1015277166, guid: 8ded6c3414abaeb4e8310d87f929b653, type: 3}
+      propertyPath: healthFillBar
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1431270627786104880, guid: 8ded6c3414abaeb4e8310d87f929b653,
-        type: 3}
-      propertyPath: m_RunCycleLegOffset
-      value: 0.2
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1958219507}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ded6c3414abaeb4e8310d87f929b653, type: 3}
