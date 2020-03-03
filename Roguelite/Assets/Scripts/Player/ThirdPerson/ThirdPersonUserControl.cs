@@ -1,3 +1,4 @@
+using Player.ThirdPerson;
 using UnityEngine;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
