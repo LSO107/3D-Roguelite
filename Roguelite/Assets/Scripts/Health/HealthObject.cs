@@ -1,7 +1,7 @@
-﻿using UI.Player.Health;
+﻿using UI.Health;
 using UnityEngine;
 
-namespace Player.Health
+namespace Health
 {
     [RequireComponent(typeof(HealthBarUpdater))]
     internal sealed class HealthObject : MonoBehaviour
