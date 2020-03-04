@@ -16,7 +16,7 @@ namespace Player
             var inventory = new List<Item>();
             PlayerInventory = new PlayerInventory(inventory);
 
-            GameManager.Instance.InventoryUI.Instantiate();
+            InventoryUI.Instantiate();
         }
     }
 }

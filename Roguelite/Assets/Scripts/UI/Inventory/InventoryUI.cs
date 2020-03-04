@@ -12,6 +12,9 @@ namespace UI.Inventory
 
         public List<SlotUI> ItemUI = new List<SlotUI>();
 
+        /// <summary>
+        /// Instantiate manually to ensure the inventory is set up before the slots
+        /// </summary>
         public void Instantiate()
         {
             m_Inventory = GameManager.Instance.PlayerManager.PlayerInventory;
@@ -27,8 +30,7 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// Iterate over inventory slots,
-        /// call UpdateItemSprite on every slot
+        /// Update the sprite on the slots
         /// </summary>
         public void UpdateSlots()
         {
@@ -41,8 +43,7 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// Update the slot indexes item placeholder
-        /// sprite with the itemDefinition sprite
+        /// Update the sprite on the slot
         /// </summary>
         private void UpdateSlot(int slot)
         {
@@ -52,7 +53,7 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// Waits for mouse click to trigger an event
+        /// Adds a callback that triggers an event when the item is clicked
         /// </summary>
         private void AddCallbackToButton(EventTrigger eventTrigger, int index)
         {
@@ -67,7 +68,7 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// If item clicked, use the item then update the slot
+        /// When the item is clicked, trigger the Use method
         /// </summary>
         public void ClickItem(BaseEventData eventData, int slotIndex)
         {

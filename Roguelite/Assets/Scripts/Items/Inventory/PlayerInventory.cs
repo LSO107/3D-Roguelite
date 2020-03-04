@@ -2,33 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using Items.Definitions;
+using Player;
 using UnityEngine;
 
 namespace Items.Inventory
 {
     internal sealed class PlayerInventory
     {
-        private readonly Slot[] Slots;
+        private static PlayerManager PlayerManager => GameManager.Instance.PlayerManager;
+
+        private readonly Slot[] m_Slots;
         private const int InventorySize = 6;
 
         public PlayerInventory(IEnumerable<Item> items)
         {
-            Slots = new Slot[InventorySize];
-            for (var i = 0; i < Slots.Length; i++)
+            m_Slots = new Slot[InventorySize];
+            for (var i = 0; i < m_Slots.Length; i++)
             {
-                Slots[i] = new Slot(null);
+                m_Slots[i] = new Slot(null);
             }
             var itemArray = items.ToArray();
             for (var i = 0; i < itemArray.Length; i++)
             {
-                Slots[i].SetItem(itemArray[i]);
+                m_Slots[i].SetItem(itemArray[i]);
             }
-            Debug.Log($"Slots length: {Slots.Length}. itemArray : {itemArray.Length}");
         }
 
+        /// <summary>
+        /// Adds the item to the first available inventory slot
+        /// </summary>
         public void AddItem(Item itemDefinition)
         {
-            Debug.Log($"Attempting to add {itemDefinition.Name} to the inventory");
             if (!HasEmptySlots(1))
             {
                 throw new Exception("Could not add item to inventory as inventory is full");
@@ -36,16 +40,16 @@ namespace Items.Inventory
 
             var firstEmptySlot = GetFirstEmptySlot();
 
-            Debug.Log($"first empty slot = {firstEmptySlot}");
-
-            Slots[firstEmptySlot].SetItem(itemDefinition);
-            GameManager.Instance.InventoryUI.UpdateSlots();
-            Debug.Log($"{itemDefinition.Name} was added to the inventory!");
+            m_Slots[firstEmptySlot].SetItem(itemDefinition);
+            PlayerManager.InventoryUI.UpdateSlots();
         }
 
+        /// <summary>
+        /// Removes the item from the slotIndex
+        /// </summary>
         public void RemoveItem(int slotIndex)
         {
-            var slot = Slots[slotIndex];
+            var slot = m_Slots[slotIndex];
 
             if (slot.ItemDefinition == null)
             {
@@ -55,9 +59,12 @@ namespace Items.Inventory
             slot.Empty();
         }
 
+        /// <summary>
+        /// Removes the item type from the inventory
+        /// </summary>
         public void RemoveItem(Type itemType)
         {
-            var slotsWithItems = Slots.Where(slot => slot.ItemDefinition != null);
+            var slotsWithItems = m_Slots.Where(slot => slot.ItemDefinition != null);
             var matchingSlot = slotsWithItems.FirstOrDefault
                     (slot => slot.ItemDefinition.GetType() == itemType);
 
@@ -69,22 +76,16 @@ namespace Items.Inventory
             matchingSlot.Empty();
         }
 
-        /// <summary>
-        /// Iterates over the inventory to check if there are X amount of slots empty
-        /// </summary>
         public bool HasEmptySlots(int amountOfSlots)
         {
-            return Slots.Count(slot => slot.ItemDefinition == null) >= amountOfSlots;
+            return m_Slots.Count(slot => slot.ItemDefinition == null) >= amountOfSlots;
         }
 
-        /// <summary>
-        /// If there are any empty slots, finds the first one in the inventory
-        /// </summary>
         public int GetFirstEmptySlot()
         {
-            for (var i = 0; i < Slots.Length; i++)
+            for (var i = 0; i < m_Slots.Length; i++)
             {
-                if (Slots[i].ItemDefinition == null)
+                if (m_Slots[i].ItemDefinition == null)
                 {
                     return i;
                 }
@@ -94,13 +95,9 @@ namespace Items.Inventory
             return 0;
         }
 
-        /// <summary>
-        /// Returns the <see cref="Item"/> in the slot at the given index.
-        /// Can return null.
-        /// </summary>
         public Item GetItemInSlot(int slotIndex)
         {
-            return Slots[slotIndex].ItemDefinition;
+            return m_Slots[slotIndex].ItemDefinition;
         }
 
         /// <summary>
