@@ -1,24 +1,30 @@
-﻿using System.Collections.Generic;
-using Items.Definitions;
+﻿using System;
+using System.Collections.Generic;
 using Items.Inventory;
-using Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace UI.Inventory
 {
     internal sealed class InventoryUI : MonoBehaviour
     {
-        private Item m_Item;
-        public Text ItemName;
-        public Text ItemDescription;
-        public PlayerManager Player;
         private PlayerInventory m_Inventory;
 
         public List<SlotUI> ItemUI = new List<SlotUI>();
-        private const int MaxSlots = 6;
 
+        public void Instantiate()
+        {
+            m_Inventory = GameManager.Instance.PlayerManager.PlayerInventory;
+
+            for (var i = 0; i < ItemUI.Count; i++)
+            {
+                var eventTrigger = ItemUI[i].GetComponentInChildren<EventTrigger>();
+
+                AddCallbackToButton(eventTrigger, i);
+
+                UpdateSlot(i);
+            }
+        }
 
         /// <summary>
         /// Iterate over inventory slots,
@@ -26,13 +32,12 @@ namespace UI.Inventory
         /// </summary>
         public void UpdateSlots()
         {
-            for (var i = 0; i < MaxSlots; i++)
+            for (var i = 0; i < ItemUI.Count; i++)
             {
                 var definition = m_Inventory.GetItemInSlot(i);
 
                 ItemUI[i].UpdateItemSprite(definition);
             }
-
         }
 
         /// <summary>

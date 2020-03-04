@@ -1,5 +1,4 @@
 ﻿using Items.Consumables;
-using Items.Definitions;
 using Items.Inventory;
 using UnityEngine;
 

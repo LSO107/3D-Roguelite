@@ -39,7 +39,7 @@ namespace Items.Inventory
             Debug.Log($"first empty slot = {firstEmptySlot}");
 
             Slots[firstEmptySlot].SetItem(itemDefinition);
-            //GameManager.Instance.InventoryUI.UpdateSlots();
+            GameManager.Instance.InventoryUI.UpdateSlots();
             Debug.Log($"{itemDefinition.Name} was added to the inventory!");
         }
 

@@ -1,6 +1,7 @@
 ﻿using Health;
 using Items.Inventory;
 using Player;
+using UI.Inventory;
 using UnityEngine;
 
 internal sealed class GameManager : MonoBehaviour
@@ -9,6 +10,8 @@ internal sealed class GameManager : MonoBehaviour
 
     public HealthObject PlayerHealth;
     public PlayerManager PlayerManager;
+    public InventoryUI InventoryUI;
+
     public static GameManager Instance;
 
     public void Awake()
