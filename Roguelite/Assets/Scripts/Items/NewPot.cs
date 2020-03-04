@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Items.Consumables;
+﻿using Items.Consumables;
 using UnityEngine;
 
 public class NewPot : MonoBehaviour

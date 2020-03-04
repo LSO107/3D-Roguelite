@@ -15,7 +15,7 @@ namespace Items.Consumables
 
         public override void Use()
         {
-            GameManager.Instance.PlayerHealth.healthDefinition.Heal(HealingAmount);
+            GameManager.Instance.PlayerHealth.Heal(HealingAmount);
         }
     }
 }

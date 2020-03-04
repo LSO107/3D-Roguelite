@@ -6,24 +6,51 @@ namespace Health
     [RequireComponent(typeof(HealthBarUpdater))]
     internal sealed class HealthObject : MonoBehaviour
     {
-        public HealthDefinition healthDefinition;
+        public int CurrentHealth => m_HealthDefinition.CurrentHealth;
+        public int MaxHealth => m_HealthDefinition.MaxHealth;
+
+        private HealthDefinition m_HealthDefinition;
+        private HealthBarUpdater m_HealthBarUpdater;
 
         private float m_NextRegenerationTime;
         private float m_RegenerationTime = 10;
 
         public void Start()
         {
-            healthDefinition = new HealthDefinition();
+            m_HealthDefinition = new HealthDefinition();
+            m_HealthBarUpdater = GetComponent<HealthBarUpdater>();
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.O))
             {
-                healthDefinition.Damage();
+                Damage();
             }
 
             RegenerateHealth();
+        }
+
+        public void Damage()
+        {
+            Damage(10);
+        }
+
+        public void Damage(int amount)
+        {
+            m_HealthDefinition.Damage(amount);
+            m_HealthBarUpdater.UpdateHealthBar(CurrentHealth, MaxHealth);
+        }
+
+        public void Heal()
+        {
+            Heal(10);
+        }
+
+        public void Heal(int amount)
+        {
+            m_HealthDefinition.Heal(amount);
+            m_HealthBarUpdater.UpdateHealthBar(CurrentHealth, MaxHealth);
         }
 
         /// <summary>
@@ -35,16 +62,16 @@ namespace Health
 
             if (Time.time >= m_NextRegenerationTime)
             {
-                healthDefinition.Heal(1);
+                Heal(1);
                 m_NextRegenerationTime = Time.time + m_RegenerationTime;
             }
         }
 
         private void HandleDamage()
         {
-            healthDefinition.Damage();
+            Damage();
 
-            if (healthDefinition.IsDead)
+            if (m_HealthDefinition.IsDead)
             {
                 // Play Death Animation
 
