@@ -1,16 +1,19 @@
 ﻿using Items.Consumables;
+using Items.Definitions;
+using Items.Inventory;
 using UnityEngine;
 
 public class NewPot : MonoBehaviour
 {
+    private static PlayerInventory Inventory => GameManager.Instance.PlayerManager.PlayerInventory;
+
     private void OnCollisionEnter(Collision other)
     {
         if (!other.transform.CompareTag("Player"))
             return;
 
         var potion = new HealthPotion();
-        // Add potion to inventory
-
-        //potion.Use();
+        Inventory.AddItem(potion);
+        Destroy(gameObject);
     }
 }
