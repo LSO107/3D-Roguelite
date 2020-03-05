@@ -17,6 +17,7 @@ namespace UI.EquipmentUI
 
         [SerializeField] private TextMeshProUGUI m_StatTypesText;
         [SerializeField] private TextMeshProUGUI m_StatBonusesText;
+        [SerializeField] private TextMeshProUGUI m_CombatLevelText;
 
         public Dictionary<EquipmentSlotId, Equipment> CurrentEquipmentSlots;
         public List<EquipmentSlotUI> EquipmentSlots = new List<EquipmentSlotUI>();
@@ -78,6 +79,12 @@ namespace UI.EquipmentUI
             m_CanvasGroup.ToggleCanvasGroup(false);
         }
 
+        public void UpdateCombatLevelLabel()
+        {
+            var combatLevel = m_PlayerManager.Stats.CombatLevel;
+            m_CombatLevelText.text = $"Level {combatLevel}";
+        }
+
         public void UpdateLabels()
         {
             var playerStats = m_PlayerManager.Stats;
@@ -98,20 +105,19 @@ namespace UI.EquipmentUI
                 )
                 .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
-            SetEquipmentStatsLabelText(currentStats);
+            SetStatsLabelText(currentStats);
         }
 
-        private void SetEquipmentStatsLabelText(IReadOnlyDictionary<Stat, int> stats)
+        private void SetStatsLabelText(IReadOnlyDictionary<Stat, int> stats)
         {
             var stringBuilder = new StringBuilder();
             foreach (var stat in stats)
             {
                 stringBuilder.Append($"{stat.Key}\n");
             }
-
             m_StatTypesText.text = stringBuilder.ToString();
-            stringBuilder.Clear();
 
+            stringBuilder.Clear();
             foreach (var stat in stats)
             {
                 stringBuilder.Append($"{stat.Value}\n");
