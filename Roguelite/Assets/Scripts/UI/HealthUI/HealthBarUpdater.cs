@@ -7,13 +7,9 @@ namespace UI.HealthUI
     {
         [SerializeField] private Slider healthFillBar;
 
-        /// <summary>
-        /// Set the fill of the slider to be currentHealth / maxHealth
-        /// </summary>
         public void UpdateHealthBar(int currentHealth, int maxHealth)
         {
             healthFillBar.value = (float)currentHealth / maxHealth;
-            Debug.Log($"Health: {currentHealth} / {maxHealth}");
         }
     }
 }

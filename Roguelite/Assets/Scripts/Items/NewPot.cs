@@ -1,5 +1,5 @@
 ﻿using Items.Consumables;
-using Items.EquippableItems;
+using Items.Equipables;
 using Items.Inventory;
 using UnityEngine;
 

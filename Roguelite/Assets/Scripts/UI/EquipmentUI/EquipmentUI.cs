@@ -74,6 +74,11 @@ namespace UI.EquipmentUI
             m_PlayerManager.UnequipItem(slotId);
         }
 
+        public void OpenEquipmentInterface()
+        {
+            m_CanvasGroup.ToggleCanvasGroup(true);
+        }
+
         public void CloseEquipmentInterface()
         {
             m_CanvasGroup.ToggleCanvasGroup(false);

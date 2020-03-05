@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Items.Definitions;
 
-namespace Items.EquippableItems
+namespace Items.Equipables
 {
     internal sealed class SteelDagger : Equipment
     {

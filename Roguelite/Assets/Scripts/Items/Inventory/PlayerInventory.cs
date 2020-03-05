@@ -11,15 +11,15 @@ namespace Items.Inventory
     {
         private static PlayerManager PlayerManager => GameManager.Instance.PlayerManager;
 
-        private readonly Slot[] m_Slots;
+        private readonly InventorySlot[] m_Slots;
         private const int InventorySize = 6;
 
         public PlayerInventory(IEnumerable<Item> items)
         {
-            m_Slots = new Slot[InventorySize];
+            m_Slots = new InventorySlot[InventorySize];
             for (var i = 0; i < m_Slots.Length; i++)
             {
-                m_Slots[i] = new Slot(null);
+                m_Slots[i] = new InventorySlot(null);
             }
             var itemArray = items.ToArray();
             for (var i = 0; i < itemArray.Length; i++)

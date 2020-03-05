@@ -2,11 +2,11 @@
 
 namespace Items.Inventory
 {
-    internal sealed class Slot
+    internal sealed class InventorySlot
     {
         public Item ItemDefinition { get; private set; }
 
-        public Slot(Item itemDefinition)
+        public InventorySlot(Item itemDefinition)
         {
             ItemDefinition = itemDefinition;
         }

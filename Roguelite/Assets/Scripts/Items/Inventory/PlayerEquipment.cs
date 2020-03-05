@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using Items.Definitions;
 using UI.EquipmentUI;
 
-namespace Items.EquipmentSystem
+namespace Items.Inventory
 {
     internal sealed class PlayerEquipment
     {
         private readonly Dictionary<EquipmentSlotId, Equipment> m_EquipmentSlots;
-        private EquipmentUI m_EquipmentUI;
+        private readonly EquipmentUI m_EquipmentUI;
 
         public PlayerEquipment()
         {
@@ -41,8 +41,7 @@ namespace Items.EquipmentSystem
         }
 
         /// <summary>
-        /// Adds all the item bonuses of the equipped items
-        /// into a new dictionary
+        /// Calculates all of the item bonuses to each stat
         /// </summary>
         public Dictionary<Stat, int> GetEquipmentStatBonuses()
         {

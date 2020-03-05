@@ -1,6 +1,6 @@
 ﻿using Items.Definitions;
 
-namespace Items.EquipmentSystem
+namespace Items.Inventory
 {
     internal sealed class EquipmentSlot
     {
