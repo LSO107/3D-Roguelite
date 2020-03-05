@@ -9,7 +9,6 @@ internal sealed class GameManager : MonoBehaviour
 
     public HealthObject PlayerHealth;
     public PlayerManager PlayerManager;
-    public InventoryUI InventoryUI;
 
     public static GameManager Instance;
 

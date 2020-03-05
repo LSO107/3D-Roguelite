@@ -6,9 +6,7 @@ namespace UI.EquipmentUI
 {
     internal sealed class EquipmentSlotUI : MonoBehaviour
     {
-        private Item ItemDefinition;
         public Image spriteImage;
-
         public Sprite DefaultIcon;
 
         public EquipmentSlotId SlotId;
@@ -19,12 +17,12 @@ namespace UI.EquipmentUI
             UpdateItemSprite(null);
         }
 
-        /// <summary>
-        /// Updates the placeholder sprite to the itemDefinition sprite
-        /// </summary>
         public void UpdateItemSprite(Equipment item)
         {
             spriteImage.sprite = item != null ? item.Sprite : DefaultIcon;
+            var colour = spriteImage.color;
+            colour.a = item != null ? 1 : 0.2f;
+            spriteImage.color = colour;
         }
     }
 }

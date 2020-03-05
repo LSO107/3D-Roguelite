@@ -28,9 +28,6 @@ namespace UI.InventoryUI
             }
         }
 
-        /// <summary>
-        /// Update the sprite on the slots
-        /// </summary>
         public void UpdateSlots()
         {
             for (var i = 0; i < ItemUI.Count; i++)
@@ -41,9 +38,6 @@ namespace UI.InventoryUI
             }
         }
 
-        /// <summary>
-        /// Update the sprite on the slot
-        /// </summary>
         private void UpdateSlot(int slot)
         {
             var definition = m_Inventory.GetItemInSlot(slot);
@@ -51,9 +45,6 @@ namespace UI.InventoryUI
             ItemUI[slot].UpdateItemSprite(definition);
         }
 
-        /// <summary>
-        /// Adds a callback that triggers an event when the item is clicked
-        /// </summary>
         private void AddCallbackToButton(EventTrigger eventTrigger, int index)
         {
             var eventEntry = new EventTrigger.Entry
@@ -66,9 +57,6 @@ namespace UI.InventoryUI
             eventTrigger.triggers.Add(eventEntry);
         }
 
-        /// <summary>
-        /// When the item is clicked, trigger the Use method
-        /// </summary>
         public void ClickItem(BaseEventData eventData, int slotIndex)
         {
             m_Inventory.UseItem(slotIndex);

@@ -19,27 +19,18 @@ namespace Items.EquipmentSystem
             };
         }
 
-        /// <summary>
-        /// Equip the <see cref="Item"/> in the corresponding equipment slot
-        /// </summary>
         public void Equip(Equipment item)
         {
             m_EquipmentSlots[item.EquipmentSlotId] = item;
             //GameManager.Instance.EquipmentUI.UpdateLabels();
         }
 
-        /// <summary> Sets the <see cref="EquipmentSlot"/> in the corresponding equipment
-        /// slot to null, unequipping the item
-        /// </summary>
         public void Unequip(EquipmentSlotId slotId)
         {
             m_EquipmentSlots[slotId] = null;
             //GameManager.Instance.EquipmentUI.UpdateLabels();
         }
 
-        /// <summary>
-        /// Get the <see cref="Equipment"/> in the slot
-        /// </summary>
         public Equipment GetEquipmentInSlot(EquipmentSlotId slotId)
         {
             return m_EquipmentSlots[slotId];
@@ -49,7 +40,6 @@ namespace Items.EquipmentSystem
         /// Adds all the item bonuses of the equipped items
         /// into a new dictionary
         /// </summary>
-        /// <remarks>Always contains an entry for each available stat</remarks>
         public Dictionary<Stat, int> GetEquipmentStatBonuses()
         {
             var dictionary = new Dictionary<Stat, int>();

@@ -1,28 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Items.Definitions;
-using Items.EquipmentSystem;
-using Items.Inventory;
 using Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace UI.EquipmentUI
 {
     internal sealed class EquipmentUI : MonoBehaviour
     {
-        public PlayerManager Player;
+        private PlayerManager m_PlayerManager;
 
-        private PlayerEquipment m_PlayerEquipment;
         public Dictionary<EquipmentSlotId, Equipment> CurrentEquipmentSlots;
 
         public List<EquipmentSlotUI> EquipmentSlots = new List<EquipmentSlotUI>();
 
         public void Instantiate()
         {
-            m_PlayerEquipment = GameManager.Instance.PlayerManager.PlayerEquipment;
-            //EquipmentSlots = GetComponentsInChildren<EquipmentSlotUI>().ToList();
+            m_PlayerManager = GameManager.Instance.PlayerManager;
 
             CurrentEquipmentSlots = new Dictionary<EquipmentSlotId, Equipment>
             {
@@ -32,10 +27,6 @@ namespace UI.EquipmentUI
                 {EquipmentSlotId.Weapon, null},
             };
 
-            // Register on click events for each button in our equipment window
-            // each button will tell our callback which slot it represents
-            // so that the buttons are implementation agnostic.
-            //
             foreach (var button in EquipmentSlots)
             {
                 var eventTrigger = button.GetComponent<EventTrigger>();
@@ -43,23 +34,14 @@ namespace UI.EquipmentUI
             }
         }
 
-        /// <summary>
-        /// Update the slot indexes item placeholder
-        /// sprite with the itemDefinition sprite
-        /// </summary>
-        /// 
         public void UpdateSlot(EquipmentSlotId slot)
         {
-            var definition = m_PlayerEquipment.GetEquipmentInSlot(slot);
+            var definition = m_PlayerManager.PlayerEquipment.GetEquipmentInSlot(slot);
 
             var matchingSlot = EquipmentSlots.Single(e => e.SlotId == slot);
             matchingSlot.UpdateItemSprite(definition);
         }
 
-        /// <summary>
-        /// Waits for mouse click to trigger an event
-        /// </summary>
-        /// 
         private void AddCallbackToButton(EventTrigger eventTrigger, EquipmentSlotId slotId)
         {
             var eventEntry = new EventTrigger.Entry
@@ -72,20 +54,14 @@ namespace UI.EquipmentUI
             eventTrigger.triggers.Add(eventEntry);
         }
 
-        /// <summary>
-        /// If item clicked, unequip the item then update the slot
-        /// </summary>
-        /// 
         public void ClickItem(BaseEventData eventData, EquipmentSlotId slotId)
         {
-            // Get the equipment item in the slot we've just clicked
-            var equipmentItem = m_PlayerEquipment.GetEquipmentInSlot(slotId);
-            // If there isn't an item in that slot, return
+            var equipmentItem = m_PlayerManager.PlayerEquipment.GetEquipmentInSlot(slotId);
+
             if (equipmentItem == null)
                 return;
 
-            // Tell the player to unequip the item in that slot
-            Player.UnequipItem(slotId);
+            m_PlayerManager.UnequipItem(slotId);
         }
     }
 }

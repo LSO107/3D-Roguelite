@@ -3867,7 +3867,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerHealth: {fileID: 1255174975}
   PlayerManager: {fileID: 1494777895}
-  InventoryUI: {fileID: 1652693518}
 --- !u!4 &638109035
 Transform:
   m_ObjectHideFlags: 0
@@ -7727,7 +7726,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723aa31ecd7701545a70c535fcaf18f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1494777895}
   EquipmentSlots:
   - {fileID: 139918448}
   - {fileID: 223597438}

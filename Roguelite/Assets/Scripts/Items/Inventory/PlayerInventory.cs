@@ -28,9 +28,6 @@ namespace Items.Inventory
             }
         }
 
-        /// <summary>
-        /// Adds the item to the first available inventory slot
-        /// </summary>
         public void AddItem(Item itemDefinition)
         {
             if (!HasEmptySlots(1))
@@ -44,9 +41,6 @@ namespace Items.Inventory
             PlayerManager.InventoryUI.UpdateSlots();
         }
 
-        /// <summary>
-        /// Removes the item from the slotIndex
-        /// </summary>
         public void RemoveItem(int slotIndex)
         {
             var slot = m_Slots[slotIndex];
@@ -59,9 +53,6 @@ namespace Items.Inventory
             slot.Empty();
         }
 
-        /// <summary>
-        /// Removes the item type from the inventory
-        /// </summary>
         public void RemoveItem(Type itemType)
         {
             var slotsWithItems = m_Slots.Where(slot => slot.ItemDefinition != null);
@@ -100,22 +91,18 @@ namespace Items.Inventory
             return m_Slots[slotIndex].ItemDefinition;
         }
 
-        /// <summary>
-        /// Use the item in the slot with the given index
-        /// </summary>
         public void UseItem(int slotIndex)
         {
             var item = GetItemInSlot(slotIndex);
 
-            var consumable = item as Consumable;
-            if (consumable != null)
+            if (item is Consumable consumable)
             {
                 consumable.Use();
                 RemoveItem(slotIndex);
             }
             else if (item is Equipment)
             {
-                GameManager.Instance.PlayerManager.EquipItem(slotIndex);
+                PlayerManager.EquipItem(slotIndex);
             }
         }
     }
