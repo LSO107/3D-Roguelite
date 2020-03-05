@@ -1,4 +1,4 @@
-﻿using UI.Health;
+﻿using UI.HealthUI;
 using UnityEngine;
 
 namespace Health

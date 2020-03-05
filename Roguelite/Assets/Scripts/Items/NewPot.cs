@@ -1,18 +1,26 @@
 ﻿using Items.Consumables;
+using Items.EquippableItems;
 using Items.Inventory;
 using UnityEngine;
 
-public class NewPot : MonoBehaviour
+namespace Items
 {
-    private static PlayerInventory Inventory => GameManager.Instance.PlayerManager.PlayerInventory;
-
-    private void OnCollisionEnter(Collision other)
+    public class NewPot : MonoBehaviour
     {
-        if (!other.transform.CompareTag("Player"))
-            return;
+        private static PlayerInventory Inventory => GameManager.Instance.PlayerManager.PlayerInventory;
 
-        var potion = new HealthPotion();
-        Inventory.AddItem(potion);
-        Destroy(gameObject);
+        private void OnCollisionEnter(Collision other)
+        {
+            if (!other.transform.CompareTag("Player"))
+                return;
+
+            //var potion = new HealthPotion();
+            //Inventory.AddItem(potion);
+
+            var dagger = new SteelDagger();
+            Inventory.AddItem(dagger);
+
+            Destroy(gameObject);
+        }
     }
 }

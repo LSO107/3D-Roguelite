@@ -115,7 +115,7 @@ namespace Items.Inventory
             }
             else if (item is Equipment)
             {
-                //GameManager.Instance.Player.EquipItem(slotIndex);
+                GameManager.Instance.PlayerManager.EquipItem(slotIndex);
             }
         }
     }

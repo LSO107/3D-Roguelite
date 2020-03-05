@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Items.Inventory;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace UI.Inventory
+namespace UI.InventoryUI
 {
     internal sealed class InventoryUI : MonoBehaviour
     {
@@ -59,7 +58,7 @@ namespace UI.Inventory
         {
             var eventEntry = new EventTrigger.Entry
             {
-                eventID = EventTriggerType.PointerClick,
+                eventID = EventTriggerType.PointerClick
             };
 
             eventEntry.callback.AddListener(eventData => ClickItem(eventData, index));
