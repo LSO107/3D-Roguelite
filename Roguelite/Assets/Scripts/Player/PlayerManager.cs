@@ -14,12 +14,14 @@ namespace Player
         public PlayerEquipment PlayerEquipment;
         public InventoryUI InventoryUI;
         public EquipmentUI EquipmentUI;
+        public Stats Stats;
 
         private void Start()
         {
+            Stats = new Stats(1, 5, 5, 5, 5);
+
             var inventory = new List<Item>();
             PlayerInventory = new PlayerInventory(inventory);
-
             PlayerEquipment = new PlayerEquipment();
 
             InventoryUI.Instantiate();

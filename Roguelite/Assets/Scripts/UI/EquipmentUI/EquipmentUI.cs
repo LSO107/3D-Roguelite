@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using Extensions;
 using Items.Definitions;
 using Player;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,14 +13,18 @@ namespace UI.EquipmentUI
     internal sealed class EquipmentUI : MonoBehaviour
     {
         private PlayerManager m_PlayerManager;
+        private CanvasGroup m_CanvasGroup;
+
+        [SerializeField] private TextMeshProUGUI m_StatTypesText;
+        [SerializeField] private TextMeshProUGUI m_StatBonusesText;
 
         public Dictionary<EquipmentSlotId, Equipment> CurrentEquipmentSlots;
-
         public List<EquipmentSlotUI> EquipmentSlots = new List<EquipmentSlotUI>();
 
         public void Instantiate()
         {
             m_PlayerManager = GameManager.Instance.PlayerManager;
+            m_CanvasGroup = GetComponent<CanvasGroup>();
 
             CurrentEquipmentSlots = new Dictionary<EquipmentSlotId, Equipment>
             {
@@ -32,6 +39,8 @@ namespace UI.EquipmentUI
                 var eventTrigger = button.GetComponent<EventTrigger>();
                 AddCallbackToButton(eventTrigger, button.SlotId);
             }
+
+            UpdateLabels();
         }
 
         public void UpdateSlot(EquipmentSlotId slot)
@@ -62,6 +71,53 @@ namespace UI.EquipmentUI
                 return;
 
             m_PlayerManager.UnequipItem(slotId);
+        }
+
+        public void CloseEquipmentInterface()
+        {
+            m_CanvasGroup.ToggleCanvasGroup(false);
+        }
+
+        public void UpdateLabels()
+        {
+            var playerStats = m_PlayerManager.Stats;
+            var playerEquipment = m_PlayerManager.PlayerEquipment;
+
+            var baseStats = playerStats.GetBaseStats();
+            var equipmentStats = playerEquipment.GetEquipmentStatBonuses();
+
+            var currentStats = baseStats.Keys
+                                        .Union(equipmentStats.Keys)
+                                        .Select(key =>
+                    {
+                        baseStats.TryGetValue(key, out var baseValue);
+                        equipmentStats.TryGetValue(key, out var equipmentValue);
+
+                        return new KeyValuePair<Stat, int>(key, baseValue + equipmentValue);
+                    }
+                )
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+            SetEquipmentStatsLabelText(currentStats);
+        }
+
+        private void SetEquipmentStatsLabelText(IReadOnlyDictionary<Stat, int> stats)
+        {
+            var stringBuilder = new StringBuilder();
+            foreach (var stat in stats)
+            {
+                stringBuilder.Append($"{stat.Key}\n");
+            }
+
+            m_StatTypesText.text = stringBuilder.ToString();
+            stringBuilder.Clear();
+
+            foreach (var stat in stats)
+            {
+                stringBuilder.Append($"{stat.Value}\n");
+            }
+
+            m_StatBonusesText.text = stringBuilder.ToString();
         }
     }
 }

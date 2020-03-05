@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using Items.Definitions;
+using UI.EquipmentUI;
 
 namespace Items.EquipmentSystem
 {
     internal sealed class PlayerEquipment
     {
         private readonly Dictionary<EquipmentSlotId, Equipment> m_EquipmentSlots;
+        private EquipmentUI m_EquipmentUI;
 
         public PlayerEquipment()
         {
+            m_EquipmentUI = GameManager.Instance.PlayerManager.EquipmentUI;
+
             m_EquipmentSlots = new Dictionary<EquipmentSlotId, Equipment>
             {
                 { EquipmentSlotId.Head, null },
@@ -22,13 +26,13 @@ namespace Items.EquipmentSystem
         public void Equip(Equipment item)
         {
             m_EquipmentSlots[item.EquipmentSlotId] = item;
-            //GameManager.Instance.EquipmentUI.UpdateLabels();
+            m_EquipmentUI.UpdateLabels();
         }
 
         public void Unequip(EquipmentSlotId slotId)
         {
             m_EquipmentSlots[slotId] = null;
-            //GameManager.Instance.EquipmentUI.UpdateLabels();
+            m_EquipmentUI.UpdateLabels();
         }
 
         public Equipment GetEquipmentInSlot(EquipmentSlotId slotId)
