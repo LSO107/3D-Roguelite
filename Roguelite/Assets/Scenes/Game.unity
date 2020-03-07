@@ -3865,7 +3865,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc837825f0d46574883355be9819f832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerHealth: {fileID: 1255174975}
   PlayerManager: {fileID: 1494777895}
 --- !u!4 &638109035
 Transform:
@@ -4494,7 +4493,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0.04296875, y: 0.11328125, z: 0.03125, w: -0.03515625}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -8204,18 +8203,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1244199804}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1255174975 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1015277165, guid: 8ded6c3414abaeb4e8310d87f929b653,
-    type: 3}
-  m_PrefabInstance: {fileID: 1431270629819372450}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494777888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6877aebbb5640d64f8cec7a556f4b3cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1260928927
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9621,6 +9608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f51e36abfb4b9b4a87f7698044657c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HealthBarUI: {fileID: 1958219507}
   InventoryUI: {fileID: 1888406257}
   EquipmentUI: {fileID: 2013899813}
 --- !u!1001 &1509127757
@@ -14812,7 +14800,8 @@ PrefabInstance:
       propertyPath: healthFillBar
       value: 
       objectReference: {fileID: 1958219507}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1015277166, guid: 8ded6c3414abaeb4e8310d87f929b653, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8ded6c3414abaeb4e8310d87f929b653, type: 3}
 --- !u!1001 &8875833198809127764
 PrefabInstance:

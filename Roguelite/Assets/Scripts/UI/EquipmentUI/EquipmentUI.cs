@@ -46,7 +46,7 @@ namespace UI.EquipmentUI
 
         public void UpdateSlot(EquipmentSlotId slot)
         {
-            var definition = m_PlayerManager.PlayerEquipment.GetEquipmentInSlot(slot);
+            var definition = m_PlayerManager.Equipment.GetEquipmentInSlot(slot);
 
             var matchingSlot = EquipmentSlots.Single(e => e.SlotId == slot);
             matchingSlot.UpdateItemSprite(definition);
@@ -66,7 +66,7 @@ namespace UI.EquipmentUI
 
         public void ClickItem(BaseEventData eventData, EquipmentSlotId slotId)
         {
-            var equipmentItem = m_PlayerManager.PlayerEquipment.GetEquipmentInSlot(slotId);
+            var equipmentItem = m_PlayerManager.Equipment.GetEquipmentInSlot(slotId);
 
             if (equipmentItem == null)
                 return;
@@ -93,7 +93,7 @@ namespace UI.EquipmentUI
         public void UpdateLabels()
         {
             var playerStats = m_PlayerManager.Stats;
-            var playerEquipment = m_PlayerManager.PlayerEquipment;
+            var playerEquipment = m_PlayerManager.Equipment;
 
             var baseStats = playerStats.GetBaseStats();
             var equipmentStats = playerEquipment.GetEquipmentStatBonuses();

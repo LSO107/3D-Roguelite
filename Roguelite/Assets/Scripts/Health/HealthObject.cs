@@ -1,16 +1,17 @@
-﻿using UI.HealthUI;
+﻿using Extensions;
+using Player;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Health
 {
-    [RequireComponent(typeof(HealthBarUpdater))]
     internal sealed class HealthObject : MonoBehaviour
     {
         public int CurrentHealth => m_HealthDefinition.CurrentHealth;
         public int MaxHealth => m_HealthDefinition.MaxHealth;
 
         private HealthDefinition m_HealthDefinition;
-        private HealthBarUpdater m_HealthBarUpdater;
+        private Slider m_HealthBar;
 
         private float m_NextRegenerationTime;
         private float m_RegenerationTime = 10;
@@ -18,7 +19,7 @@ namespace Health
         public void Start()
         {
             m_HealthDefinition = new HealthDefinition();
-            m_HealthBarUpdater = GetComponent<HealthBarUpdater>();
+            m_HealthBar = GetComponent<PlayerManager>().HealthBarUI;
         }
 
         private void Update()
@@ -39,7 +40,7 @@ namespace Health
         public void Damage(int amount)
         {
             m_HealthDefinition.Damage(amount);
-            m_HealthBarUpdater.UpdateHealthBar(CurrentHealth, MaxHealth);
+            m_HealthBar.UpdateBarValue(CurrentHealth, MaxHealth);
         }
 
         public void Heal()
@@ -50,7 +51,7 @@ namespace Health
         public void Heal(int amount)
         {
             m_HealthDefinition.Heal(amount);
-            m_HealthBarUpdater.UpdateHealthBar(CurrentHealth, MaxHealth);
+            m_HealthBar.UpdateBarValue(CurrentHealth, MaxHealth);
         }
 
         /// <summary>
