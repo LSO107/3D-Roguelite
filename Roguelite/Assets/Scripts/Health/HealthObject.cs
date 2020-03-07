@@ -1,16 +1,17 @@
-﻿using UI.HealthUI;
+﻿using Extensions;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Health
 {
-    [RequireComponent(typeof(HealthBarUpdater))]
     internal sealed class HealthObject : MonoBehaviour
     {
         public int CurrentHealth => m_HealthDefinition.CurrentHealth;
         public int MaxHealth => m_HealthDefinition.MaxHealth;
+        public bool IsDead => m_HealthDefinition.IsDead;
 
         private HealthDefinition m_HealthDefinition;
-        private HealthBarUpdater m_HealthBarUpdater;
+        [SerializeField] private Slider m_HealthBar;
 
         private float m_NextRegenerationTime;
         private float m_RegenerationTime = 10;
@@ -18,59 +19,38 @@ namespace Health
         public void Start()
         {
             m_HealthDefinition = new HealthDefinition();
-            m_HealthBarUpdater = GetComponent<HealthBarUpdater>();
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.O))
+            if (Time.time >= m_NextRegenerationTime)
             {
-                Damage();
+                RegenerateHealth();
             }
-
-            RegenerateHealth();
-        }
-
-        public void Damage()
-        {
-            Damage(10);
         }
 
         public void Damage(int amount)
         {
             m_HealthDefinition.Damage(amount);
-            m_HealthBarUpdater.UpdateHealthBar(CurrentHealth, MaxHealth);
-        }
-
-        public void Heal()
-        {
-            Heal(10);
+            m_HealthBar.UpdateBarValue(CurrentHealth, MaxHealth);
         }
 
         public void Heal(int amount)
         {
             m_HealthDefinition.Heal(amount);
-            m_HealthBarUpdater.UpdateHealthBar(CurrentHealth, MaxHealth);
+            m_HealthBar.UpdateBarValue(CurrentHealth, MaxHealth);
         }
 
-        /// <summary>
-        /// Regenerate the health over time
-        /// </summary>
         private void RegenerateHealth()
         {
             // TODO: Prevent regeneration during combat
 
-            if (Time.time >= m_NextRegenerationTime)
-            {
-                Heal(1);
-                m_NextRegenerationTime = Time.time + m_RegenerationTime;
-            }
+            Heal(1);
+            m_NextRegenerationTime = Time.time + m_RegenerationTime;
         }
 
-        private void HandleDamage()
+        private void HandlePlayerDeath()
         {
-            Damage();
-
             if (m_HealthDefinition.IsDead)
             {
                 // Play Death Animation

@@ -1,45 +1,54 @@
 ﻿using System.Collections.Generic;
+using Health;
 using Items.Definitions;
 using Items.Inventory;
 using UI.EquipmentUI;
 using UI.InventoryUI;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Player
 {
+    [RequireComponent(typeof(HealthObject))]
     internal sealed class PlayerManager : MonoBehaviour
     {
-        public PlayerInventory PlayerInventory;
-        public PlayerEquipment PlayerEquipment;
+        public HealthObject Health { get; private set; }
+        public Experience Experience { get; private set; }
+        public PlayerInventory Inventory { get; private set; }
+        public PlayerEquipment Equipment { get; private set; }
+        public Stats Stats { get; private set; }
+
+        public Slider ExperienceBarUI;
         public InventoryUI InventoryUI;
         public EquipmentUI EquipmentUI;
-        public Stats Stats;
 
         private void Start()
         {
             Stats = new Stats(1, 5, 5, 5, 5);
-
             var inventory = new List<Item>();
-            PlayerInventory = new PlayerInventory(inventory);
-            PlayerEquipment = new PlayerEquipment();
+            Inventory = new PlayerInventory(inventory);
+            Equipment = new PlayerEquipment();
 
+            Health = GetComponent<HealthObject>();
+            Experience = new Experience(85);
+            
             InventoryUI.Instantiate();
             EquipmentUI.Instantiate();
         }
 
         public void EquipItem(int slotIndex)
         {
-            if (!(PlayerInventory.GetItemInSlot(slotIndex) is Equipment equipment))
+            if (!(Inventory.GetItemInSlot(slotIndex) is Equipment equipment))
                 return;
 
-            var item = PlayerEquipment.GetEquipmentInSlot(equipment.EquipmentSlotId);
+            var item = Equipment.GetEquipmentInSlot(equipment.EquipmentSlotId);
 
-            PlayerEquipment.Equip(equipment);
-            PlayerInventory.RemoveItem(slotIndex);
+            Equipment.Equip(equipment);
+            Inventory.RemoveItem(slotIndex);
 
             if (item != null)
             {
-                PlayerInventory.AddItem(item);
+                Inventory.AddItem(item);
             }
 
             EquipmentUI.UpdateSlot(equipment.EquipmentSlotId);
@@ -47,13 +56,13 @@ namespace Player
 
         public void UnequipItem(EquipmentSlotId slotId)
         {
-            var equipment = PlayerEquipment.GetEquipmentInSlot(slotId);
+            var equipment = Equipment.GetEquipmentInSlot(slotId);
 
-            if (!PlayerInventory.HasEmptySlots(1))
+            if (!Inventory.HasEmptySlots(1))
                 return;
 
-            PlayerEquipment.Unequip(slotId);
-            PlayerInventory.AddItem(equipment);
+            Equipment.Unequip(slotId);
+            Inventory.AddItem(equipment);
 
             EquipmentUI.UpdateSlot(equipment.EquipmentSlotId);
             InventoryUI.UpdateSlots();

@@ -16,7 +16,7 @@ namespace UI.InventoryUI
         /// </summary>
         public void Instantiate()
         {
-            m_Inventory = GameManager.Instance.PlayerManager.PlayerInventory;
+            m_Inventory = GameManager.Instance.PlayerManager.Inventory;
 
             for (var i = 0; i < ItemUI.Count; i++)
             {

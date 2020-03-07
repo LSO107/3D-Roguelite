@@ -7,7 +7,7 @@ namespace Items
 {
     public class NewPot : MonoBehaviour
     {
-        private static PlayerInventory Inventory => GameManager.Instance.PlayerManager.PlayerInventory;
+        private static PlayerInventory Inventory => GameManager.Instance.PlayerManager.Inventory;
 
         private void OnCollisionEnter(Collision other)
         {
