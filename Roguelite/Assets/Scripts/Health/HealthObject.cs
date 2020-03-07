@@ -24,17 +24,7 @@ namespace Health
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                Damage();
-            }
-
             RegenerateHealth();
-        }
-
-        public void Damage()
-        {
-            Damage(10);
         }
 
         public void Damage(int amount)
@@ -43,20 +33,12 @@ namespace Health
             m_HealthBar.UpdateBarValue(CurrentHealth, MaxHealth);
         }
 
-        public void Heal()
-        {
-            Heal(10);
-        }
-
         public void Heal(int amount)
         {
             m_HealthDefinition.Heal(amount);
             m_HealthBar.UpdateBarValue(CurrentHealth, MaxHealth);
         }
 
-        /// <summary>
-        /// Regenerate the health over time
-        /// </summary>
         private void RegenerateHealth()
         {
             // TODO: Prevent regeneration during combat
@@ -68,10 +50,8 @@ namespace Health
             }
         }
 
-        private void HandleDamage()
+        private void HandlePlayerDeath()
         {
-            Damage();
-
             if (m_HealthDefinition.IsDead)
             {
                 // Play Death Animation

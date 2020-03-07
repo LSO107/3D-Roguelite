@@ -5,9 +5,9 @@ namespace Extensions
 {
     internal static class SliderExtensions
     {
-        public static void UpdateBarValue(this Slider slider, int currentValue, int maxValue)
+        public static void UpdateBarValue(this Slider slider, float currentValue, float maxValue)
         {
-            slider.value = (float) currentValue / maxValue;
+            slider.value = currentValue / maxValue;
         }
     }
 }

@@ -41,7 +41,9 @@ namespace Player
         {
             CombatLevel++;
             IncreaseBaseStats();
-            GameManager.Instance.PlayerManager.EquipmentUI.UpdateCombatLevelLabel();
+            var equipment = GameManager.Instance.PlayerManager.EquipmentUI;
+            equipment.UpdateCombatLevelLabel();
+            equipment.UpdateLabels();
         }
 
         private void IncreaseBaseStats()

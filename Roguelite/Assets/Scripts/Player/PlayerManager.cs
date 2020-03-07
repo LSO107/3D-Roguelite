@@ -13,11 +13,13 @@ namespace Player
     internal sealed class PlayerManager : MonoBehaviour
     {
         public HealthObject Health { get; private set; }
+        public Experience Experience { get; private set; }
         public PlayerInventory Inventory { get; private set; }
         public PlayerEquipment Equipment { get; private set; }
         public Stats Stats { get; private set; }
 
         public Slider HealthBarUI;
+        public Slider ExperienceBarUI;
         public InventoryUI InventoryUI;
         public EquipmentUI EquipmentUI;
 
@@ -27,8 +29,10 @@ namespace Player
             var inventory = new List<Item>();
             Inventory = new PlayerInventory(inventory);
             Equipment = new PlayerEquipment();
-            Health = GetComponent<HealthObject>();
 
+            Health = GetComponent<HealthObject>();
+            Experience = new Experience(85);
+            
             InventoryUI.Instantiate();
             EquipmentUI.Instantiate();
         }
