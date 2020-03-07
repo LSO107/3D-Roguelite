@@ -9769,7 +9769,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f51e36abfb4b9b4a87f7698044657c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthBarUI: {fileID: 1958219507}
   ExperienceBarUI: {fileID: 1083341784}
   InventoryUI: {fileID: 1888406257}
   EquipmentUI: {fileID: 2013899813}
@@ -14967,6 +14966,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1015277165, guid: 8ded6c3414abaeb4e8310d87f929b653, type: 3}
+      propertyPath: m_HealthBar
+      value: 
+      objectReference: {fileID: 1958219507}
     - target: {fileID: 1431270627786104885, guid: 8ded6c3414abaeb4e8310d87f929b653,
         type: 3}
       propertyPath: m_LocalPosition.x

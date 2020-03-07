@@ -18,7 +18,6 @@ namespace Player
         public PlayerEquipment Equipment { get; private set; }
         public Stats Stats { get; private set; }
 
-        public Slider HealthBarUI;
         public Slider ExperienceBarUI;
         public InventoryUI InventoryUI;
         public EquipmentUI EquipmentUI;

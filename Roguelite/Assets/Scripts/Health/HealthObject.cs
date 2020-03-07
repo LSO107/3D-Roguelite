@@ -1,5 +1,4 @@
 ﻿using Extensions;
-using Player;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,9 +8,10 @@ namespace Health
     {
         public int CurrentHealth => m_HealthDefinition.CurrentHealth;
         public int MaxHealth => m_HealthDefinition.MaxHealth;
+        public bool IsDead => m_HealthDefinition.IsDead;
 
         private HealthDefinition m_HealthDefinition;
-        private Slider m_HealthBar;
+        [SerializeField] private Slider m_HealthBar;
 
         private float m_NextRegenerationTime;
         private float m_RegenerationTime = 10;
@@ -19,12 +19,14 @@ namespace Health
         public void Start()
         {
             m_HealthDefinition = new HealthDefinition();
-            m_HealthBar = GetComponent<PlayerManager>().HealthBarUI;
         }
 
         private void Update()
         {
-            RegenerateHealth();
+            if (Time.time >= m_NextRegenerationTime)
+            {
+                RegenerateHealth();
+            }
         }
 
         public void Damage(int amount)
@@ -43,11 +45,8 @@ namespace Health
         {
             // TODO: Prevent regeneration during combat
 
-            if (Time.time >= m_NextRegenerationTime)
-            {
-                Heal(1);
-                m_NextRegenerationTime = Time.time + m_RegenerationTime;
-            }
+            Heal(1);
+            m_NextRegenerationTime = Time.time + m_RegenerationTime;
         }
 
         private void HandlePlayerDeath()
