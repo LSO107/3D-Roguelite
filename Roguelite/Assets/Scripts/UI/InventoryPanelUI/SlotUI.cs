@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.InventoryUI
+namespace UI.InventoryPanelUI
 {
     internal sealed class SlotUI : MonoBehaviour
     {

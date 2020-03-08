@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Player.ThirdPerson
+namespace Player.Movement
 {
     [RequireComponent(typeof(ThirdPersonCharacter))]
     internal sealed class ThirdPersonUserControl : MonoBehaviour

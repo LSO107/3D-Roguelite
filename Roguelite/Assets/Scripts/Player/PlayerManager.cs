@@ -4,7 +4,7 @@ using Items.Definitions;
 using Items.Inventory;
 using Player.Experience;
 using UI.EquipmentUI;
-using UI.InventoryUI;
+using UI.InventoryPanelUI;
 using UnityEngine;
 
 namespace Player
