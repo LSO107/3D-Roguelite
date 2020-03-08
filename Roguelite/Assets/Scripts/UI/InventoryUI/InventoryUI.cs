@@ -11,6 +11,8 @@ namespace UI.InventoryUI
 
         public List<SlotUI> ItemUI = new List<SlotUI>();
 
+        private bool m_ContextMenuOpen;
+
         /// <summary>
         /// Instantiate manually to ensure the inventory is set up before the slots
         /// </summary>
@@ -51,7 +53,7 @@ namespace UI.InventoryUI
             {
                 eventID = EventTriggerType.PointerClick
             };
-
+            
             eventEntry.callback.AddListener(eventData => ClickItem(eventData, index));
 
             eventTrigger.triggers.Add(eventEntry);
@@ -59,8 +61,28 @@ namespace UI.InventoryUI
 
         public void ClickItem(BaseEventData eventData, int slotIndex)
         {
-            m_Inventory.UseItem(slotIndex);
-            UpdateSlot(slotIndex);
+            var pointerEventData = (PointerEventData) eventData;
+            var rightClickIndex = -2;
+
+            if (pointerEventData.pointerId == rightClickIndex)
+            {
+                Debug.Log("Right Click Detected");
+                m_ContextMenuOpen = true;
+
+                Debug.Log(m_ContextMenuOpen);
+
+                // Open invisible button that covers the screen, if this is clicked
+                // then we know we clicked off the button
+            }
+            else
+            {
+                if (m_ContextMenuOpen)
+                    m_ContextMenuOpen = false;
+                Debug.Log(m_ContextMenuOpen);
+
+                m_Inventory.UseItem(slotIndex);
+                UpdateSlot(slotIndex);
+            }
         }
     }
 }
