@@ -1,4 +1,5 @@
 ﻿using Extensions;
+using UI.HUD;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +9,10 @@ namespace Health
     {
         public int CurrentHealth => m_HealthDefinition.CurrentHealth;
         public int MaxHealth => m_HealthDefinition.MaxHealth;
-        public bool IsDead => m_HealthDefinition.IsDead;
 
         private HealthDefinition m_HealthDefinition;
-        [SerializeField] private Slider m_HealthBar;
+
+        [SerializeField] private BarUpdater m_HealthBarUpdater;
 
         private float m_NextRegenerationTime;
         private float m_RegenerationTime = 10;
@@ -32,13 +33,13 @@ namespace Health
         public void Damage(int amount)
         {
             m_HealthDefinition.Damage(amount);
-            m_HealthBar.UpdateBarValue(CurrentHealth, MaxHealth);
+            m_HealthBarUpdater.UpdateBar(CurrentHealth, MaxHealth);
         }
 
         public void Heal(int amount)
         {
             m_HealthDefinition.Heal(amount);
-            m_HealthBar.UpdateBarValue(CurrentHealth, MaxHealth);
+            m_HealthBarUpdater.UpdateBar(CurrentHealth, MaxHealth);
         }
 
         private void RegenerateHealth()

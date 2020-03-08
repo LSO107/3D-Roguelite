@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Extensions;
+using UnityEngine;
 using UnityEngine.UI;
 
 internal sealed class TestingScript : MonoBehaviour
@@ -6,6 +7,8 @@ internal sealed class TestingScript : MonoBehaviour
     [SerializeField] private Button m_DamageHealthButton;
     [SerializeField] private Button m_HealHealthButton;
     [SerializeField] private Button m_ExperienceButton;
+    [SerializeField] private Button m_EquipmentButton;
+
 
     public void Damage()
     {
@@ -20,5 +23,12 @@ internal sealed class TestingScript : MonoBehaviour
     public void AddExperience()
     {
         GameManager.Instance.PlayerManager.Experience.IncreaseExperience(10);
+    }
+
+    public void ToggleEquipment()
+    {
+        var equipment = GameManager.Instance.PlayerManager.EquipmentUI;
+        var canvasGroup = equipment.GetComponent<CanvasGroup>();
+        canvasGroup.ToggleCanvasGroup(!canvasGroup.interactable);
     }
 }

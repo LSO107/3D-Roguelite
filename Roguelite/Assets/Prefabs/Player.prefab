@@ -76,10 +76,11 @@ GameObject:
   - component: {fileID: 1431270627786104881}
   - component: {fileID: 1431270627786104880}
   - component: {fileID: 1015277165}
-  - component: {fileID: 1015277166}
+  - component: {fileID: 1494777896}
+  - component: {fileID: 1494777895}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,8 +133,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!136 &1431270627786104886
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -174,12 +175,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MovingTurnSpeed: 360
   m_StationaryTurnSpeed: 180
-  m_JumpPower: 6
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
   m_MoveSpeedMultiplier: 1
   m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.3
 --- !u!114 &1015277165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6877aebbb5640d64f8cec7a556f4b3cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1015277166
+  m_HealthBarUpdater: {fileID: 0}
+--- !u!114 &1494777896
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,10 +199,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1431270627786104883}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3766ed61f3644674a83e42d20d444e3a, type: 3}
+  m_Script: {fileID: 11500000, guid: ecaf0aafdc144896be8fab7e69d9c82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthFillBar: {fileID: 0}
+  m_ExperienceBarUpdater: {fileID: 0}
+  m_ExperienceRequired: 85
+--- !u!114 &1494777895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431270627786104883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f51e36abfb4b9b4a87f7698044657c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InventoryUI: {fileID: 0}
+  EquipmentUI: {fileID: 0}
 --- !u!1 &1431270627803637556
 GameObject:
   m_ObjectHideFlags: 0

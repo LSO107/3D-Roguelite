@@ -2,23 +2,23 @@
 using Health;
 using Items.Definitions;
 using Items.Inventory;
+using Player.Experience;
 using UI.EquipmentUI;
 using UI.InventoryUI;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Player
 {
     [RequireComponent(typeof(HealthObject))]
+    [RequireComponent(typeof(ExperienceObject))]
     internal sealed class PlayerManager : MonoBehaviour
     {
         public HealthObject Health { get; private set; }
-        public Experience Experience { get; private set; }
+        public ExperienceObject Experience { get; private set; }
         public PlayerInventory Inventory { get; private set; }
         public PlayerEquipment Equipment { get; private set; }
         public Stats Stats { get; private set; }
 
-        public Slider ExperienceBarUI;
         public InventoryUI InventoryUI;
         public EquipmentUI EquipmentUI;
 
@@ -30,7 +30,7 @@ namespace Player
             Equipment = new PlayerEquipment();
 
             Health = GetComponent<HealthObject>();
-            Experience = new Experience(85);
+            Experience = GetComponent<ExperienceObject>();
             
             InventoryUI.Instantiate();
             EquipmentUI.Instantiate();

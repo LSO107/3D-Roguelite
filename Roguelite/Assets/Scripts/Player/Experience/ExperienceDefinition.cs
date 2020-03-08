@@ -1,21 +1,19 @@
-﻿using Extensions;
-
-namespace Player
+﻿namespace Player.Experience
 {
-    internal sealed class Experience
+    internal sealed class ExperienceDefinition
     {
         public float CurrentExperience { get; private set; }
         public float ExperienceRequired { get; private set; }
 
         private float m_ExperienceMultiplier = 1.5f;
 
-        public Experience(float experienceRequired)
+        public ExperienceDefinition(float experienceRequired)
         {
             CurrentExperience = 0;
             ExperienceRequired = experienceRequired;
         }
 
-        public Experience(float currentExperience, float experienceRequired)
+        public ExperienceDefinition(float currentExperience, float experienceRequired)
         {
             CurrentExperience = currentExperience;
             ExperienceRequired = experienceRequired;
@@ -23,7 +21,7 @@ namespace Player
 
         public void IncreaseExperience(float experience)
         {
-            var playerManager = GameManager.Instance.PlayerManager;
+            var playerStats = GameManager.Instance.PlayerManager.Stats;
 
             CurrentExperience += experience;
 
@@ -32,11 +30,9 @@ namespace Player
                 var remainder = CurrentExperience - ExperienceRequired;
                 CurrentExperience = remainder;
 
-                playerManager.Stats.IncreaseCombatLevel();
+                playerStats.IncreaseCombatLevel();
                 ExperienceRequired *= (m_ExperienceMultiplier + 0.5f);
             }
-
-            playerManager.ExperienceBarUI.UpdateBarValue(CurrentExperience, ExperienceRequired);
         }
 
         private bool HasReachedExperienceRequired()

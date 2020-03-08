@@ -28,10 +28,7 @@ namespace Player.ThirdPerson
             if (target != null)
                 Agent.SetDestination(target.position);
 
-            if (Agent.remainingDistance > Agent.stoppingDistance)
-                Character.Move(Agent.desiredVelocity, false, false);
-            else
-                Character.Move(Vector3.zero, false, false);
+            Character.Move(Agent.remainingDistance > Agent.stoppingDistance ? Agent.desiredVelocity : Vector3.zero);
         }
 
 
