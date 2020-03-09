@@ -35,13 +35,16 @@ namespace Items.Inventory
             m_EquipmentUI.UpdateLabels();
         }
 
+        /// <summary>
+        /// Returns the item in the slotId or null
+        /// </summary>
         public Equipment GetEquipmentInSlot(EquipmentSlotId slotId)
         {
             return m_EquipmentSlots[slotId];
         }
 
         /// <summary>
-        /// Calculates all of the item bonuses to each stat
+        /// Returns the item bonus for each <see cref="Stat"/>
         /// </summary>
         public Dictionary<Stat, int> GetEquipmentStatBonuses()
         {

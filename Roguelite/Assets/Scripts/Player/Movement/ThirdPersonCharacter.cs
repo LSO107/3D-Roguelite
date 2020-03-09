@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Player.ThirdPerson
+namespace Player.Movement
 {
 	[RequireComponent(typeof(Rigidbody))]
 	[RequireComponent(typeof(CapsuleCollider))]

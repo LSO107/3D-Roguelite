@@ -90,6 +90,9 @@ namespace UI.EquipmentUI
             m_CombatLevelText.text = $"Level {combatLevel}";
         }
 
+        /// <summary>
+        /// Calculate bonuses using base stats and equipment stats
+        /// </summary>
         public void UpdateLabels()
         {
             var playerStats = m_PlayerManager.Stats;
@@ -113,6 +116,9 @@ namespace UI.EquipmentUI
             SetStatsLabelText(currentStats);
         }
 
+        /// <summary>
+        /// Format stats labels and update text labels
+        /// </summary>
         private void SetStatsLabelText(IReadOnlyDictionary<Stat, int> stats)
         {
             var stringBuilder = new StringBuilder();

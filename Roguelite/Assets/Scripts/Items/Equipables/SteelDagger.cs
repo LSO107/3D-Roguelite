@@ -13,7 +13,8 @@ namespace Items.Equipables
         {
             { Stat.Attack, 5 },
             { Stat.Strength, 5 },
-            { Stat.Defence, 0 }
+            { Stat.Defence, 0 },
+            { Stat.Agility, 0 }
         };
 
         public SteelDagger()

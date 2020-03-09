@@ -1,21 +1,20 @@
 ﻿using System.Collections.Generic;
+using Extensions;
 using Items.Inventory;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace UI.InventoryUI
+namespace UI.InventoryPanelUI
 {
     internal sealed class InventoryUI : MonoBehaviour
     {
         private PlayerInventory m_Inventory;
 
-        public List<SlotUI> ItemUI = new List<SlotUI>();
+        public List<InventorySlotUI> ItemUI = new List<InventorySlotUI>();
 
-        private bool m_ContextMenuOpen;
+        [SerializeField] private ItemContextMenu.ItemContextMenu m_ItemContextMenu;
+        [SerializeField] private CanvasGroup m_ScreenClick;
 
-        /// <summary>
-        /// Instantiate manually to ensure the inventory is set up before the slots
-        /// </summary>
         public void Instantiate()
         {
             m_Inventory = GameManager.Instance.PlayerManager.Inventory;
@@ -28,6 +27,8 @@ namespace UI.InventoryUI
 
                 UpdateSlot(i);
             }
+
+            m_ItemContextMenu.Instantiate();
         }
 
         public void UpdateSlots()
@@ -66,20 +67,15 @@ namespace UI.InventoryUI
 
             if (pointerEventData.pointerId == rightClickIndex)
             {
-                Debug.Log("Right Click Detected");
-                m_ContextMenuOpen = true;
+                if (m_Inventory.GetItemInSlot(slotIndex) == null)
+                    return;
 
-                Debug.Log(m_ContextMenuOpen);
-
-                // Open invisible button that covers the screen, if this is clicked
-                // then we know we clicked off the button
+                m_ScreenClick.ToggleCanvasGroup(true);
+                m_ItemContextMenu.transform.position = Input.mousePosition;
+                m_ItemContextMenu.Open(slotIndex);
             }
             else
             {
-                if (m_ContextMenuOpen)
-                    m_ContextMenuOpen = false;
-                Debug.Log(m_ContextMenuOpen);
-
                 m_Inventory.UseItem(slotIndex);
                 UpdateSlot(slotIndex);
             }
