@@ -5,7 +5,7 @@ using Items.Definitions;
 using TMPro;
 using UnityEngine;
 
-namespace UI.ItemOptions
+namespace UI.Tooltip
 {
     internal sealed class Tooltip : MonoBehaviour
     {
@@ -20,6 +20,7 @@ namespace UI.ItemOptions
 
         public void OpenTooltip(Item item)
         {
+            transform.position = Input.mousePosition;
             UpdateText(item);
             m_CanvasGroup.ToggleCanvasGroup(true);
         }

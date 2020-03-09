@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Extensions;
 using Items.Inventory;
-using UI.ItemOptions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,9 +10,9 @@ namespace UI.InventoryPanelUI
     {
         private PlayerInventory m_Inventory;
 
-        public List<SlotUI> ItemUI = new List<SlotUI>();
+        public List<InventorySlotUI> ItemUI = new List<InventorySlotUI>();
 
-        [SerializeField] private ItemContextMenu m_ItemContextMenu;
+        [SerializeField] private ItemContextMenu.ItemContextMenu m_ItemContextMenu;
         [SerializeField] private CanvasGroup m_ScreenClick;
 
         public void Instantiate()

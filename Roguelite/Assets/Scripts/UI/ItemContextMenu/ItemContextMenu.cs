@@ -3,7 +3,7 @@ using Items.Inventory;
 using UI.InventoryPanelUI;
 using UnityEngine;
 
-namespace UI.ItemOptions
+namespace UI.ItemContextMenu
 {
     internal sealed class ItemContextMenu : MonoBehaviour
     {

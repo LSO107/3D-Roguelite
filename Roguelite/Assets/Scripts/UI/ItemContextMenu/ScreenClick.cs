@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace UI.ItemOptions
+namespace UI.ItemContextMenu
 {
     // Screen overlay to check when the player has clicked away from the InventoryUI or ContextMenu
     // Hierarchy ordering is important. Must be placed below InventoryUI and ContextMenu

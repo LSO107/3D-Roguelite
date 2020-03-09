@@ -1,6 +1,5 @@
-﻿using Health;
-using Player;
-using UI.ItemOptions;
+﻿using Player;
+using UI.Tooltip;
 using UnityEngine;
 
 internal sealed class GameManager : MonoBehaviour
