@@ -2,9 +2,14 @@
 {
     public abstract class Consumable : Item
     {
-        protected Consumable(string name, string iconPath) 
+        public string Description;
+        public int Value;
+
+        protected Consumable(string name, string iconPath, string description, int value) 
             : base(name, iconPath)
         {
+            Description = description;
+            Value = value;
         }
 
         public abstract void Use();
