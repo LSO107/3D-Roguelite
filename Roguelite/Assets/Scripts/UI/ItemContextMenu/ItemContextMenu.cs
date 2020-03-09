@@ -12,6 +12,8 @@ namespace UI.ItemContextMenu
         private InventoryUI m_InventoryUI;
         private int m_SlotIndex;
 
+        public bool ItemContextMenuOpen => m_CanvasGroup.interactable;
+
         private void Start()
         {
             m_CanvasGroup = GetComponent<CanvasGroup>();

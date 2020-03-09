@@ -1,4 +1,5 @@
 ﻿using Player;
+using UI.ItemContextMenu;
 using UI.Tooltip;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ internal sealed class GameManager : MonoBehaviour
     //public GameObject RespawnLocation;
 
     public PlayerManager PlayerManager;
+    public ItemContextMenu ItemContextMenu;
     public Tooltip Tooltip;
 
     public static GameManager Instance;

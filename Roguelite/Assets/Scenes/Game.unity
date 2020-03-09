@@ -4400,6 +4400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerManager: {fileID: 1494777895}
+  ItemContextMenu: {fileID: 2084466910}
   Tooltip: {fileID: 1764513476}
 --- !u!4 &638109035
 Transform:
@@ -16539,7 +16540,7 @@ GameObject:
   - component: {fileID: 2084466913}
   - component: {fileID: 2084466910}
   m_Layer: 5
-  m_Name: Context Menu
+  m_Name: Item Context Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

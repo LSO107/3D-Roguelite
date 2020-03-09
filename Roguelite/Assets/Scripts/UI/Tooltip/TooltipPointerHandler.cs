@@ -10,6 +10,8 @@ namespace UI.Tooltip
 
         private Item m_Item;
 
+        private bool ItemContextMenuOpen => GameManager.Instance.ItemContextMenu.ItemContextMenuOpen;
+
         private void Start()
         {
             m_Tooltip = GameManager.Instance.Tooltip;
@@ -22,7 +24,7 @@ namespace UI.Tooltip
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (m_Item == null)
+            if (m_Item == null || ItemContextMenuOpen)
                 return;
             
             m_Tooltip.OpenTooltip(m_Item);
@@ -30,7 +32,7 @@ namespace UI.Tooltip
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            if (m_Item == null)
+            if (m_Item == null || ItemContextMenuOpen)
                 return;
 
             m_Tooltip.CloseTooltip();
