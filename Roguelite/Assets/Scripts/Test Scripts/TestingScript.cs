@@ -8,6 +8,8 @@ internal sealed class TestingScript : MonoBehaviour
     [SerializeField] private Button m_HealHealthButton;
     [SerializeField] private Button m_ExperienceButton;
     [SerializeField] private Button m_EquipmentButton;
+    [SerializeField] private Button m_AddMoneyButton;
+    [SerializeField] private Button m_RemoveMoneyButton;
 
 
     public void Damage()
@@ -30,5 +32,17 @@ internal sealed class TestingScript : MonoBehaviour
         var equipment = GameManager.Instance.PlayerManager.EquipmentUI;
         var canvasGroup = equipment.GetComponent<CanvasGroup>();
         canvasGroup.ToggleCanvasGroup(!canvasGroup.interactable);
+    }
+
+    public void AddMoney()
+    {
+        GameManager.Instance.PlayerManager.Currency.AddCurrency(10);
+        Debug.Log(GameManager.Instance.PlayerManager.Currency.CurrencyQuantity);
+    }
+
+    public void RemoveMoney()
+    {
+        GameManager.Instance.PlayerManager.Currency.RemoveCurrency(10);
+        Debug.Log(GameManager.Instance.PlayerManager.Currency.CurrencyQuantity);
     }
 }
