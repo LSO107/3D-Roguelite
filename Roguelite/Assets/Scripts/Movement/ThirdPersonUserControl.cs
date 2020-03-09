@@ -1,9 +1,8 @@
-using System.Numerics;
 using UnityEngine;
 using UnityEngine.UI;
 using Vector3 = UnityEngine.Vector3;
 
-namespace Player.Movement
+namespace Movement
 {
     [RequireComponent(typeof(ThirdPersonCharacter))]
     internal sealed class ThirdPersonUserControl : MonoBehaviour

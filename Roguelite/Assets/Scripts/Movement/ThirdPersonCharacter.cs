@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Player.Movement
+namespace Movement
 {
 	[RequireComponent(typeof(Rigidbody))]
 	[RequireComponent(typeof(CapsuleCollider))]
