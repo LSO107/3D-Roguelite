@@ -1,5 +1,6 @@
 ﻿using Items.Consumables;
 using Items.Inventory;
+using Player.Movement;
 using UnityEngine;
 
 public class HealthPot : MonoBehaviour
@@ -24,7 +25,7 @@ public class HealthPot : MonoBehaviour
     {
         var distance = Vector3.Distance(transform.position, PlayerLocation);
 
-        if (distance > 2)
+        while (distance > 2f)
             return;
 
         var healthPotion = new HealthPotion();
