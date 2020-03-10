@@ -5,28 +5,42 @@ namespace Currency
 {
     internal sealed class CurrencyObject : MonoBehaviour
     {
-        public float CurrencyQuantity => m_CurrencyDefinition.CurrencyQuantity;
+        public float CurrencyQuantity => m_CurrencyDefinition.GoldQuantity;
 
         private CurrencyDefinition m_CurrencyDefinition;
 
-        [SerializeField] private TextMeshProUGUI m_Text;
+        [SerializeField] private TextMeshProUGUI m_GoldQuantityText;
+        [SerializeField] private TextMeshProUGUI m_TokenQuantityText;
 
         private void Start()
         {
             m_CurrencyDefinition = new CurrencyDefinition();
-            m_Text.text = m_CurrencyDefinition.CurrencyQuantity.ToString();
+            m_GoldQuantityText.text = m_CurrencyDefinition.GoldQuantity.ToString();
+            m_TokenQuantityText.text = m_CurrencyDefinition.GoldQuantity.ToString();
         }
 
-        public void AddCurrency(float quantity)
+        public void AddGold(float quantity)
         {
-            m_CurrencyDefinition.AddCurrency(quantity);
-            m_Text.text = m_CurrencyDefinition.CurrencyQuantity.ToString();
+            m_CurrencyDefinition.AddGold(quantity);
+            m_GoldQuantityText.text = m_CurrencyDefinition.GoldQuantity.ToString();
         }
 
-        public void RemoveCurrency(float quantity)
+        public void RemoveGold(float quantity)
         {
-            m_CurrencyDefinition.RemoveCurrency(quantity);
-            m_Text.text = m_CurrencyDefinition.CurrencyQuantity.ToString();
+            m_CurrencyDefinition.RemoveGold(quantity);
+            m_GoldQuantityText.text = m_CurrencyDefinition.GoldQuantity.ToString();
+        }
+
+        public void AddTokens(float quantity)
+        {
+            m_CurrencyDefinition.AddTokens(quantity);
+            m_TokenQuantityText.text = m_CurrencyDefinition.TokenQuantity.ToString();
+        }
+
+        public void RemoveTokens(float quantity)
+        {
+            m_CurrencyDefinition.RemoveTokens(quantity);
+            m_TokenQuantityText.text = m_CurrencyDefinition.TokenQuantity.ToString();
         }
     }
 }

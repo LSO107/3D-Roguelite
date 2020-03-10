@@ -6,14 +6,6 @@ namespace Test_Scripts
 {
     internal sealed class TestingScript : MonoBehaviour
     {
-        [SerializeField] private Button m_DamageHealthButton;
-        [SerializeField] private Button m_HealHealthButton;
-        [SerializeField] private Button m_ExperienceButton;
-        [SerializeField] private Button m_EquipmentButton;
-        [SerializeField] private Button m_AddMoneyButton;
-        [SerializeField] private Button m_RemoveMoneyButton;
-
-
         public void Damage()
         {
             GameManager.Instance.PlayerManager.Health.Damage(10);
@@ -38,13 +30,15 @@ namespace Test_Scripts
 
         public void AddMoney()
         {
-            GameManager.Instance.PlayerManager.Currency.AddCurrency(10);
+            GameManager.Instance.PlayerManager.Currency.AddGold(10);
+            GameManager.Instance.PlayerManager.Currency.AddTokens(1);
             Debug.Log(GameManager.Instance.PlayerManager.Currency.CurrencyQuantity);
         }
 
         public void RemoveMoney()
         {
-            GameManager.Instance.PlayerManager.Currency.RemoveCurrency(10);
+            GameManager.Instance.PlayerManager.Currency.RemoveGold(10);
+            GameManager.Instance.PlayerManager.Currency.RemoveTokens(1);
             Debug.Log(GameManager.Instance.PlayerManager.Currency.CurrencyQuantity);
         }
     }
