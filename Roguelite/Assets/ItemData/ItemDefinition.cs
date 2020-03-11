@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using Items.Definitions;
-using Player;
 using UnityEngine;
-using Random = System.Random;
 
-namespace ItemDatabase
+namespace ItemData
 {
     internal class ItemDefinition : ScriptableObject
     {
-        public string itemName;
-        public Sprite itemIcon;
+        public string Id;
+        public string Name;
+        public Sprite Icon;
+
+        protected void GenerateUniqueId()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
     }
 
-    [CreateAssetMenu(fileName = "Equipment", menuName = "Item/Equipment")]
+    [CreateAssetMenu(fileName = "New Equipment", menuName = "Item Manager/Equipment")]
     internal sealed class EquipmentItem : ItemDefinition
     {
         public GameObject Prefab;
@@ -27,6 +31,8 @@ namespace ItemDatabase
 
         public void OnEnable()
         {
+            GenerateUniqueId();
+
             StatBonuses = new Dictionary<Stat, int>
             {
                 { Stat.Attack, m_Attack },
@@ -35,9 +41,15 @@ namespace ItemDatabase
                 { Stat.Agility, m_Agility }
             };
         }
+
+        public EquipmentItem CreateInstance()
+        {
+            var item = Instantiate(this);
+            return item;
+        }
     }
 
-    [CreateAssetMenu(fileName = "Consumable", menuName = "Item/Consumable")]
+    [CreateAssetMenu(fileName = "New Consumable", menuName = "Item Manager/Consumable")]
     internal abstract class ConsumableItem : ItemDefinition
     {
         public string description;

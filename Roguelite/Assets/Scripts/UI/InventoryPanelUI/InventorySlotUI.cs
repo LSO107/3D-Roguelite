@@ -1,4 +1,4 @@
-﻿using ItemDatabase;
+﻿using ItemData;
 using Items.Definitions;
 using UI.Tooltip;
 using UnityEngine;
@@ -28,7 +28,7 @@ namespace UI.InventoryPanelUI
             if (m_Item != null)
             {
                 m_Image.color = Color.white;
-                m_Image.sprite = m_Item.itemIcon;
+                m_Image.sprite = m_Item.Icon;
             }
             else
             {

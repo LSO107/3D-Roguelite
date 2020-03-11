@@ -1,4 +1,4 @@
-﻿using ItemDatabase;
+﻿using ItemData;
 using Items.Definitions;
 using UnityEngine;
 using UnityEngine.EventSystems;

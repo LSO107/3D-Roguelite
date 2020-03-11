@@ -1,4 +1,4 @@
-﻿using ItemDatabase;
+﻿using ItemData;
 using Items.Definitions;
 
 namespace Items.Inventory

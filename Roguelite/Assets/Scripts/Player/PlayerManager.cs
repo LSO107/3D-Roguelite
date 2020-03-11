@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Currency;
 using Health;
-using ItemDatabase;
+using ItemData;
 using Items.Definitions;
 using Items.Inventory;
 using Player.Experience;

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using ItemDatabase;
+using ItemData;
 using Items.Definitions;
 using UI.EquipmentUI;
 

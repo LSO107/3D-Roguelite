@@ -1,4 +1,5 @@
 ﻿using Extensions;
+using ItemData;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,6 +41,15 @@ namespace Test_Scripts
             GameManager.Instance.PlayerManager.Currency.RemoveGold(10);
             GameManager.Instance.PlayerManager.Currency.RemoveTokens(1);
             Debug.Log(GameManager.Instance.PlayerManager.Currency.CurrencyQuantity);
+        }
+
+        public void DropItem()
+        {
+            var generator = new ItemGenerator();
+            var item = generator.GenerateItem();
+            GameManager.Instance.ItemDatabase.NewItem(item);
+            GameManager.Instance.PlayerManager.Inventory.AddItem(item);
+            Debug.Log(item.Id);
         }
     }
 }

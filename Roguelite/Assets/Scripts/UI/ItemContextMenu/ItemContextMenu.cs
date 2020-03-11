@@ -1,5 +1,5 @@
 ﻿using Extensions;
-using ItemDatabase;
+using ItemData;
 using Items.Inventory;
 using UI.InventoryPanelUI;
 using UnityEngine;
@@ -50,9 +50,21 @@ namespace UI.ItemContextMenu
         {
             var location = GameManager.Instance.PlayerManager.transform.position;
 
-            if (m_Inventory.GetItemInSlot(m_SlotIndex) is EquipmentItem equipment)
+            var inventoryItem = m_Inventory.GetItemInSlot(m_SlotIndex);
+
+            if (inventoryItem is EquipmentItem)
             {
-                Instantiate(equipment.Prefab, location, Quaternion.Euler(0, 0, 90));
+                var item = GameManager.Instance.ItemDatabase.GetItem(inventoryItem.Id) as EquipmentItem;
+
+                if (item == null)
+                {
+                    Debug.Log("ITEM WAS NOT IN DATABASE");
+                }
+                else
+                {
+                    var newItem = Instantiate(item.Prefab, location, Quaternion.Euler(0, 0, 90));
+                    newItem.GetComponent<NpcDrop>().SetItemId(item.Id);
+                }
             }
 
             m_Inventory.RemoveItem(m_SlotIndex);

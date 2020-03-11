@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using Extensions;
-using ItemDatabase;
+using ItemData;
 using Items.Definitions;
 using TMPro;
 using UnityEngine;
@@ -55,7 +55,7 @@ namespace UI.Tooltip
 
             var equipment = GameManager.Instance.PlayerManager.Equipment;
 
-            sb.Append($"<size=20><color=orange>{inventoryItem.itemName}</color></size>\n");
+            sb.Append($"<size=20><color=orange>{inventoryItem.Name}</color></size>\n");
 
             foreach (var value in Enum.GetValues(typeof(Stat)))
             {
@@ -86,7 +86,7 @@ namespace UI.Tooltip
         private static string GetConsumableText(ConsumableItem item)
         {
             var sb = new StringBuilder();
-            sb.Append($"<size=20><color=orange>{item.itemName}</color></size>\n");
+            sb.Append($"<size=20><color=orange>{item.Name}</color></size>\n");
             sb.Append($"<color=white>{item.description}</color>");
             return sb.ToString();
         }

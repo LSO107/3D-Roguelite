@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Dagger
-  m_EditorClassIdentifier: Assembly-CSharp:ItemDatabase:EquipmentItem
-  itemName: Dagga
-  itemIcon: {fileID: 21300000, guid: b41d599972287f7488fb9b2bc2ef8547, type: 3}
+  m_Name: New Equipment
+  m_EditorClassIdentifier: Assembly-CSharp:ItemData:EquipmentItem
+  Id: e96043b5-ca01-4627-a206-25e1077dd3d8
+  Name: Wanker
+  Icon: {fileID: 21300000, guid: 7edbc31edc3c909418018d32635f41f0, type: 3}
   Prefab: {fileID: 631212591210073255, guid: e08828f03a2dca24a865a4cf3d4e7042, type: 3}
   EquipmentSlotId: 3
   m_Attack: 5
