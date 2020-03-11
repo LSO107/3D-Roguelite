@@ -21,7 +21,7 @@ namespace UI.ItemContextMenu
         public void OnPointerClick(PointerEventData eventData)
         {
             m_CanvasGroup.ToggleCanvasGroup(false);
-            itemContextMenu.Close();
+            itemContextMenu.CloseContextMenu();
         }
     }
 }

@@ -17,8 +17,9 @@ namespace ItemData
 
         public EquipmentItem GenerateItem()
         {
-            m_ItemContainer = Resources.Load<EquipmentItem>("ItemSO/New Equipment");
+            m_ItemContainer = Resources.Load<EquipmentItem>("ItemSO/Dagger");
             var item = m_ItemContainer.CreateInstance();
+            GameManager.Instance.ItemDatabase.AddItem(item);
             return GenerateRandomBonuses(item);
         }
 

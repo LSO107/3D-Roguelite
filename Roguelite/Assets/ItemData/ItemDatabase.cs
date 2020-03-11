@@ -13,12 +13,18 @@ namespace ItemData
             ItemDefinitions = new List<ItemDefinition>();
         }
 
-        public void NewItem(ItemDefinition item)
+        public void AddItem(ItemDefinition item)
         {
+            if (ItemDefinitions.Contains(item))
+            {
+                Debug.Log($"{item.Name} already existed in database");
+                return;
+            }
+
             ItemDefinitions.Add(item);
         }
 
-        public ItemDefinition GetItem(string itemId)
+        public ItemDefinition FindItem(string itemId)
         {
             return ItemDefinitions.FirstOrDefault(i => i.Id == itemId);
         }

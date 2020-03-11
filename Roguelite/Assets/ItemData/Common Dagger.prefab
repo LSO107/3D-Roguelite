@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 631212591210023529}
   - component: {fileID: 631212591211299741}
   - component: {fileID: 631212591212321029}
-  - component: {fileID: 1360123341658392336}
   - component: {fileID: -1544919269166827675}
-  - component: {fileID: 2973747886270724411}
+  - component: {fileID: -2430263463322216979}
   m_Layer: 0
   m_Name: Common Dagger
   m_TagString: Untagged
@@ -81,19 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1360123341658392336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 631212591210073255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ce0278e99724205affdec8f765b7b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  templateItem: {fileID: 11400000, guid: 6d737f342b46a0f4aacefad0f0e9ecf2, type: 2}
 --- !u!65 &-1544919269166827675
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -107,7 +93,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.05684854, y: 0.6563955, z: 0.14197412}
   m_Center: {x: 0, y: 0.15577789, z: 0.0000000037252903}
---- !u!114 &2973747886270724411
+--- !u!114 &-2430263463322216979
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,6 +102,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 631212591210073255}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0da348bdbcf140e1923f729eaf805c22, type: 3}
+  m_Script: {fileID: 11500000, guid: 4502b1d5209944b0bc2dad0fcdbb93ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

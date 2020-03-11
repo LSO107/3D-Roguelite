@@ -10,6 +10,7 @@ namespace ItemData
         public string Id;
         public string Name;
         public Sprite Icon;
+        public GameObject Prefab;
 
         protected void GenerateUniqueId()
         {
@@ -20,7 +21,6 @@ namespace ItemData
     [CreateAssetMenu(fileName = "New Equipment", menuName = "Item Manager/Equipment")]
     internal sealed class EquipmentItem : ItemDefinition
     {
-        public GameObject Prefab;
         public EquipmentSlotId EquipmentSlotId;
         public Dictionary<Stat, int> StatBonuses;
 

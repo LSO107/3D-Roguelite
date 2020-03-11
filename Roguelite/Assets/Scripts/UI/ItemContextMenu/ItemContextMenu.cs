@@ -1,4 +1,5 @@
-﻿using Extensions;
+﻿using System;
+using Extensions;
 using ItemData;
 using Items.Inventory;
 using UI.InventoryPanelUI;
@@ -15,25 +16,25 @@ namespace UI.ItemContextMenu
 
         public bool ItemContextMenuOpen => m_CanvasGroup.interactable;
 
-        private void Start()
+        private void Awake()
         {
             m_CanvasGroup = GetComponent<CanvasGroup>();
         }
 
-        public void Instantiate()
+        public void Initialize()
         {
             var pm = GameManager.Instance.PlayerManager;
             m_Inventory = pm.Inventory;
             m_InventoryUI = pm.InventoryUI;
         }
 
-        public void Open(int slotIndex)
+        public void OpenContextMenu(int slotIndex)
         {
             m_CanvasGroup.ToggleCanvasGroup(true);
             m_SlotIndex = slotIndex;
         }
 
-        public void Close()
+        public void CloseContextMenu()
         {
             m_CanvasGroup.ToggleCanvasGroup(false);
             m_SlotIndex = -1;
@@ -43,7 +44,7 @@ namespace UI.ItemContextMenu
         {
             m_Inventory.UseItem(m_SlotIndex);
             m_InventoryUI.UpdateSlots();
-            Close();
+            CloseContextMenu();
         }
 
         public void Drop()
@@ -52,24 +53,17 @@ namespace UI.ItemContextMenu
 
             var inventoryItem = m_Inventory.GetItemInSlot(m_SlotIndex);
 
-            if (inventoryItem is EquipmentItem)
-            {
-                var item = GameManager.Instance.ItemDatabase.GetItem(inventoryItem.Id) as EquipmentItem;
+            var item = GameManager.Instance.ItemDatabase.FindItem(inventoryItem.Id);
 
-                if (item == null)
-                {
-                    Debug.Log("ITEM WAS NOT IN DATABASE");
-                }
-                else
-                {
-                    var newItem = Instantiate(item.Prefab, location, Quaternion.Euler(0, 0, 90));
-                    newItem.GetComponent<NpcDrop>().SetItemId(item.Id);
-                }
-            }
+            if (item == null)
+                throw new ArgumentException($"{item.Name} did not exist in the item database");
+            
+            var groundItem = Instantiate(item.Prefab, location, Quaternion.Euler(0, 0, 90));
+            groundItem.GetComponent<GroundItem>().RegisterGroundItem(item.Id);
 
             m_Inventory.RemoveItem(m_SlotIndex);
             m_InventoryUI.UpdateSlots();
-            Close();
+            CloseContextMenu();
         }
     }
 }

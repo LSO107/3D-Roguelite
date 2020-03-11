@@ -28,7 +28,7 @@ namespace UI.InventoryPanelUI
                 UpdateSlot(i);
             }
 
-            m_ItemContextMenu.Instantiate();
+            m_ItemContextMenu.Initialize();
         }
 
         public void UpdateSlots()
@@ -72,7 +72,7 @@ namespace UI.InventoryPanelUI
 
                 m_ScreenClick.ToggleCanvasGroup(true);
                 m_ItemContextMenu.transform.position = Input.mousePosition;
-                m_ItemContextMenu.Open(slotIndex);
+                m_ItemContextMenu.OpenContextMenu(slotIndex);
             }
             else
             {

@@ -47,7 +47,7 @@ namespace Test_Scripts
         {
             var generator = new ItemGenerator();
             var item = generator.GenerateItem();
-            GameManager.Instance.ItemDatabase.NewItem(item);
+            //GameManager.Instance.ItemDatabase.AddItem(item);
             GameManager.Instance.PlayerManager.Inventory.AddItem(item);
             Debug.Log(item.Id);
         }
