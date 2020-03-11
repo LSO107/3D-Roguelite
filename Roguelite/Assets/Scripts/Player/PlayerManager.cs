@@ -24,7 +24,7 @@ namespace Player
         public InventoryUI InventoryUI;
         public EquipmentUI EquipmentUI;
 
-        private void Start()
+        private void Awake()
         {
             Stats = new Stats(1, 5, 5, 5, 5);
             var inventory = new List<Item>();
@@ -34,7 +34,10 @@ namespace Player
             Health = GetComponent<HealthObject>();
             Experience = GetComponent<ExperienceObject>();
             Currency = GetComponent<CurrencyObject>();
-            
+        }
+
+        private void Start()
+        {
             InventoryUI.Instantiate();
             EquipmentUI.Instantiate();
         }
