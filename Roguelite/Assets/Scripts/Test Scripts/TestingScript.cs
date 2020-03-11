@@ -45,11 +45,13 @@ namespace Test_Scripts
 
         public void DropItem()
         {
-            var generator = new ItemGenerator();
-            var item = generator.GenerateItem();
-            //GameManager.Instance.ItemDatabase.AddItem(item);
+            /*var generator = new ItemGenerator();
+            var item = generator.GenerateEquipmentItem();
             GameManager.Instance.PlayerManager.Inventory.AddItem(item);
-            Debug.Log(item.Id);
+            Debug.Log(item.Id);*/
+            var generator = new ItemGenerator();
+            var item = generator.GeneratePotion();
+            GameManager.Instance.PlayerManager.Inventory.AddItem(item);
         }
     }
 }

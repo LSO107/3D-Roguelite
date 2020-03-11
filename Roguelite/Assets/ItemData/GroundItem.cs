@@ -41,7 +41,7 @@ namespace ItemData
 
             if (existingItem == null)
             {
-                var item = m_ItemGenerator.GenerateItem();
+                var item = m_ItemGenerator.GenerateEquipmentItem();
                 m_Inventory.AddItem(item);
                 Debug.Log("Item was not in database, new item generated");
             }

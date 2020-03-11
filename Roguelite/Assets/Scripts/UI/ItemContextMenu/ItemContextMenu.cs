@@ -58,8 +58,8 @@ namespace UI.ItemContextMenu
             if (item == null)
                 throw new ArgumentException($"{item.Name} did not exist in the item database");
             
-            var groundItem = Instantiate(item.Prefab, location, Quaternion.Euler(0, 0, 90));
-            groundItem.GetComponent<GroundItem>().RegisterGroundItem(item.Id);
+            var groundItem = Instantiate(item.Prefab, location, item.Prefab.transform.rotation);
+            groundItem.GetComponentInChildren<GroundItem>().RegisterGroundItem(item.Id);
 
             m_Inventory.RemoveItem(m_SlotIndex);
             m_InventoryUI.UpdateSlots();

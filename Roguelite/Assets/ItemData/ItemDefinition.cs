@@ -49,12 +49,33 @@ namespace ItemData
         }
     }
 
-    [CreateAssetMenu(fileName = "New Consumable", menuName = "Item Manager/Consumable")]
     internal abstract class ConsumableItem : ItemDefinition
     {
         public string description;
-        public float value;
 
         public abstract void Use();
+    }
+
+    [CreateAssetMenu(fileName = "Health Potion", menuName = "Item Manager/Consumable/Potions/Health")]
+    internal sealed class Health : ConsumableItem
+    {
+        public int value;
+
+        public void OnEnable()
+        {
+            GenerateUniqueId();
+        }
+
+        public ConsumableItem CreateInstance()
+        {
+            var item = Instantiate(this);
+            return item;
+        }
+
+        public override void Use()
+        {
+            var playerHealth = GameManager.Instance.PlayerManager.Health;
+            playerHealth.Heal(value);
+        }
     }
 }

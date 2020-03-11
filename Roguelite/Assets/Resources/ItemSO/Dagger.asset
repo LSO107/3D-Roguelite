@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Dagger
   m_EditorClassIdentifier: Assembly-CSharp:ItemData:EquipmentItem
-  Id: 1b1b6bdb-1576-41dd-b324-5517e5430104
+  Id: 7c4b3567-f8a9-438b-b67e-a0d884870679
   Name: Common Dagger
   Icon: {fileID: 21300000, guid: da491baf889dcbe478a538db574195e3, type: 3}
   Prefab: {fileID: 631212591210073255, guid: e08828f03a2dca24a865a4cf3d4e7042, type: 3}
