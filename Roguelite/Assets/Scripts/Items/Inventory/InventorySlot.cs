@@ -1,17 +1,18 @@
-﻿using Items.Definitions;
+﻿using ItemDatabase;
+using Items.Definitions;
 
 namespace Items.Inventory
 {
     internal sealed class InventorySlot
     {
-        public Item ItemDefinition { get; private set; }
+        public ItemDefinition ItemDefinition { get; private set; }
 
-        public InventorySlot(Item itemDefinition)
+        public InventorySlot(ItemDefinition itemDefinition)
         {
             ItemDefinition = itemDefinition;
         }
 
-        public void SetItem(Item itemDefinition)
+        public void SetItem(ItemDefinition itemDefinition)
         {
             ItemDefinition = itemDefinition;
         }

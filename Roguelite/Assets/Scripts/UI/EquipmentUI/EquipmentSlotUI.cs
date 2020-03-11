@@ -1,4 +1,5 @@
-﻿using Items.Definitions;
+﻿using ItemDatabase;
+using Items.Definitions;
 using UI.Tooltip;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,10 +22,10 @@ namespace UI.EquipmentUI
             UpdateItemSprite(null);
         }
 
-        public void UpdateItemSprite(Equipment item)
+        public void UpdateItemSprite(EquipmentItem item)
         {
             m_TooltipPointerHandler.UpdateItem(item);
-            spriteImage.sprite = item != null ? item.Sprite : DefaultIcon;
+            spriteImage.sprite = item != null ? item.itemIcon : DefaultIcon;
             var colour = spriteImage.color;
             colour.a = item != null ? 1 : 0.2f;
             spriteImage.color = colour;

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Dagger
   m_EditorClassIdentifier: Assembly-CSharp:ItemDatabase:EquipmentItem
-  itemName: 
-  itemIcon: {fileID: 0}
-  equipmentSlotId: 0
-  attack: 0
-  strength: 0
-  defence: 0
-  agility: 0
+  itemName: Dagga
+  itemIcon: {fileID: 21300000, guid: b41d599972287f7488fb9b2bc2ef8547, type: 3}
+  Prefab: {fileID: 631212591210073255, guid: e08828f03a2dca24a865a4cf3d4e7042, type: 3}
+  EquipmentSlotId: 3
+  m_Attack: 5
+  m_Strength: 5
+  m_Defence: 0
+  m_Agility: 0

@@ -24,12 +24,8 @@ namespace ItemDatabase
         {
             GenerateRandomBonuses();
 
-            //m_Inventory.AddItem(itemDefinition);
-
-            foreach (var stat in itemDefinition.bonuses.Values)
-            {
-                Debug.Log(stat);
-            }
+            m_Inventory.AddItem(itemDefinition);
+            Destroy(gameObject);
         }
 
         private void GenerateRandomBonuses()
@@ -40,7 +36,7 @@ namespace ItemDatabase
 
             foreach (var stat in Enum.GetValues(typeof(Stat)))
             {
-                itemDefinition.bonuses[(Stat) stat] += m_Random.Next(maximumValue);
+                itemDefinition.StatBonuses[(Stat) stat] += m_Random.Next(maximumValue);
             }
         }
     }

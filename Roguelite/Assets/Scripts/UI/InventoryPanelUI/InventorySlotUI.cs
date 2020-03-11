@@ -1,4 +1,5 @@
-﻿using Items.Definitions;
+﻿using ItemDatabase;
+using Items.Definitions;
 using UI.Tooltip;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +8,7 @@ namespace UI.InventoryPanelUI
 {
     internal sealed class InventorySlotUI : MonoBehaviour
     {
-        private Item m_Item;
+        private ItemDefinition m_Item;
         private Image m_Image;
 
         private TooltipPointerHandler m_TooltipPointerHandler;
@@ -19,7 +20,7 @@ namespace UI.InventoryPanelUI
             UpdateItemSprite(null);
         }
 
-        public void UpdateItemSprite(Item itemDefinition)
+        public void UpdateItemSprite(ItemDefinition itemDefinition)
         {
             m_TooltipPointerHandler.UpdateItem(itemDefinition);
             m_Item = itemDefinition;
@@ -27,7 +28,7 @@ namespace UI.InventoryPanelUI
             if (m_Item != null)
             {
                 m_Image.color = Color.white;
-                m_Image.sprite = m_Item.Sprite;
+                m_Image.sprite = m_Item.itemIcon;
             }
             else
             {

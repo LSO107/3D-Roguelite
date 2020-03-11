@@ -16,8 +16,9 @@ namespace ItemDatabase
     [CreateAssetMenu(fileName = "Equipment", menuName = "Item/Equipment")]
     internal sealed class EquipmentItem : ItemDefinition
     {
-        public EquipmentSlotId equipmentSlotId;
-        public Dictionary<Stat, int> bonuses;
+        public GameObject Prefab;
+        public EquipmentSlotId EquipmentSlotId;
+        public Dictionary<Stat, int> StatBonuses;
 
         [SerializeField] private int m_Attack;
         [SerializeField] private int m_Strength;
@@ -26,7 +27,7 @@ namespace ItemDatabase
 
         public void OnEnable()
         {
-            bonuses = new Dictionary<Stat, int>
+            StatBonuses = new Dictionary<Stat, int>
             {
                 { Stat.Attack, m_Attack },
                 { Stat.Strength, m_Strength },
@@ -37,9 +38,11 @@ namespace ItemDatabase
     }
 
     [CreateAssetMenu(fileName = "Consumable", menuName = "Item/Consumable")]
-    internal sealed class ConsumableItem : ItemDefinition
+    internal abstract class ConsumableItem : ItemDefinition
     {
         public string description;
         public float value;
+
+        public abstract void Use();
     }
 }

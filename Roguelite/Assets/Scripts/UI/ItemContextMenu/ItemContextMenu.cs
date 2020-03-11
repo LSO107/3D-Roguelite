@@ -1,4 +1,5 @@
 ﻿using Extensions;
+using ItemDatabase;
 using Items.Inventory;
 using UI.InventoryPanelUI;
 using UnityEngine;
@@ -47,6 +48,13 @@ namespace UI.ItemContextMenu
 
         public void Drop()
         {
+            var location = GameManager.Instance.PlayerManager.transform.position;
+
+            if (m_Inventory.GetItemInSlot(m_SlotIndex) is EquipmentItem equipment)
+            {
+                Instantiate(equipment.Prefab, location, Quaternion.Euler(0, 0, 90));
+            }
+
             m_Inventory.RemoveItem(m_SlotIndex);
             m_InventoryUI.UpdateSlots();
             Close();

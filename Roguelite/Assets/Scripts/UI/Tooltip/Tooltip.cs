@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Extensions;
+using ItemDatabase;
 using Items.Definitions;
 using TMPro;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace UI.Tooltip
             m_Text = GetComponentInChildren<TextMeshProUGUI>();
         }
 
-        public void OpenTooltip(Item item)
+        public void OpenTooltip(ItemDefinition item)
         {
             transform.position = Input.mousePosition;
             UpdateText(item);
@@ -33,13 +34,13 @@ namespace UI.Tooltip
         /// <summary>
         /// Update the tooltip text with the corresponding item text
         /// </summary>
-        private void UpdateText(Item item)
+        private void UpdateText(ItemDefinition item)
         {
-            if (item is Consumable consumable)
+            if (item is ConsumableItem consumable)
             {
                 m_Text.text = GetConsumableText(consumable);
             }
-            else if (item is Equipment equipment)
+            else if (item is EquipmentItem equipment)
             {
                 m_Text.text = GetEquipmentText(equipment);
             }
@@ -48,13 +49,13 @@ namespace UI.Tooltip
         /// <summary>
         /// Compares the item stats with the corresponding equipmentSlotId
         /// </summary>
-        private static string GetEquipmentText(Equipment inventoryItem)
+        private static string GetEquipmentText(EquipmentItem inventoryItem)
         {
             var sb = new StringBuilder();
 
             var equipment = GameManager.Instance.PlayerManager.Equipment;
 
-            sb.Append($"<size=20><color=orange>{inventoryItem.Name}</color></size>\n");
+            sb.Append($"<size=20><color=orange>{inventoryItem.itemName}</color></size>\n");
 
             foreach (var value in Enum.GetValues(typeof(Stat)))
             {
@@ -82,11 +83,11 @@ namespace UI.Tooltip
         /// <summary>
         /// Extracts the consumable item information
         /// </summary>
-        private static string GetConsumableText(Consumable item)
+        private static string GetConsumableText(ConsumableItem item)
         {
             var sb = new StringBuilder();
-            sb.Append($"<size=20><color=orange>{item.Name}</color></size>\n");
-            sb.Append($"<color=white>{item.Description}</color>");
+            sb.Append($"<size=20><color=orange>{item.itemName}</color></size>\n");
+            sb.Append($"<color=white>{item.description}</color>");
             return sb.ToString();
         }
     }

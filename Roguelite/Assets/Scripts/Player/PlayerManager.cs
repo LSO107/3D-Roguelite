@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Currency;
 using Health;
+using ItemDatabase;
 using Items.Definitions;
 using Items.Inventory;
 using Player.Experience;
@@ -27,7 +28,7 @@ namespace Player
         private void Awake()
         {
             Stats = new Stats(1, 5, 5, 5, 5);
-            var inventory = new List<Item>();
+            var inventory = new List<ItemDefinition>();
             Inventory = new PlayerInventory(inventory);
             Equipment = new PlayerEquipment();
 
@@ -44,7 +45,7 @@ namespace Player
 
         public void EquipItem(int slotIndex)
         {
-            if (!(Inventory.GetItemInSlot(slotIndex) is Equipment equipment))
+            if (!(Inventory.GetItemInSlot(slotIndex) is EquipmentItem equipment))
                 return;
 
             var item = Equipment.GetEquipmentInSlot(equipment.EquipmentSlotId);
