@@ -1,12 +1,21 @@
 ﻿using Extensions;
 using ItemData;
 using UnityEngine;
-using UnityEngine.UI;
+using Random = System.Random;
 
 namespace Test_Scripts
 {
     internal sealed class TestingScript : MonoBehaviour
     {
+        private ItemGenerator m_ItemGenerator;
+        private Random m_Random;
+
+        private void Start()
+        {
+            m_ItemGenerator = new ItemGenerator();
+            m_Random = new Random();
+        }
+
         public void Damage()
         {
             GameManager.Instance.PlayerManager.Health.Damage(10);
@@ -45,12 +54,18 @@ namespace Test_Scripts
 
         public void DropItem()
         {
-            /*var generator = new ItemGenerator();
-            var item = generator.GenerateEquipmentItem();
-            GameManager.Instance.PlayerManager.Inventory.AddItem(item);
-            Debug.Log(item.Id);*/
-            var generator = new ItemGenerator();
-            var item = generator.GeneratePotion();
+            var number = m_Random.Next(10);
+            ItemDefinition item;
+
+            if (number < 5)
+            {
+                item = m_ItemGenerator.GenerateEquipmentItem();
+            }
+            else
+            {
+                item = m_ItemGenerator.GeneratePotion();
+            }
+
             GameManager.Instance.PlayerManager.Inventory.AddItem(item);
         }
     }

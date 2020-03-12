@@ -26,7 +26,7 @@ namespace ItemData
 
             if (m_Timer >= m_Seconds)
             {
-                Destroy(gameObject);
+                DestroyGroundItem();
             }
         }
 
@@ -51,6 +51,12 @@ namespace ItemData
                 Debug.Log("Item was in database, recreated existing item");
             }
 
+            Destroy(gameObject);
+        }
+
+        private void DestroyGroundItem()
+        {
+            GameManager.Instance.ItemDatabase.RemoveItem(m_ItemId);
             Destroy(gameObject);
         }
     }

@@ -54,6 +54,12 @@ namespace ItemData
         public string description;
 
         public abstract void Use();
+
+        public ConsumableItem CreateInstance()
+        {
+            var item = Instantiate(this);
+            return item;
+        }
     }
 
     [CreateAssetMenu(fileName = "Health Potion", menuName = "Item Manager/Consumable/Potions/Health")]
@@ -64,12 +70,6 @@ namespace ItemData
         public void OnEnable()
         {
             GenerateUniqueId();
-        }
-
-        public ConsumableItem CreateInstance()
-        {
-            var item = Instantiate(this);
-            return item;
         }
 
         public override void Use()

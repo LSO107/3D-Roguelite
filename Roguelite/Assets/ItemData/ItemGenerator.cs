@@ -1,5 +1,4 @@
 ﻿using System;
-using Items.Consumables;
 using Items.Definitions;
 using UnityEngine;
 using Random = System.Random;
@@ -18,17 +17,19 @@ namespace ItemData
 
         public ConsumableItem GeneratePotion()
         {
-            var consumableContainer = Resources.Load<Health>("ItemSO/Health Potion");
+            var itemDatabase = GameManager.Instance.ItemDatabase;
+            var consumableContainer = (ConsumableItem) itemDatabase.FindItemTemplate("Health Potion");
             var potion = consumableContainer.CreateInstance();
-            GameManager.Instance.ItemDatabase.AddItem(potion);
+            itemDatabase.AddItem(potion);
             return potion;
         }
 
         public EquipmentItem GenerateEquipmentItem()
         {
-            m_ItemContainer = Resources.Load<EquipmentItem>("ItemSO/Dagger");
+            var itemDatabase = GameManager.Instance.ItemDatabase;
+            m_ItemContainer = (EquipmentItem) itemDatabase.FindItemTemplate("Common Dagger");
             var item = m_ItemContainer.CreateInstance();
-            GameManager.Instance.ItemDatabase.AddItem(item);
+            itemDatabase.AddItem(item);
             return GenerateRandomBonuses(item);
         }
 

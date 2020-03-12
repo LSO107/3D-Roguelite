@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Health Potion
   m_EditorClassIdentifier: Assembly-CSharp:ItemData:Health
-  Id: bb8f28bd-0e8d-43fe-a40e-beab36cce204
-  Name: Health Twat
+  Id: 94b605ca-e829-45b1-96d1-610c668f4cf8
+  Name: Health Potion
   Icon: {fileID: 21300000, guid: 610015d9bc30be9469a2b3f38909285e, type: 3}
   Prefab: {fileID: 5664817720533310070, guid: 72eba0e1b72c7a340a117438f48b0671, type: 3}
   description: Heals 10 health points
