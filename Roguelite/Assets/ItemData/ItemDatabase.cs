@@ -6,13 +6,8 @@ namespace ItemData
 {
     internal sealed class ItemDatabase : MonoBehaviour
     {
-        private List<ItemDefinition> m_GroundItems;
+        private List<ItemDefinition> m_GroundItems = new List<ItemDefinition>();
         public List<ItemDefinition> ScriptableObjects = new List<ItemDefinition>();
-
-        public void Awake()
-        {
-            m_GroundItems = new List<ItemDefinition>();
-        }
 
         public ItemDefinition FindItemTemplate(string itemName)
         {
