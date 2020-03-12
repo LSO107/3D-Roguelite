@@ -4288,12 +4288,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 638109033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 797f2d31ed734711a388625b5603538f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d0c5f6ed642415f9b5bd95a8d0dec39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScriptableObjects:
-  - {fileID: 11400000, guid: 34834d763e803e9499162d2383cd4194, type: 2}
+  m_DaggersSO:
   - {fileID: 11400000, guid: ff9d8856c72f9e44ca470dad692893b0, type: 2}
+  m_SpearsSO: []
+  m_SwordsSO: []
+  m_HealthPotionsSO:
+  - {fileID: 11400000, guid: 34834d763e803e9499162d2383cd4194, type: 2}
 --- !u!1 &640493066
 GameObject:
   m_ObjectHideFlags: 0
@@ -5067,7 +5070,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 2.3509887e-38, z: -2.306406e+18, w: -5.169879e-26}
+  m_BoundingSphereOverride: {x: 0, y: 0.26171875, z: 0.0234375, w: -0.06640625}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

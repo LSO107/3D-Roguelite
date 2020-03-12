@@ -16,7 +16,7 @@ namespace ItemData
         private void Start()
         {
             m_Inventory = GameManager.Instance.PlayerManager.Inventory;
-            m_ItemDatabase = GameManager.Instance.ItemDatabase;
+            m_ItemDatabase = GameManager.Instance.ItemDatabase.GroundItems;
             m_ItemGenerator = new ItemGenerator();
         }
 
@@ -51,12 +51,13 @@ namespace ItemData
                 Debug.Log("Item was in database, recreated existing item");
             }
 
+            GameManager.Instance.ItemDatabase.GroundItems.RemoveItem(m_ItemId);
             Destroy(gameObject);
         }
 
         private void DestroyGroundItem()
         {
-            GameManager.Instance.ItemDatabase.RemoveItem(m_ItemId);
+            m_ItemDatabase.RemoveItem(m_ItemId);
             Destroy(gameObject);
         }
     }

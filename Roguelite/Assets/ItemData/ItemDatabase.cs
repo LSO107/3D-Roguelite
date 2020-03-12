@@ -1,45 +1,59 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = System.Random;
 
 namespace ItemData
 {
-    internal sealed class ItemDatabase : MonoBehaviour
+    internal sealed class ItemDatabase
     {
-        private List<ItemDefinition> m_GroundItems = new List<ItemDefinition>();
-        public List<ItemDefinition> ScriptableObjects = new List<ItemDefinition>();
+        private readonly List<ItemDefinition> m_ItemDatabase;
 
-        public ItemDefinition FindItemTemplate(string itemName)
+        private readonly Random m_Random;
+
+        public ItemDatabase(IEnumerable<ItemDefinition> itemData)
         {
-            return ScriptableObjects.Find(i => i.Name == itemName);
+            m_ItemDatabase = new List<ItemDefinition>(itemData);
+            m_Random = new Random();
         }
 
-        public void AddItem(ItemDefinition item)
+        public void AddItem(ItemDefinition itemDefinition)
         {
-            if (m_GroundItems.Contains(item))
-            {
-                Debug.Log($"{item.Name} already existed in database");
-                return;
-            }
+            var item = m_ItemDatabase.FirstOrDefault(i => i.Id == itemDefinition.Id);
 
-            m_GroundItems.Add(item);
+            if (item != null)
+                throw new ArgumentException("Item database contains item with same Id");
+
+            m_ItemDatabase.Add(itemDefinition);
         }
 
         public void RemoveItem(string itemId)
         {
-            var item = m_GroundItems.FirstOrDefault(i => i.Id == itemId);
+            var item = m_ItemDatabase.FirstOrDefault(i => i.Id == itemId);
 
             if (item == null)
             {
                 Debug.Log("Item was not in the database");
                 return;
             }
-            m_GroundItems.Remove(item);
+            m_ItemDatabase.Remove(item);
         }
 
         public ItemDefinition FindItem(string itemId)
         {
-            return m_GroundItems.FirstOrDefault(i => i.Id == itemId);
+            return m_ItemDatabase.FirstOrDefault(i => i.Id == itemId);
+        }
+
+        public ItemDefinition FindItem(ItemDefinition item)
+        {
+            return m_ItemDatabase.FirstOrDefault(i => i == item);
+        }
+
+        public ItemDefinition GetRandomItem()
+        {
+            var number = m_Random.Next(m_ItemDatabase.Count);
+            return m_ItemDatabase[number];
         }
     }
 }

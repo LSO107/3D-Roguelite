@@ -54,10 +54,10 @@ namespace Test_Scripts
 
         public void DropItem()
         {
-            var number = m_Random.Next(10);
+            var number = m_Random.Next(2);
             ItemDefinition item;
 
-            if (number < 5)
+            if (number == 1)
             {
                 item = m_ItemGenerator.GenerateEquipmentItem();
             }

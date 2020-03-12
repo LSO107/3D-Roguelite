@@ -10,7 +10,7 @@ internal sealed class GameManager : MonoBehaviour
 
     public PlayerManager PlayerManager;
     public ItemContextMenu ItemContextMenu;
-    public ItemDatabase ItemDatabase;
+    public ItemDatabaseManager ItemDatabase;
     public Tooltip Tooltip;
 
     public static GameManager Instance;

@@ -51,15 +51,11 @@ namespace UI.ItemContextMenu
         {
             var location = GameManager.Instance.PlayerManager.transform.position;
 
-            var inventoryItem = m_Inventory.GetItemInSlot(m_SlotIndex);
+            var item = m_Inventory.GetItemInSlot(m_SlotIndex);
 
-            var item = GameManager.Instance.ItemDatabase.FindItem(inventoryItem.Id);
-
-            if (item == null)
-                throw new ArgumentException($"{item.Name} did not exist in the item database");
-            
             var groundItem = Instantiate(item.Prefab, location, item.Prefab.transform.rotation);
             groundItem.GetComponentInChildren<GroundItem>().RegisterGroundItem(item.Id);
+            GameManager.Instance.ItemDatabase.GroundItems.AddItem(item);
 
             m_Inventory.RemoveItem(m_SlotIndex);
             m_InventoryUI.UpdateSlots();
