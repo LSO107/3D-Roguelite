@@ -13,11 +13,14 @@ namespace ItemData
         private float m_Timer;
         private float m_Seconds = 30;
 
+        private Transform m_PlayerLocation;
+
         private void Start()
         {
             m_Inventory = GameManager.Instance.PlayerManager.Inventory;
             m_ItemDatabase = GameManager.Instance.ItemDatabase.GroundItems;
             m_ItemGenerator = new ItemGenerator();
+            m_PlayerLocation = GameManager.Instance.PlayerManager.transform;
         }
 
         private void Update()
@@ -37,18 +40,23 @@ namespace ItemData
 
         private void OnMouseDown()
         {
-            var existingItem = m_ItemDatabase.FindItem(m_ItemId);
+            var distance = Vector3.Distance(transform.position, m_PlayerLocation.position);
 
-            if (existingItem == null)
+            if (distance > 2)
+                return;
+
+            var itemDefinition = m_ItemDatabase.FindItem(m_ItemId);
+
+            if (itemDefinition == null)
             {
                 var item = m_ItemGenerator.GenerateEquipmentItem();
                 m_Inventory.AddItem(item);
-                Debug.Log("Item was not in database, new item generated");
+                Debug.Log("Item was not in database, new item bonuses generated");
             }
             else
             {
-                m_Inventory.AddItem(existingItem);
-                Debug.Log("Item was in database, recreated existing item");
+                m_Inventory.AddItem(itemDefinition);
+                Debug.Log("Item found in database, recreated existing item");
             }
 
             GameManager.Instance.ItemDatabase.GroundItems.RemoveItem(m_ItemId);
