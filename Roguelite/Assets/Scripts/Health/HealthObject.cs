@@ -24,7 +24,7 @@ namespace Health
 
         private void Update()
         {
-            if (Time.time >= m_NextRegenerationTime)
+            if (Time.time >= m_NextRegenerationTime && CurrentHealth < MaxHealth)
             {
                 RegenerateHealth();
             }

@@ -63,7 +63,7 @@ namespace ItemData
     }
 
     [CreateAssetMenu(fileName = "Health Potion", menuName = "Item Manager/Consumable/Potions/Health")]
-    internal sealed class Health : ConsumableItem
+    internal sealed class Potion : ConsumableItem
     {
         public int value;
 

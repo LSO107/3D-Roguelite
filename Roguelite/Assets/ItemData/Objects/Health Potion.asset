@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
   m_Name: Health Potion
-  m_EditorClassIdentifier: Assembly-CSharp:ItemData:Health
-  Id: 72cf49fd-950a-4283-97ae-1868e2e5e8cf
+  m_EditorClassIdentifier: Assembly-CSharp:ItemData:Potion
+  Id: 99a80931-8178-44af-8611-c03f70dc6c54
   Name: Health Potion
   Icon: {fileID: 21300000, guid: af385328bd912ca41a1d51c3edc393af, type: 3}
   Prefab: {fileID: 5664817720533310070, guid: 72eba0e1b72c7a340a117438f48b0671, type: 3}
-  description: Heals 10 health points
+  description: Heals 10
   value: 10
