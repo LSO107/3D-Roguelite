@@ -4,10 +4,10 @@ using Vector3 = UnityEngine.Vector3;
 
 namespace Movement
 {
-    [RequireComponent(typeof(ThirdPersonCharacter))]
-    internal sealed class ThirdPersonUserControl : MonoBehaviour
+    [RequireComponent(typeof(CharacterMovement))]
+    internal sealed class CharacterUserInput : MonoBehaviour
     {
-        private ThirdPersonCharacter m_Character;
+        private CharacterMovement m_CharacterMovement;
         private Transform m_Camera;
 
         [SerializeField] private Toggle m_Run;
@@ -17,7 +17,7 @@ namespace Movement
             if (Camera.main != null)
                 m_Camera = Camera.main.transform;
 
-            m_Character = GetComponent<ThirdPersonCharacter>();
+            m_CharacterMovement = GetComponent<CharacterMovement>();
         }
 
         private void FixedUpdate()
@@ -30,10 +30,10 @@ namespace Movement
 
             if (!m_Run.isOn)
             {
-                movement *= 0.5f;
+                movement *= 0.65f;
             }
 
-            m_Character.Move(movement);
+            m_CharacterMovement.Move(movement);
         }
     }
 }

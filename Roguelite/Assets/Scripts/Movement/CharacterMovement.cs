@@ -5,7 +5,7 @@ namespace Movement
 	[RequireComponent(typeof(Rigidbody))]
 	[RequireComponent(typeof(CapsuleCollider))]
 	[RequireComponent(typeof(Animator))]
-	internal sealed class ThirdPersonCharacter : MonoBehaviour
+	internal sealed class CharacterMovement : MonoBehaviour
 	{
 		[SerializeField] private float m_MovingTurnSpeed = 360;
 		[SerializeField] private float m_StationaryTurnSpeed = 180;
