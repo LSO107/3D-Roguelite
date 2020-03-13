@@ -30,7 +30,7 @@ namespace Movement
 
             if (!m_Run.isOn)
             {
-                movement *= 0.65f;
+                movement *= 0.6f;
             }
 
             m_CharacterMovement.Move(movement);

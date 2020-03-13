@@ -8,6 +8,8 @@ internal sealed class TestPanel : MonoBehaviour
     private ItemGenerator m_ItemGenerator;
     private Random m_Random;
 
+    private int m_AttackType = 0;
+
     private void Start()
     {
         m_ItemGenerator = new ItemGenerator();
@@ -63,7 +65,22 @@ internal sealed class TestPanel : MonoBehaviour
         {
             item = m_ItemGenerator.GeneratePotion();
         }
-
         GameManager.Instance.PlayerManager.Inventory.AddItem(item);
+    }
+
+    public void Attack()
+    {
+        var anim = GameManager.Instance.PlayerManager.gameObject.GetComponent<Animator>();
+        var isAttacking = anim.GetBool("Attack");
+
+        if (isAttacking)
+            return;
+
+        anim.SetInteger("Attack Type", m_AttackType);
+        anim.SetTrigger("Attack");
+        m_AttackType++;
+
+        if (m_AttackType > 2)
+            m_AttackType = 0;
     }
 }

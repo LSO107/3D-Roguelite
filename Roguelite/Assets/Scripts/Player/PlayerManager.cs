@@ -43,29 +43,6 @@ namespace Player
             EquipmentUI.Instantiate();
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                Attack();
-            }
-        }
-
-        private void Attack()
-        {
-            var anim = GetComponent<Animator>();
-            var isAttacking = anim.GetBool("Attack");
-
-            if (isAttacking)
-            {
-                Debug.Log("Current Attacking, returning early from attack");
-                return;
-            }
-
-            Debug.Log("Attack trigger set true");
-            anim.SetTrigger("Attack");
-        }
-
         public void EquipItem(int slotIndex)
         {
             if (!(Inventory.GetItemInSlot(slotIndex) is EquipmentItem equipment))

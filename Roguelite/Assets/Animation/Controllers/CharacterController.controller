@@ -15,7 +15,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Combat Style
     m_EventTreshold: 0
   - m_ConditionMode: 6
-    m_ConditionEvent: Melee Attack
+    m_ConditionEvent: Attack Type
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2560225318792960850}
@@ -82,7 +82,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Combat Style
     m_EventTreshold: 0
   - m_ConditionMode: 6
-    m_ConditionEvent: Melee Attack
+    m_ConditionEvent: Attack Type
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 9188677461672748366}
@@ -113,7 +113,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Combat Style
     m_EventTreshold: 0
   - m_ConditionMode: 6
-    m_ConditionEvent: Melee Attack
+    m_ConditionEvent: Attack Type
     m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -262324096894223338}
@@ -207,7 +207,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Melee Attack
+  - m_Name: Attack Type
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
