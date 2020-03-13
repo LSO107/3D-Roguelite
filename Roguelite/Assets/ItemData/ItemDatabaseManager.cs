@@ -5,13 +5,13 @@ namespace ItemData
 {
     internal sealed class ItemDatabaseManager : MonoBehaviour
     {
-        [Header("Weapons")]
-        [SerializeField] private List<EquipmentItem> m_DaggersSO = new List<EquipmentItem>();
-        [SerializeField] private List<EquipmentItem> m_SpearsSO = new List<EquipmentItem>();
-        [SerializeField] private List<EquipmentItem> m_SwordsSO = new List<EquipmentItem>();
+        [Header("Weapons (Scriptable Objects)")]
+        [SerializeField] private List<EquipmentItem> m_Daggers = new List<EquipmentItem>();
+        [SerializeField] private List<EquipmentItem> m_Spears = new List<EquipmentItem>();
+        [SerializeField] private List<EquipmentItem> m_Swords = new List<EquipmentItem>();
 
-        [Header("Consumables")]
-        [SerializeField] private List<ConsumableItem> m_HealthPotionsSO = new List<ConsumableItem>();
+        [Header("Consumables (Scriptable Objects)")]
+        [SerializeField] private List<ConsumableItem> m_HealthPotions = new List<ConsumableItem>();
 
         public ItemDatabase GroundItems { get; private set; }
         public ItemDatabase Daggers { get; private set; }
@@ -22,10 +22,10 @@ namespace ItemData
         private void Start()
         {
             GroundItems = new ItemDatabase(new List<ItemDefinition>());
-            Daggers = new ItemDatabase(m_DaggersSO);
-            Spears = new ItemDatabase(m_SpearsSO);
-            Swords = new ItemDatabase(m_SwordsSO);
-            HealthPotions = new ItemDatabase(m_HealthPotionsSO);
+            Daggers = new ItemDatabase(m_Daggers);
+            Spears = new ItemDatabase(m_Spears);
+            Swords = new ItemDatabase(m_Swords);
+            HealthPotions = new ItemDatabase(m_HealthPotions);
         }
     }
 }

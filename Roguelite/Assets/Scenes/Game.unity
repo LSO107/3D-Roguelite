@@ -4291,11 +4291,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d0c5f6ed642415f9b5bd95a8d0dec39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_DaggersSO:
+  m_Daggers:
   - {fileID: 11400000, guid: ff9d8856c72f9e44ca470dad692893b0, type: 2}
-  m_SpearsSO: []
-  m_SwordsSO: []
-  m_HealthPotionsSO:
+  m_Spears: []
+  m_Swords: []
+  m_HealthPotions:
   - {fileID: 11400000, guid: 34834d763e803e9499162d2383cd4194, type: 2}
 --- !u!1 &640493066
 GameObject:
