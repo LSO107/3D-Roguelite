@@ -415,7 +415,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2084466910}
-        m_MethodName: Drop
+        m_MethodName: DropItemButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5070,7 +5070,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0.26171875, z: 0.0234375, w: -0.06640625}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -10564,7 +10564,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2084466910}
-        m_MethodName: Use
+        m_MethodName: UseItemButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15068,7 +15068,6 @@ MonoBehaviour:
   - {fileID: 2082987394}
   - {fileID: 1983888731}
   m_ItemContextMenu: {fileID: 2084466910}
-  m_ScreenClick: {fileID: 1319024259}
 --- !u!114 &1888406258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17135,6 +17134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256fb28a84d1452c8e01aa98ef7ed858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ScreenOverlay: {fileID: 1319024259}
+  m_ItemUseText: {fileID: 536570460}
 --- !u!114 &2084466911
 MonoBehaviour:
   m_ObjectHideFlags: 0

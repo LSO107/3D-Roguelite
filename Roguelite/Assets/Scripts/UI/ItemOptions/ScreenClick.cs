@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace UI.ItemContextMenu
+namespace UI.ItemOptions
 {
     // Screen overlay to check when the player has clicked away from the InventoryUI or ContextMenu
     // Hierarchy ordering is important. Must be placed below InventoryUI and ContextMenu
@@ -21,7 +21,7 @@ namespace UI.ItemContextMenu
         public void OnPointerClick(PointerEventData eventData)
         {
             m_CanvasGroup.ToggleCanvasGroup(false);
-            itemContextMenu.CloseContextMenu();
+            itemContextMenu.HideItemContextMenu();
         }
     }
 }

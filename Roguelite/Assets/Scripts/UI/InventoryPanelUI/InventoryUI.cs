@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Extensions;
 using Items.Inventory;
+using TMPro;
+using UI.ItemOptions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,8 +14,7 @@ namespace UI.InventoryPanelUI
 
         public List<InventorySlotUI> ItemUI = new List<InventorySlotUI>();
 
-        [SerializeField] private ItemContextMenu.ItemContextMenu m_ItemContextMenu;
-        [SerializeField] private CanvasGroup m_ScreenClick;
+        [SerializeField] private ItemContextMenu m_ItemContextMenu;
 
         public void Instantiate()
         {
@@ -70,12 +71,13 @@ namespace UI.InventoryPanelUI
                 if (m_Inventory.GetItemInSlot(slotIndex) == null)
                     return;
 
-                m_ScreenClick.ToggleCanvasGroup(true);
-                m_ItemContextMenu.transform.position = Input.mousePosition;
-                m_ItemContextMenu.OpenContextMenu(slotIndex);
+                m_ItemContextMenu.ShowItemContextMenu(slotIndex);
             }
             else
             {
+                if (m_ItemContextMenu.IsOpen)
+                    m_ItemContextMenu.HideItemContextMenu();
+
                 m_Inventory.UseItem(slotIndex);
                 UpdateSlot(slotIndex);
             }

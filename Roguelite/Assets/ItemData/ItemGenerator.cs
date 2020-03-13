@@ -17,10 +17,10 @@ namespace ItemData
         public ConsumableItem GeneratePotion()
         {
             var itemDatabase = GameManager.Instance.ItemDatabase;
-           var consumableContainer = (ConsumableItem) itemDatabase.HealthPotions.GetRandomItem();
-           var potion = consumableContainer.CreateInstance();
-           itemDatabase.HealthPotions.AddItem(potion);
-           return potion;
+            var consumableContainer = (ConsumableItem) itemDatabase.HealthPotions.GetRandomItem();
+            var potion = consumableContainer.CreateInstance();
+            itemDatabase.HealthPotions.AddItem(potion);
+            return potion;
         }
 
         public EquipmentItem GenerateEquipmentItem()

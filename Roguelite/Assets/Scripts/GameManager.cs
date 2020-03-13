@@ -1,6 +1,6 @@
 ﻿using ItemData;
 using Player;
-using UI.ItemContextMenu;
+using UI.ItemOptions;
 using UI.Tooltip;
 using UnityEngine;
 

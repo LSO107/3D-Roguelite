@@ -11,7 +11,7 @@ namespace UI.Tooltip
 
         private ItemDefinition m_Item;
 
-        private bool ItemContextMenuOpen => GameManager.Instance.ItemContextMenu.ItemContextMenuOpen;
+        private bool ItemContextMenuOpen => GameManager.Instance.ItemContextMenu.IsOpen;
 
         private void Start()
         {
