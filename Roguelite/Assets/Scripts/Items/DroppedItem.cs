@@ -30,7 +30,7 @@ namespace Items
                 return;
 
             var dagger = new SteelDagger();
-            Inventory.AddItem(dagger);
+            //Inventory.AddItem(dagger);
 
             Destroy(gameObject);
         }

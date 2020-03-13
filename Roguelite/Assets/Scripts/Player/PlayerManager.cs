@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Currency;
 using Health;
+using ItemData;
 using Items.Definitions;
 using Items.Inventory;
 using Player.Experience;
@@ -24,24 +25,27 @@ namespace Player
         public InventoryUI InventoryUI;
         public EquipmentUI EquipmentUI;
 
-        private void Start()
+        private void Awake()
         {
             Stats = new Stats(1, 5, 5, 5, 5);
-            var inventory = new List<Item>();
+            var inventory = new List<ItemDefinition>();
             Inventory = new PlayerInventory(inventory);
             Equipment = new PlayerEquipment();
 
             Health = GetComponent<HealthObject>();
             Experience = GetComponent<ExperienceObject>();
             Currency = GetComponent<CurrencyObject>();
-            
+        }
+
+        private void Start()
+        {
             InventoryUI.Instantiate();
             EquipmentUI.Instantiate();
         }
 
         public void EquipItem(int slotIndex)
         {
-            if (!(Inventory.GetItemInSlot(slotIndex) is Equipment equipment))
+            if (!(Inventory.GetItemInSlot(slotIndex) is EquipmentItem equipment))
                 return;
 
             var item = Equipment.GetEquipmentInSlot(equipment.EquipmentSlotId);

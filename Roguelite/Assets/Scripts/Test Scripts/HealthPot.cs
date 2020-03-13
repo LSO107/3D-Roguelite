@@ -30,7 +30,7 @@ namespace Test_Scripts
                 return;
 
             var healthPotion = new HealthPotion();
-            Inventory.AddItem(healthPotion);
+            //Inventory.AddItem(healthPotion);
 
             Destroy(gameObject);
         }

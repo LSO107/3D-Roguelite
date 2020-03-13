@@ -29,7 +29,7 @@ namespace Test_Scripts
                 return;
 
             var dagger = new SwordDef();
-            Inventory.AddItem(dagger);
+            //Inventory.AddItem(dagger);
 
             Destroy(gameObject);
         }

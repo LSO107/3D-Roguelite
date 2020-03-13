@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Items.Definitions;
+using ItemData;
 using Player;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ namespace Items.Inventory
         private readonly InventorySlot[] m_Slots;
         private const int InventorySize = 6;
 
-        public PlayerInventory(IEnumerable<Item> items)
+        public PlayerInventory(IEnumerable<ItemDefinition> items)
         {
             m_Slots = new InventorySlot[InventorySize];
             for (var i = 0; i < m_Slots.Length; i++)
@@ -28,7 +28,7 @@ namespace Items.Inventory
             }
         }
 
-        public void AddItem(Item itemDefinition)
+        public void AddItem(ItemDefinition itemDefinition)
         {
             if (!HasEmptySlots(1))
             {
@@ -86,7 +86,7 @@ namespace Items.Inventory
             return 0;
         }
 
-        public Item GetItemInSlot(int slotIndex)
+        public ItemDefinition GetItemInSlot(int slotIndex)
         {
             return m_Slots[slotIndex].ItemDefinition;
         }
@@ -95,12 +95,12 @@ namespace Items.Inventory
         {
             var item = GetItemInSlot(slotIndex);
 
-            if (item is Consumable consumable)
+            if (item is ConsumableItem consumable)
             {
                 consumable.Use();
                 RemoveItem(slotIndex);
             }
-            else if (item is Equipment)
+            else if (item is EquipmentItem)
             {
                 PlayerManager.EquipItem(slotIndex);
             }

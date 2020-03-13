@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ItemData;
 using Items.Definitions;
 using UI.EquipmentUI;
 
@@ -7,14 +8,14 @@ namespace Items.Inventory
 {
     internal sealed class PlayerEquipment
     {
-        private readonly Dictionary<EquipmentSlotId, Equipment> m_EquipmentSlots;
+        private readonly Dictionary<EquipmentSlotId, EquipmentItem> m_EquipmentSlots;
         private readonly EquipmentUI m_EquipmentUI;
 
         public PlayerEquipment()
         {
             m_EquipmentUI = GameManager.Instance.PlayerManager.EquipmentUI;
 
-            m_EquipmentSlots = new Dictionary<EquipmentSlotId, Equipment>
+            m_EquipmentSlots = new Dictionary<EquipmentSlotId, EquipmentItem>
             {
                 { EquipmentSlotId.Head, null },
                 { EquipmentSlotId.Torso, null },
@@ -23,7 +24,7 @@ namespace Items.Inventory
             };
         }
 
-        public void Equip(Equipment item)
+        public void Equip(EquipmentItem item)
         {
             m_EquipmentSlots[item.EquipmentSlotId] = item;
             m_EquipmentUI.UpdateLabels();
@@ -38,7 +39,7 @@ namespace Items.Inventory
         /// <summary>
         /// Returns the item in the slotId or null
         /// </summary>
-        public Equipment GetEquipmentInSlot(EquipmentSlotId slotId)
+        public EquipmentItem GetEquipmentInSlot(EquipmentSlotId slotId)
         {
             return m_EquipmentSlots[slotId];
         }
