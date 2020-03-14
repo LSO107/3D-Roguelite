@@ -80,7 +80,7 @@ internal sealed class TestPanel : MonoBehaviour
         anim.SetTrigger("Attack");
         m_AttackType++;
 
-        if (m_AttackType > 2)
+        if (m_AttackType >= 5)
             m_AttackType = 0;
     }
 }
