@@ -18,8 +18,22 @@ namespace ItemData
         }
     }
 
+    [CreateAssetMenu(fileName = "New Weapon", menuName = "Item Manager/Weapon")]
+    internal sealed class WeaponDefinition : EquipmentItem
+    {
+        public WeaponType WeaponType;
+    }
+
+    internal enum WeaponType
+    {
+        Dagger,
+        Sword,
+        Spear,
+        PepperSpray
+    }
+
     [CreateAssetMenu(fileName = "New Equipment", menuName = "Item Manager/Equipment")]
-    internal sealed class EquipmentItem : ItemDefinition
+    internal class EquipmentItem : ItemDefinition
     {
         public EquipmentSlotId EquipmentSlotId;
         public Dictionary<Stat, int> StatBonuses;
