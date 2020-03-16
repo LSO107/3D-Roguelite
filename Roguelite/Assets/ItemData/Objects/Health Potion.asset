@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Health Potion
   m_EditorClassIdentifier: Assembly-CSharp:ItemData:Potion
-  Id: b5ec1068-65ce-488a-8b94-e2c298bd6142
-  Name: Your mum
+  Id: de713ef6-e16c-469d-a3c4-4e4808a20202
+  Name: health pot
   Icon: {fileID: 21300000, guid: 610015d9bc30be9469a2b3f38909285e, type: 3}
   Prefab: {fileID: 5664817720533310070, guid: 72eba0e1b72c7a340a117438f48b0671, type: 3}
-  description: A THING
-  value: 1000
+  description: heals 10
+  value: 10

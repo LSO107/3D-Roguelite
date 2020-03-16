@@ -11,13 +11,14 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
   m_Name: Dagger
-  m_EditorClassIdentifier: Assembly-CSharp:ItemData:EquipmentItem
-  Id: 72426ffa-15c0-4d31-bba3-43e4d25bc556
-  Name: Common Dagger
-  Icon: {fileID: 21300000, guid: da491baf889dcbe478a538db574195e3, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp:ItemData:WeaponDefinition
+  Id: 2efa7543-90d3-4280-8909-741779af9db0
+  Name: dagger
+  Icon: {fileID: 21300000, guid: 6b96a27a8e779424a8e92a244d21fc97, type: 3}
   Prefab: {fileID: 631212591210073255, guid: e08828f03a2dca24a865a4cf3d4e7042, type: 3}
   EquipmentSlotId: 3
   m_Attack: 5
   m_Strength: 5
   m_Defence: 0
   m_Agility: 0
+  WeaponType: 0
