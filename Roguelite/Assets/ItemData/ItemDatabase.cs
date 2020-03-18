@@ -50,10 +50,10 @@ namespace ItemData
             return m_ItemDatabase.FirstOrDefault(i => i == item);
         }
 
-        public ItemDefinition GetRandomItem()
+        public T GetRandomItem<T>() where T : ItemDefinition
         {
             var number = m_Random.Next(m_ItemDatabase.Count);
-            return m_ItemDatabase[number];
+            return (T) m_ItemDatabase[number];
         }
     }
 }

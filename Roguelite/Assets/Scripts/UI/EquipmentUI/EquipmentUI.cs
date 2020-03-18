@@ -19,21 +19,12 @@ namespace UI.EquipmentUI
         [SerializeField] private TextMeshProUGUI m_StatBonusesText;
         [SerializeField] private TextMeshProUGUI m_CombatLevelText;
 
-        public Dictionary<EquipmentSlotId, Equipment> CurrentEquipmentSlots;
         public List<EquipmentSlotUI> EquipmentSlots = new List<EquipmentSlotUI>();
 
         public void Instantiate()
         {
             m_PlayerManager = GameManager.Instance.PlayerManager;
             m_CanvasGroup = GetComponent<CanvasGroup>();
-
-            CurrentEquipmentSlots = new Dictionary<EquipmentSlotId, Equipment>
-            {
-                {EquipmentSlotId.Head, null},
-                {EquipmentSlotId.Torso, null},
-                {EquipmentSlotId.Legs, null},
-                {EquipmentSlotId.Weapon, null},
-            };
 
             foreach (var button in EquipmentSlots)
             {

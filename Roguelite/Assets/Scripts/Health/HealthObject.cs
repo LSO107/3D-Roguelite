@@ -1,7 +1,5 @@
-﻿using Extensions;
-using UI.HUD;
+﻿using UI.HUD;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Health
 {

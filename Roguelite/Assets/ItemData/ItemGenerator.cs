@@ -17,7 +17,7 @@ namespace ItemData
         public ConsumableItem GeneratePotion()
         {
             var itemDatabase = GameManager.Instance.ItemDatabase;
-            var consumableContainer = (ConsumableItem) itemDatabase.HealthPotions.GetRandomItem();
+            var consumableContainer = itemDatabase.HealthPotions.GetRandomItem<ConsumableItem>();
             var potion = consumableContainer.CreateInstance();
             itemDatabase.HealthPotions.AddItem(potion);
             return potion;
@@ -26,7 +26,7 @@ namespace ItemData
         public EquipmentItem GenerateEquipmentItem()
         {
             var itemDatabase = GameManager.Instance.ItemDatabase;
-            m_ItemContainer =  (EquipmentItem) itemDatabase.Daggers.GetRandomItem();
+            m_ItemContainer =  itemDatabase.Daggers.GetRandomItem<EquipmentItem>();
             var item = m_ItemContainer.CreateInstance();
             itemDatabase.Daggers.AddItem(item);
             return GenerateRandomBonuses(item);
