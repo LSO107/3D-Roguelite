@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Movement
+namespace Character.Movement
 {
 	[RequireComponent(typeof(Rigidbody))]
 	[RequireComponent(typeof(CapsuleCollider))]

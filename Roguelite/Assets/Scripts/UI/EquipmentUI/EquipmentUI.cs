@@ -77,7 +77,7 @@ namespace UI.EquipmentUI
 
         public void UpdateCombatLevelLabel()
         {
-            var combatLevel = m_PlayerManager.Stats.CombatLevel;
+            var combatLevel = m_PlayerManager.PlayerStats.CombatLevel;
             m_CombatLevelText.text = $"Level {combatLevel}";
         }
 
@@ -86,7 +86,7 @@ namespace UI.EquipmentUI
         /// </summary>
         public void UpdateLabels()
         {
-            var playerStats = m_PlayerManager.Stats;
+            var playerStats = m_PlayerManager.PlayerStats;
             var playerEquipment = m_PlayerManager.Equipment;
 
             var baseStats = playerStats.GetBaseStats();
@@ -99,7 +99,7 @@ namespace UI.EquipmentUI
                         baseStats.TryGetValue(key, out var baseValue);
                         equipmentStats.TryGetValue(key, out var equipmentValue);
 
-                        return new KeyValuePair<Stat, int>(key, baseValue + equipmentValue);
+                        return new KeyValuePair<StatBonus, int>(key, baseValue + equipmentValue);
                     }
                 )
                 .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
@@ -110,7 +110,7 @@ namespace UI.EquipmentUI
         /// <summary>
         /// Format stats labels and update text labels
         /// </summary>
-        private void SetStatsLabelText(IReadOnlyDictionary<Stat, int> stats)
+        private void SetStatsLabelText(IReadOnlyDictionary<StatBonus, int> stats)
         {
             var stringBuilder = new StringBuilder();
             foreach (var stat in stats)

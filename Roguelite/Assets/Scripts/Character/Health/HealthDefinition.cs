@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Health
+namespace Character.Health
 {
     internal sealed class HealthDefinition
     {

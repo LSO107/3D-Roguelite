@@ -36,7 +36,7 @@ namespace ItemData
     internal class EquipmentItem : ItemDefinition
     {
         public EquipmentSlotId EquipmentSlotId;
-        public Dictionary<Stat, int> StatBonuses;
+        public Dictionary<StatBonus, int> StatBonuses;
 
         [SerializeField] private int m_Attack;
         [SerializeField] private int m_Strength;
@@ -47,12 +47,12 @@ namespace ItemData
         {
             GenerateUniqueId();
 
-            StatBonuses = new Dictionary<Stat, int>
+            StatBonuses = new Dictionary<StatBonus, int>
             {
-                { Stat.Attack, m_Attack },
-                { Stat.Strength, m_Strength },
-                { Stat.Defence, m_Defence },
-                { Stat.Agility, m_Agility }
+                { StatBonus.Attack, m_Attack },
+                { StatBonus.Strength, m_Strength },
+                { StatBonus.Defence, m_Defence },
+                { StatBonus.Agility, m_Agility }
             };
         }
 

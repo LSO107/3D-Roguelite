@@ -179,6 +179,7 @@ MonoBehaviour:
   m_StationaryTurnSpeed: 180
   m_MoveSpeedMultiplier: 1
   m_AnimSpeedMultiplier: 1
+  CanMove: 1
 --- !u!114 &1015277165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6877aebbb5640d64f8cec7a556f4b3cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HealthBarUpdater: {fileID: 0}
+  m_HealthBarPrefab: {fileID: 6406133848770160292, guid: 6603f4bc8a815544a91b633b7eccc2fc,
+    type: 3}
 --- !u!114 &1494777896
 MonoBehaviour:
   m_ObjectHideFlags: 0

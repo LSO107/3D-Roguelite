@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Vector3 = UnityEngine.Vector3;
 
-namespace Movement
+namespace Character.Movement
 {
     [RequireComponent(typeof(CharacterMovement))]
     internal sealed class CharacterUserInput : MonoBehaviour

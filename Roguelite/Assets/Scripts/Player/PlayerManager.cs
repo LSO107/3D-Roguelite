@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Character;
+using Character.Health;
 using Currency;
-using Health;
 using ItemData;
 using Items.Definitions;
 using Items.Inventory;
@@ -20,14 +21,14 @@ namespace Player
         public CurrencyObject Currency { get; private set; }
         public PlayerInventory Inventory { get; private set; }
         public PlayerEquipment Equipment { get; private set; }
-        public Stats Stats { get; private set; }
+        public PlayerStats PlayerStats { get; private set; }
 
         public InventoryUI InventoryUI;
         public EquipmentUI EquipmentUI;
 
         private void Awake()
         {
-            Stats = new Stats(1, 5, 5, 5, 5);
+            PlayerStats = new PlayerStats(1);
             var inventory = new List<ItemDefinition>();
             Inventory = new PlayerInventory(inventory);
             Equipment = new PlayerEquipment();

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Movement
+namespace Character.Movement
 {
     [RequireComponent(typeof (NavMeshAgent))]
     [RequireComponent(typeof (CharacterMovement))]

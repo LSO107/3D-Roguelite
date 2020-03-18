@@ -45,14 +45,14 @@ namespace Items.Inventory
         }
 
         /// <summary>
-        /// Returns the item bonus for each <see cref="Stat"/>
+        /// Returns the item bonus for each <see cref="StatBonus"/>
         /// </summary>
-        public Dictionary<Stat, int> GetEquipmentStatBonuses()
+        public Dictionary<StatBonus, int> GetEquipmentStatBonuses()
         {
-            var dictionary = new Dictionary<Stat, int>();
-            foreach (var value in Enum.GetValues(typeof(Stat)))
+            var dictionary = new Dictionary<StatBonus, int>();
+            foreach (var value in Enum.GetValues(typeof(StatBonus)))
             {
-                dictionary.Add((Stat)value, 0);
+                dictionary.Add((StatBonus)value, 0);
             }
             foreach (var equipmentSlot in m_EquipmentSlots)
             {
