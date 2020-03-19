@@ -30,12 +30,6 @@ namespace Character.Health
         {
             m_HealthBarInstantiated.transform.position = transform.position + m_Offset;
 
-            if (m_HealthDefinition.IsDead)
-            {
-                Destroy(m_HealthBarInstantiated);
-                Destroy(gameObject);
-            }
-
             if (Time.time >= m_NextRegenerationTime && CurrentHealth < MaxHealth)
                 RegenerateHealth();
         }
@@ -44,6 +38,12 @@ namespace Character.Health
         {
             m_HealthDefinition.Damage(amount);
             m_HealthBarUpdater.UpdateBar(CurrentHealth, MaxHealth);
+
+            if (m_HealthDefinition.IsDead)
+            {
+                Destroy(m_HealthBarInstantiated);
+                Destroy(gameObject);
+            }
         }
 
         public void Heal(int amount)
