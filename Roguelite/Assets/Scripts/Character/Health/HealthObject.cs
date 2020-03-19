@@ -30,10 +30,14 @@ namespace Character.Health
         {
             m_HealthBarInstantiated.transform.position = transform.position + m_Offset;
 
-            if (Time.time >= m_NextRegenerationTime && CurrentHealth < MaxHealth)
+            if (m_HealthDefinition.IsDead)
             {
-                RegenerateHealth();
+                Destroy(m_HealthBarInstantiated);
+                Destroy(gameObject);
             }
+
+            if (Time.time >= m_NextRegenerationTime && CurrentHealth < MaxHealth)
+                RegenerateHealth();
         }
 
         public void Damage(int amount)
@@ -50,22 +54,8 @@ namespace Character.Health
 
         private void RegenerateHealth()
         {
-            // TODO: Prevent regeneration during combat
-
-            Heal(1);
             m_NextRegenerationTime = Time.time + m_RegenerationTime;
-        }
-
-        private void HandlePlayerDeath()
-        {
-            if (m_HealthDefinition.IsDead)
-            {
-                // Play Death Animation
-
-                // Remove Items & Equipment
-
-                // Reset Player (Health and Location)
-            }
+            Heal(1);
         }
     }
 }

@@ -12,7 +12,6 @@ namespace Character.Movement
 
         public Transform target;
 
-
         private void Start()
         {
             Agent = GetComponentInChildren<NavMeshAgent>();

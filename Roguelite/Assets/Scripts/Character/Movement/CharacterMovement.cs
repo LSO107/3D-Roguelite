@@ -1,4 +1,5 @@
 using System.Collections;
+using Character.Combat;
 using UnityEngine;
 
 namespace Character.Movement
@@ -23,11 +24,14 @@ namespace Character.Movement
 
         public bool CanMove = true;
 
+        private CharacterStats m_CharacterStats;
+
         private void Start()
 		{
 			m_Animator = GetComponent<Animator>();
 			m_Rigidbody = GetComponent<Rigidbody>();
-		}
+            m_CharacterStats = GetComponent<CharacterStats>();
+        }
 
         public void Move(Vector3 move)
 		{
