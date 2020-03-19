@@ -19,7 +19,6 @@ namespace Player
         public void Initialize(int combatLevel)
         {
             CombatLevel = combatLevel;
-            m_EquipmentStats = GameManager.Instance.PlayerManager.Equipment.GetEquipmentStatBonuses();
 
             m_BaseStats = new Dictionary<StatBonus, int>
             {
@@ -31,6 +30,7 @@ namespace Player
 
             Damage = new Stat();
             Defence = new Stat();
+
             UpdateStats();
         }
 
@@ -51,6 +51,8 @@ namespace Player
 
         public void UpdateStats()
         {
+            m_EquipmentStats = GameManager.Instance.PlayerManager.Equipment.GetEquipmentStatBonuses();
+
             var attack = m_BaseStats[StatBonus.Attack] + m_EquipmentStats[StatBonus.Attack];
             var strength = m_BaseStats[StatBonus.Strength] + m_EquipmentStats[StatBonus.Strength];
 
