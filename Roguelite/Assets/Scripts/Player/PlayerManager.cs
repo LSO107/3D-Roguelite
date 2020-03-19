@@ -28,7 +28,8 @@ namespace Player
 
         private void Awake()
         {
-            PlayerStats = new PlayerStats(1);
+            PlayerStats = new PlayerStats();
+
             var inventory = new List<ItemDefinition>();
             Inventory = new PlayerInventory(inventory);
             Equipment = new PlayerEquipment();
@@ -40,6 +41,7 @@ namespace Player
 
         private void Start()
         {
+            PlayerStats.Initialize(1);
             InventoryUI.Instantiate();
             EquipmentUI.Instantiate();
         }

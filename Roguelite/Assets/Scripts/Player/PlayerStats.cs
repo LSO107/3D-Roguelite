@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Character.Combat;
 using Items.Definitions;
+using UnityEngine;
 
 namespace Player
 {
@@ -13,8 +14,13 @@ namespace Player
 
         private Dictionary<StatBonus, int> m_BaseStats;
 
-        public PlayerStats(int combatLevel)
+        private Dictionary<StatBonus, int> m_EquipmentStats;
+
+        public void Initialize(int combatLevel)
         {
+            CombatLevel = combatLevel;
+            m_EquipmentStats = GameManager.Instance.PlayerManager.Equipment.GetEquipmentStatBonuses();
+
             m_BaseStats = new Dictionary<StatBonus, int>
             {
                 { StatBonus.Attack, combatLevel * 1 },
@@ -22,6 +28,10 @@ namespace Player
                 { StatBonus.Defence, combatLevel * 1 },
                 { StatBonus.Agility, combatLevel * 1 }
             };
+
+            Damage = new Stat();
+            Defence = new Stat();
+            UpdateStats();
         }
 
         public Dictionary<StatBonus, int> GetBaseStats()
@@ -33,6 +43,7 @@ namespace Player
         {
             CombatLevel++;
             IncreaseBaseStats();
+            UpdateStats();
             var equipment = GameManager.Instance.PlayerManager.EquipmentUI;
             equipment.UpdateCombatLevelLabel();
             equipment.UpdateLabels();
@@ -40,7 +51,16 @@ namespace Player
 
         public void UpdateStats()
         {
+            var attack = m_BaseStats[StatBonus.Attack] + m_EquipmentStats[StatBonus.Attack];
+            var strength = m_BaseStats[StatBonus.Strength] + m_EquipmentStats[StatBonus.Strength];
 
+            var defence = m_BaseStats[StatBonus.Defence] + m_EquipmentStats[StatBonus.Defence];
+            var agility = m_BaseStats[StatBonus.Agility] + m_EquipmentStats[StatBonus.Agility];
+
+            Damage.SetBaseValue(attack + strength);
+            Defence.SetBaseValue(defence + agility);
+
+            Debug.Log($"Damage: {Damage.GetBaseValue()} Defence: {Defence.GetBaseValue()}");
         }
 
         private void IncreaseBaseStats()

@@ -60,6 +60,11 @@ internal sealed class TestPanel : MonoBehaviour
         if (number == 1)
         {
             item = m_ItemGenerator.GenerateEquipmentItem();
+            var t = item as EquipmentItem;
+            foreach (var stat in t.StatBonuses.Values)
+            {
+                Debug.Log(stat);
+            }
         }
         else
         {

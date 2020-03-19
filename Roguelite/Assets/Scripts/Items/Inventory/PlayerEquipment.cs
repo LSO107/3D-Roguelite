@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ItemData;
 using Items.Definitions;
+using Player;
 using UI.EquipmentUI;
 
 namespace Items.Inventory
@@ -10,10 +11,12 @@ namespace Items.Inventory
     {
         private readonly Dictionary<EquipmentSlotId, EquipmentItem> m_EquipmentSlots;
         private readonly EquipmentUI m_EquipmentUI;
+        private readonly PlayerStats m_PlayerStats;
 
         public PlayerEquipment()
         {
             m_EquipmentUI = GameManager.Instance.PlayerManager.EquipmentUI;
+            m_PlayerStats = GameManager.Instance.PlayerManager.PlayerStats;
 
             m_EquipmentSlots = new Dictionary<EquipmentSlotId, EquipmentItem>
             {
@@ -28,12 +31,14 @@ namespace Items.Inventory
         {
             m_EquipmentSlots[item.EquipmentSlotId] = item;
             m_EquipmentUI.UpdateLabels();
+            m_PlayerStats.UpdateStats();
         }
 
         public void Unequip(EquipmentSlotId slotId)
         {
             m_EquipmentSlots[slotId] = null;
             m_EquipmentUI.UpdateLabels();
+            m_PlayerStats.UpdateStats();
         }
 
         /// <summary>
