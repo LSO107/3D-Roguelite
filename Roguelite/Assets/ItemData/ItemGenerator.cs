@@ -34,13 +34,13 @@ namespace ItemData
 
         private EquipmentItem GenerateRandomBonuses(EquipmentItem item)
         {
-            var playerLevel = GameManager.Instance.PlayerManager.Stats.CombatLevel;
+            var playerLevel = GameManager.Instance.PlayerManager.PlayerStats.CombatLevel;
 
             var maximumValue = playerLevel * 10;
 
-            foreach (var stat in Enum.GetValues(typeof(Stat)))
+            foreach (var stat in Enum.GetValues(typeof(StatBonus)))
             {
-                item.StatBonuses[(Stat)stat] += m_Random.Next(maximumValue);
+                item.StatBonuses[(StatBonus)stat] += m_Random.Next(maximumValue);
             }
             return item;
         }

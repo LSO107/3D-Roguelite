@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Character;
+using Character.Health;
 using Currency;
-using Health;
 using ItemData;
 using Items.Definitions;
 using Items.Inventory;
@@ -8,6 +9,7 @@ using Player.Experience;
 using UI.EquipmentUI;
 using UI.InventoryPanelUI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Player
 {
@@ -20,14 +22,15 @@ namespace Player
         public CurrencyObject Currency { get; private set; }
         public PlayerInventory Inventory { get; private set; }
         public PlayerEquipment Equipment { get; private set; }
-        public Stats Stats { get; private set; }
+        public PlayerStats PlayerStats { get; private set; }
 
         public InventoryUI InventoryUI;
         public EquipmentUI EquipmentUI;
 
         private void Awake()
         {
-            Stats = new Stats(1, 5, 5, 5, 5);
+            PlayerStats = GetComponent<PlayerStats>();
+
             var inventory = new List<ItemDefinition>();
             Inventory = new PlayerInventory(inventory);
             Equipment = new PlayerEquipment();
@@ -39,6 +42,7 @@ namespace Player
 
         private void Start()
         {
+            PlayerStats.Initialize(1);
             InventoryUI.Instantiate();
             EquipmentUI.Instantiate();
         }

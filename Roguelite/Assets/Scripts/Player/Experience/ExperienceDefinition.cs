@@ -21,7 +21,7 @@
 
         public void IncreaseExperience(float experience)
         {
-            var playerStats = GameManager.Instance.PlayerManager.Stats;
+            var playerStats = GameManager.Instance.PlayerManager.PlayerStats;
 
             CurrentExperience += experience;
 

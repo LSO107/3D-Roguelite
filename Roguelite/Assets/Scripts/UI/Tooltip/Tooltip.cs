@@ -57,11 +57,11 @@ namespace UI.Tooltip
 
             sb.Append($"<size=20><color=orange>{inventoryItem.Name}</color></size>\n");
 
-            foreach (var value in Enum.GetValues(typeof(Stat)))
+            foreach (var value in Enum.GetValues(typeof(StatBonus)))
             {
-                var inventoryStat = inventoryItem.StatBonuses[(Stat) value];
+                var inventoryStat = inventoryItem.StatBonuses[(StatBonus) value];
 
-                var equipmentStat = equipment?.GetEquipmentStatBonuses()[(Stat) value];
+                var equipmentStat = equipment?.GetEquipmentStatBonuses()[(StatBonus) value];
 
                 if (inventoryStat > equipmentStat)
                 {

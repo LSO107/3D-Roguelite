@@ -18,7 +18,8 @@ internal sealed class TestPanel : MonoBehaviour
 
     public void Damage()
     {
-        GameManager.Instance.PlayerManager.Health.Damage(10);
+        //GameManager.Instance.PlayerManager.Health.Damage(10);
+        GameManager.Instance.PlayerManager.PlayerStats.TakeDamage(10);
     }
 
     public void Heal()
@@ -60,6 +61,11 @@ internal sealed class TestPanel : MonoBehaviour
         if (number == 1)
         {
             item = m_ItemGenerator.GenerateEquipmentItem();
+            var t = item as EquipmentItem;
+            foreach (var stat in t.StatBonuses.Values)
+            {
+                Debug.Log(stat);
+            }
         }
         else
         {

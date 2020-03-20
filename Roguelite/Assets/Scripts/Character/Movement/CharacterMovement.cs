@@ -1,7 +1,8 @@
 using System.Collections;
+using Character.Combat;
 using UnityEngine;
 
-namespace Movement
+namespace Character.Movement
 {
 	[RequireComponent(typeof(Rigidbody))]
 	[RequireComponent(typeof(CapsuleCollider))]
@@ -23,11 +24,14 @@ namespace Movement
 
         public bool CanMove = true;
 
+        private CharacterStats m_CharacterStats;
+
         private void Start()
 		{
 			m_Animator = GetComponent<Animator>();
 			m_Rigidbody = GetComponent<Rigidbody>();
-		}
+            m_CharacterStats = GetComponent<CharacterStats>();
+        }
 
         public void Move(Vector3 move)
 		{

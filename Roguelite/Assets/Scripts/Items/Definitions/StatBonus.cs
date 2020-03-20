@@ -1,6 +1,6 @@
 ﻿namespace Items.Definitions
 {
-    public enum Stat
+    public enum StatBonus
     {
         Attack,
         Strength,
