@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using Character.Combat;
+using Character.Health;
 using Items.Definitions;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 namespace Player
 {
-    internal sealed class PlayerStats
+    internal sealed class PlayerStats : MonoBehaviour
     {
         public int CombatLevel { get; private set; }
         public Stat Damage { get; private set; }
@@ -16,8 +19,15 @@ namespace Player
 
         private Dictionary<StatBonus, int> m_EquipmentStats;
 
+        private HealthObject m_HealthObject;
+
+        private System.Random m_Random;
+
         public void Initialize(int combatLevel)
         {
+            m_Random = new System.Random();
+            m_HealthObject = GetComponent<HealthObject>();
+
             CombatLevel = combatLevel;
 
             m_BaseStats = new Dictionary<StatBonus, int>
@@ -32,6 +42,26 @@ namespace Player
             Defence = new Stat();
 
             UpdateStats();
+        }
+
+        public void TakeDamage(int damage)
+        {
+            var randomDamage = m_Random.Next(damage);
+            var blockedDamage = m_Random.Next(Defence.GetBaseValue());
+            var finalDamage = randomDamage - blockedDamage;
+
+            if (finalDamage < 0)
+                finalDamage = 0;
+
+            Debug.Log($"Damage: {randomDamage}, Blocked Damage: {blockedDamage}, Final Damage: {finalDamage}");
+
+            m_HealthObject.Damage(finalDamage);
+
+            if (m_HealthObject.CurrentHealth <= 0)
+            {
+                Debug.Log("Player Died.");
+                SceneManager.LoadScene("Game");
+            }
         }
 
         public Dictionary<StatBonus, int> GetBaseStats()

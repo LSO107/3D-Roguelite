@@ -1,5 +1,4 @@
 ﻿using Character.Combat;
-using Character.Health;
 using Character.Movement;
 using Player;
 using UnityEngine;
@@ -7,7 +6,6 @@ using UnityEngine;
 internal sealed class WeaponTrigger : MonoBehaviour
 {
     private ActorData m_ActorData;
-    private PlayerStats m_PlayerStats;
 
     private void Awake()
     {
@@ -19,17 +17,18 @@ internal sealed class WeaponTrigger : MonoBehaviour
         if (other.GetComponent<ActorData>() == null )
             return;
 
-        m_PlayerStats = GameManager.Instance.PlayerManager.PlayerStats;
-
         if (m_ActorData.ActorType == ActorType.Player)
         {
             print("BOOOOOOM");
             other.GetComponentInParent<CharacterMovement>().KnockBack(transform.position);
-            other.GetComponent<CharacterStats>().TakeDamage(m_PlayerStats.Damage.GetBaseValue());
+            other.GetComponent<CharacterStats>().TakeDamage();
         }
         else if (m_ActorData.ActorType == ActorType.Enemy)
         {
-            Debug.Log("ENEMY");
+            Debug.Log("ENEMY HIT ME");
+            GetComponentInParent<CharacterMovement>().KnockBack(transform.position);
+            var damage = m_ActorData.GetComponentInParent<CharacterStats>().Damage.GetBaseValue();
+            GetComponentInParent<PlayerStats>().TakeDamage(damage);
         }
     }
 }

@@ -3815,10 +3815,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CombatLevel: 2
-  m_Damage:
-    m_BaseValue: 5
-  m_Defence:
-    m_BaseValue: 0
+  Damage:
+    m_BaseValue: 10
+  Defence:
+    m_BaseValue: 10
 --- !u!1 &573003108
 GameObject:
   m_ObjectHideFlags: 0
@@ -5367,7 +5367,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 2.3509887e-38, z: -2.3061949e+18, w: 5.820766e-11}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -8926,6 +8926,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GoldQuantityText: {fileID: 946528321}
   m_TokenQuantityText: {fileID: 754234508}
+--- !u!114 &1130518225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130518215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0194b16bd04489a8cd88a14acfb6b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1134188950
 PrefabInstance:
   m_ObjectHideFlags: 0

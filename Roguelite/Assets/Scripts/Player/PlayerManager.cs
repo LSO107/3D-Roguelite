@@ -9,6 +9,7 @@ using Player.Experience;
 using UI.EquipmentUI;
 using UI.InventoryPanelUI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Player
 {
@@ -28,7 +29,7 @@ namespace Player
 
         private void Awake()
         {
-            PlayerStats = new PlayerStats();
+            PlayerStats = GetComponent<PlayerStats>();
 
             var inventory = new List<ItemDefinition>();
             Inventory = new PlayerInventory(inventory);

@@ -6,8 +6,6 @@ using UnityEngine;
 
 internal sealed class GameManager : MonoBehaviour
 {
-    //public GameObject RespawnLocation;
-
     public PlayerManager PlayerManager;
     public ItemContextMenu ItemContextMenu;
     public ItemDatabaseManager ItemDatabase;
