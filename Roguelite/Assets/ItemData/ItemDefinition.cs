@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ItemData
 {
-    internal class ItemDefinition : ScriptableObject
+    public class ItemDefinition : ScriptableObject
     {
         public string Id;
         public string Name;
@@ -63,11 +63,14 @@ namespace ItemData
         }
     }
 
-    internal abstract class ConsumableItem : ItemDefinition
+    internal class ConsumableItem : ItemDefinition
     {
         public string description;
 
-        public abstract void Use();
+        public virtual void Use()
+        {
+            throw new NotImplementedException("Must override Use method");
+        }
 
         public ConsumableItem CreateInstance()
         {
