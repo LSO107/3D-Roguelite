@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Character.Combat;
 using UnityEngine;
 
 using Random = System.Random;
@@ -13,12 +14,15 @@ namespace AI
 
         private List<IBehaviour> m_ExecutingBehaviours;
 
+        private CharacterCombat m_CharacterCombat;
+
         private Random m_Random;
 
         private void Awake()
         {
             m_Behaviours = GetComponents<IBehaviour>();
             m_ExecutingBehaviours = new List<IBehaviour>();
+            m_CharacterCombat = GetComponent<CharacterCombat>();
 
             foreach (var behaviour in m_Behaviours)
             {
@@ -41,9 +45,6 @@ namespace AI
             {
                 // Pick random behaviour and execute
                 var next = m_Random.Next(0, m_ExecutingBehaviours.Count);
-
-                Debug.Log($"{m_ExecutingBehaviours.Count} behaviours to choose from, rolled {next}");
-
                 var behaviour = m_ExecutingBehaviours[next];
                 behaviour.Execute();
                 m_ExecutingBehaviours = new List<IBehaviour>();
@@ -56,6 +57,11 @@ namespace AI
             {
                 m_ExecutingBehaviours.Add(behaviour);
             }
+        }
+
+        public void UpdateCombatState(CombatState state)
+        {
+            m_CharacterCombat.CombatState = state;
         }
 
         private bool IsInState(params BehaviourState[] states)

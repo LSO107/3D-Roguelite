@@ -4105,6 +4105,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369398fde921d5e41ae5f5a596f53185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &566768657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566768653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fb20ba1ccc1b44d99b065e6a4e4373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CombatState: 0
 --- !u!114 &566768663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9417,6 +9430,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GoldQuantityText: {fileID: 946528321}
   m_TokenQuantityText: {fileID: 754234508}
+--- !u!114 &1130518217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130518215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fb20ba1ccc1b44d99b065e6a4e4373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CombatState: 2
 --- !u!114 &1130518225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19535,7 +19561,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3035870174618228243, guid: fbf2f6edbe9b991439fd9842710caa8c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fbf2f6edbe9b991439fd9842710caa8c, type: 3}
 --- !u!222 &4145001504151159984
 CanvasRenderer:

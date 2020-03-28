@@ -5,11 +5,13 @@ using UnityEngine;
 
 internal sealed class WeaponTrigger : MonoBehaviour
 {
-    private ActorData m_ActorData;
+    private ActorData m_MyActorData;
+    private CharacterCombat m_MyCombatData;
 
     private void Awake()
     {
-        m_ActorData = GetComponentInParent<ActorData>();
+        m_MyActorData = GetComponentInParent<ActorData>();
+        m_MyCombatData = GetComponentInParent<CharacterCombat>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -17,17 +19,38 @@ internal sealed class WeaponTrigger : MonoBehaviour
         if (other.GetComponent<ActorData>() == null )
             return;
 
-        if (m_ActorData.ActorType == ActorType.Player)
+        var targetCombatData = other.GetComponent<CharacterCombat>();
+
+        if (targetCombatData == null)
+            return;
+
+        if (m_MyActorData.ActorType == ActorType.Player)
         {
-            print("BOOOOOOM");
-            other.GetComponentInParent<CharacterMovement>().KnockBack(transform.position);
-            other.GetComponent<CharacterStats>().TakeDamage();
+            if (targetCombatData.CombatState == CombatState.Blocking)
+            {
+                Debug.Log("Blocked Attack.");
+            }
+            else
+            {
+                Debug.Log("Hit enemy");
+                other.GetComponentInParent<CharacterMovement>().KnockBack(transform.position);
+                other.GetComponent<CharacterStats>().TakeDamage();
+            }
         }
-        else if (m_ActorData.ActorType == ActorType.Enemy)
+        else if (m_MyActorData.ActorType == ActorType.Enemy)
         {
+            if (m_MyCombatData.CombatState != CombatState.Attacking)
+                return;
+
+            if (targetCombatData.CombatState == CombatState.Blocking)
+            {
+                Debug.Log("Blocked Attack.");
+                return;
+            }
+
             Debug.Log("ENEMY HIT ME");
             GetComponentInParent<CharacterMovement>().KnockBack(transform.position);
-            var damage = m_ActorData.GetComponentInParent<CharacterStats>().Damage.GetBaseValue();
+            var damage = m_MyActorData.GetComponentInParent<CharacterStats>().Damage.GetBaseValue();
             GetComponentInParent<PlayerStats>().TakeDamage(damage);
         }
     }

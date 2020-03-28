@@ -1,4 +1,5 @@
 ﻿using AI;
+using Character.Combat;
 using UnityEngine;
 
 internal sealed class BlockingBehaviour : MonoBehaviour, IBehaviour
@@ -22,7 +23,7 @@ internal sealed class BlockingBehaviour : MonoBehaviour, IBehaviour
     public void Execute()
     {
         Debug.Log("Blocking now");
-        m_CurrentTime = 0f;
+        m_EnemyAI.UpdateCombatState(CombatState.Blocking);
     }
 
     public void ProcessData(AIDataObject data)
@@ -34,6 +35,7 @@ internal sealed class BlockingBehaviour : MonoBehaviour, IBehaviour
             if (m_CurrentTime >= m_BlockTime)
             {
                 m_EnemyAI.RegisterExecutionRequest(this);
+                m_CurrentTime = 0f;
             }
         }
         else

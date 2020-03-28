@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Character.Combat;
+using UnityEngine;
 
 namespace AI
 {
@@ -23,7 +24,7 @@ namespace AI
         public void Execute()
         {
             Debug.Log("Attacking now.");
-            m_CurrentTime = 0f;
+            m_EnemyAI.UpdateCombatState(CombatState.Attacking);
         }
 
         public void ProcessData(AIDataObject data)
@@ -35,6 +36,7 @@ namespace AI
                 if (m_CurrentTime >= m_AttackTime)
                 {
                     m_EnemyAI.RegisterExecutionRequest(this);
+                    m_CurrentTime = 0f;
                 }
             }
             else
