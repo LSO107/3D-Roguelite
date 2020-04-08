@@ -1,0 +1,6 @@
+C:\Users\leeok\Documents\GitHub\Roguelite\RogueliteNpcScripts\ScriptingFramework\bin\Release\ScriptingFramework.dll
+C:\Users\leeok\Documents\GitHub\Roguelite\RogueliteNpcScripts\ScriptingFramework\bin\Release\ScriptingFramework.pdb
+C:\Users\leeok\Documents\GitHub\Roguelite\RogueliteNpcScripts\ScriptingFramework\obj\Release\ScriptingFramework.csprojAssemblyReference.cache
+C:\Users\leeok\Documents\GitHub\Roguelite\RogueliteNpcScripts\ScriptingFramework\obj\Release\ScriptingFramework.csproj.CoreCompileInputs.cache
+C:\Users\leeok\Documents\GitHub\Roguelite\RogueliteNpcScripts\ScriptingFramework\obj\Release\ScriptingFramework.dll
+C:\Users\leeok\Documents\GitHub\Roguelite\RogueliteNpcScripts\ScriptingFramework\obj\Release\ScriptingFramework.pdb

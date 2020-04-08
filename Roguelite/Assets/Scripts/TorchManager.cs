@@ -20,10 +20,12 @@ internal sealed class TorchManager : MonoBehaviour
             if (on)
             {
                 torch.Play();
+                torch.GetComponentInParent<AudioSource>().Play();
             }
             else
             {
                 torch.Stop();
+                torch.GetComponentInParent<AudioSource>().Stop();
             }
         }
     }

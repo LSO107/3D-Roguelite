@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+using Random = System.Random;
+
 namespace AI
 {
     internal sealed class CirclingBehaviour : MonoBehaviour, IBehaviour
@@ -10,9 +12,12 @@ namespace AI
         private float m_Rad = 2;
         private float m_Angle = 180;
 
-        public void Initialize()
+        private Random m_Random;
+
+        public void Initialize(Random random)
         {
             m_EnemyAI = GetComponent<EnemyAI>();
+            m_Random = random;
         }
 
         public void UpdateState(BehaviourState state)
@@ -23,6 +28,11 @@ namespace AI
         public void Execute()
         {
             Debug.Log("Circling");
+        }
+
+        public void Stop()
+        {
+            
         }
 
         public void ProcessData(AIDataObject data)

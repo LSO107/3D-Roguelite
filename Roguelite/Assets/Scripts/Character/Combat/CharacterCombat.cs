@@ -6,7 +6,6 @@ namespace Character.Combat
     {
         public CombatState CombatState;
 
-
         public void UpdateState(CombatState state)
         {
             CombatState = state;

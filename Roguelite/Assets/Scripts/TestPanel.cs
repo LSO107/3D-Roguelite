@@ -81,7 +81,7 @@ internal sealed class TestPanel : MonoBehaviour
 
         if (isAttacking)
             return;
-
+        
         anim.SetInteger("Attack Type", m_AttackType);
         anim.SetTrigger("Attack");
         m_AttackType++;

@@ -1,0 +1,9 @@
+C:\Users\leeok\Documents\GitHub\Roguelite\RogueliteNpcScripts\RogueliteNpcScripts\obj\Release\RogueliteNpcScripts.csprojAssemblyReference.cache
+C:\Users\leeok\Documents\GitHub\Roguelite\RogueliteNpcScripts\RogueliteNpcScripts\obj\Release\RogueliteNpcScripts.csproj.CoreCompileInputs.cache
+C:\Users\leeok\Documents\GitHub\Roguelite\RogueliteNpcScripts\RogueliteNpcScripts\bin\Release\RogueliteNpcScripts.dll
+C:\Users\leeok\Documents\GitHub\Roguelite\RogueliteNpcScripts\RogueliteNpcScripts\bin\Release\RogueliteNpcScripts.pdb
+C:\Users\leeok\Documents\GitHub\Roguelite\RogueliteNpcScripts\RogueliteNpcScripts\bin\Release\ScriptingFramework.dll
+C:\Users\leeok\Documents\GitHub\Roguelite\RogueliteNpcScripts\RogueliteNpcScripts\bin\Release\ScriptingFramework.pdb
+C:\Users\leeok\Documents\GitHub\Roguelite\RogueliteNpcScripts\RogueliteNpcScripts\obj\Release\RogueliteNpcScripts.csproj.CopyComplete
+C:\Users\leeok\Documents\GitHub\Roguelite\RogueliteNpcScripts\RogueliteNpcScripts\obj\Release\RogueliteNpcScripts.dll
+C:\Users\leeok\Documents\GitHub\Roguelite\RogueliteNpcScripts\RogueliteNpcScripts\obj\Release\RogueliteNpcScripts.pdb

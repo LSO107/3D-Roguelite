@@ -49,9 +49,9 @@ internal sealed class WeaponTrigger : MonoBehaviour
             }
 
             Debug.Log("ENEMY HIT ME");
-            GetComponentInParent<CharacterMovement>().KnockBack(transform.position);
+            other.GetComponentInParent<CharacterMovement>().KnockBack(transform.position);
             var damage = m_MyActorData.GetComponentInParent<CharacterStats>().Damage.GetBaseValue();
-            GetComponentInParent<PlayerStats>().TakeDamage(damage);
+            other.GetComponentInParent<PlayerStats>().TakeDamage(damage);
         }
     }
 }

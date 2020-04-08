@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
+using Character.Combat;
 using UnityEngine;
 
 namespace Character.Movement
@@ -15,8 +17,11 @@ namespace Character.Movement
 
 		private Rigidbody m_Rigidbody;
 		private Animator m_Animator;
+
 		private float m_TurnAmount;
 		private float m_ForwardAmount;
+
+        private float forceMovementDuration = 0f;
 
         private static readonly int Forward = Animator.StringToHash("Forward");
         private static readonly int Turn = Animator.StringToHash("Turn");
@@ -40,7 +45,7 @@ namespace Character.Movement
 			m_TurnAmount = Mathf.Atan2(move.x, move.z);
 			m_ForwardAmount = move.z;
 
-			ApplyExtraTurnRotation();
+            ApplyExtraTurnRotation();
             UpdateAnimator(move);
 		}
 

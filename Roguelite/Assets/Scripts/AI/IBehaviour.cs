@@ -1,11 +1,14 @@
-﻿namespace AI
+﻿using UnityEngine;
+
+namespace AI
 {
     internal interface IBehaviour
     {
-        void Initialize();
+        void Initialize(System.Random random);
         void ProcessData(AIDataObject data);
         void UpdateState(BehaviourState state);
         void Execute();
+        void Stop();
     }
 }
 
