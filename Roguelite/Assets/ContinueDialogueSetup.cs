@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ContinueDialogueSetup : MonoBehaviour
+{
+    [SerializeField] private TextMeshProUGUI m_Text;
     [SerializeField] private Button m_Button;
 
     public void Setup(string text, Action clickAction)
