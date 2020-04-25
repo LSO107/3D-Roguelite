@@ -1,13 +1,13 @@
 ﻿
-
-// ReSharper disable UnusedMemberInSuper.Global
-// ReSharper disable UnusedMember.Global
+using System.Collections.Generic;
 
 namespace ScriptingFramework
 {
     public interface IDialogueProvider
     {
         void SendNpcOneLine(string text, int nextState);
+
+        void SendOptions(IEnumerable<DialogueOption> options);
 
         /// <summary>
         /// Ends the chat and closes the active dialogue window

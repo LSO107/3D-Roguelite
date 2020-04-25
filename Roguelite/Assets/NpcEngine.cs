@@ -8,7 +8,7 @@ internal sealed class NpcEngine : MonoBehaviour
 
     public static NpcEngine Instance;
 
-    private Script m_CurrentScript;
+    private NpcScript m_CurrentScript;
 
     private void Awake()
     {
@@ -29,14 +29,21 @@ internal sealed class NpcEngine : MonoBehaviour
         var npcType = m_DialogueReader.GetNpcType(npcId);
 
         if (npcType == null)
+        {
+            Debug.Log("NO NPC FOUND");
             return;
+        }
 
-        var playerManager = GameManager.Instance.PlayerManager;
+        //var playerManager = GameManager.Instance.PlayerManager;
 
-        m_CurrentScript = ScriptActivator.CreateScriptInstance(npcType, playerManager, npcId);
+        m_CurrentScript = ScriptActivator.CreateScriptInstance<NpcScript>(npcType, npcId);
 
         m_CurrentScript.Execute();
     }
 
-
+    public void GoToNextState(int state)
+    {
+        m_CurrentScript.State = state;
+        m_CurrentScript.Execute();
+    }
 }

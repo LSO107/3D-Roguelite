@@ -12,7 +12,16 @@ namespace RogueliteNpcScripts
             switch (State)
             {
                 case 0:
-                    Dialogue.SendNpcOneLine("我说一点汉语", 1);
+                    Dialogue.SendNpcOneLine("HELLO, ARE YOU GOOD AT FIGHT?", 1);
+                    break;
+                case 1:
+                    Dialogue.SendOptions(new [] { new DialogueOption("YES", 2), new DialogueOption("NO", 3),  });
+                    break;
+                case 2:
+                    Dialogue.SendNpcOneLine("OK SO YOU ARE GOOD AT FIGHT, YES", 0);
+                    break;
+                case 3:
+                    Dialogue.SendNpcOneLine("AH YOU ARE SHIT AT FIGHT?", 0);
                     break;
                 default:
                     Dialogue.EndChat();

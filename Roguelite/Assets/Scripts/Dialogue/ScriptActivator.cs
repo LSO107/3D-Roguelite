@@ -7,7 +7,7 @@ namespace Dialogue
 {
     internal static class ScriptActivator
     {
-        public static Script CreateScriptInstance(Type npcType, PlayerManager player, int npcId)
+        public static T CreateScriptInstance<T>(Type npcType, int npcId) where T : Script
         {
             if (!(Activator.CreateInstance(npcType) is Script instance))
             {
@@ -20,9 +20,11 @@ namespace Dialogue
                 nInstance.Dialogue = new DialogueProvider(Debug.Log);
                 //nInstance.Inventory = new ScriptInventory(player, scriptName);
                 //nInstance.Player = new ScriptPlayer(player, scriptName);
+
+                return nInstance as T;
             }
 
-            return instance;
+            return null;
         }
     }
 }

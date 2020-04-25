@@ -23,7 +23,7 @@ namespace Character.Movement
 
         private float forceMovementDuration = 0f;
 
-        private static readonly int Forward = Animator.StringToHash("Forward");
+        private static readonly int Forward = Animator.StringToHash("MoveForward");
         private static readonly int Turn = Animator.StringToHash("Turn");
 
         public bool CanMove = true;
@@ -89,6 +89,8 @@ namespace Character.Movement
                 return;
 
             var v = (m_Animator.deltaPosition * m_MoveSpeedMultiplier) / Time.deltaTime;
+            // TODO: Get float in relation to camera direction
+            //v += new Vector3(0, 0, m_Animator.GetFloat("Forward") * 2);
             v.y = m_Rigidbody.velocity.y;
             m_Rigidbody.velocity = v;
         }

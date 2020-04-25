@@ -74,7 +74,7 @@ internal sealed class DayNightCycle : MonoBehaviour
     {
         //TODO: Fix rotation, shadows too long, looks retarded
         var x = currentTimeOfDay * 360f - 90;
-        transform.localRotation = Quaternion.Euler(Mathf.Clamp(x, 30, 270), 170, 0);
+        transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) - 90, 170, 0);
 
         float intensityMultiplier = 1;
         if (currentTimeOfDay <= 0.23f || currentTimeOfDay >= 0.75f)
