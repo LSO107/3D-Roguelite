@@ -1,5 +1,6 @@
 ﻿using ItemData;
 using Items.Definitions;
+using Items.Inventory;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,7 +10,7 @@ namespace UI.Tooltip
     {
         private Tooltip m_Tooltip;
 
-        private ItemDefinition m_Item;
+        private Item m_Item;
 
         private bool ItemContextMenuOpen => GameManager.Instance.ItemContextMenu.IsOpen;
 
@@ -18,7 +19,7 @@ namespace UI.Tooltip
             m_Tooltip = GameManager.Instance.Tooltip;
         }
 
-        public void UpdateItem(ItemDefinition item)
+        public void UpdateItem(Item item)
         {
             m_Item = item;
         }

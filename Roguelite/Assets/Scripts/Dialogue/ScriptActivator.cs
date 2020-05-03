@@ -1,5 +1,4 @@
 ﻿using System;
-using Player;
 using ScriptingFramework;
 using Debug = UnityEngine.Debug;
 
@@ -18,7 +17,8 @@ namespace Dialogue
             if (instance is NpcScript nInstance)
             {
                 nInstance.Dialogue = new DialogueProvider(Debug.Log);
-                //nInstance.Inventory = new ScriptInventory(player, scriptName);
+                nInstance.Inventory = new ScriptInventory(Debug.Log);
+                nInstance.Interface = new ScriptInterfaces();
                 //nInstance.Player = new ScriptPlayer(player, scriptName);
 
                 return nInstance as T;

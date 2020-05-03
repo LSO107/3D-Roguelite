@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Security.Cryptography;
 using System.Text;
 using Extensions;
 using ItemData;
 using Items.Definitions;
+using Items.Inventory;
 using TMPro;
 using UnityEngine;
 
@@ -19,7 +21,7 @@ namespace UI.Tooltip
             m_Text = GetComponentInChildren<TextMeshProUGUI>();
         }
 
-        public void OpenTooltip(ItemDefinition item)
+        public void OpenTooltip(Item item)
         {
             transform.position = Input.mousePosition;
             UpdateText(item);
@@ -34,13 +36,13 @@ namespace UI.Tooltip
         /// <summary>
         /// Update the tooltip text with the corresponding item text
         /// </summary>
-        private void UpdateText(ItemDefinition item)
+        private void UpdateText(Item item)
         {
-            if (item is ConsumableItem consumable)
+            if (item is Consumable consumable)
             {
                 m_Text.text = GetConsumableText(consumable);
             }
-            else if (item is EquipmentItem equipment)
+            else if (item is Equipment equipment)
             {
                 m_Text.text = GetEquipmentText(equipment);
             }
@@ -49,19 +51,19 @@ namespace UI.Tooltip
         /// <summary>
         /// Compares the item stats with the corresponding equipmentSlotId
         /// </summary>
-        private static string GetEquipmentText(EquipmentItem inventoryItem)
+        private static string GetEquipmentText(Equipment equipment)
         {
             var sb = new StringBuilder();
 
-            var equipment = GameManager.Instance.PlayerManager.Equipment;
+            var eq = GameManager.Instance.PlayerManager.Equipment;
 
-            sb.Append($"<size=20><color=orange>{inventoryItem.Name}</color></size>\n");
+            sb.Append($"<size=20><color=orange>{equipment.Name}</color></size>\n");
 
             foreach (var value in Enum.GetValues(typeof(StatBonus)))
             {
-                var inventoryStat = inventoryItem.StatBonuses[(StatBonus) value];
+                var inventoryStat = equipment.StatBonuses[(StatBonus) value];
 
-                var equipmentStat = equipment?.GetEquipmentStatBonuses()[(StatBonus) value];
+                var equipmentStat = eq?.GetEquipmentStatBonuses()[(StatBonus) value];
 
                 if (inventoryStat > equipmentStat)
                 {
@@ -83,11 +85,11 @@ namespace UI.Tooltip
         /// <summary>
         /// Extracts the consumable item information
         /// </summary>
-        private static string GetConsumableText(ConsumableItem item)
+        private static string GetConsumableText(Consumable consumable)
         {
             var sb = new StringBuilder();
-            sb.Append($"<size=20><color=orange>{item.Name}</color></size>\n");
-            sb.Append($"<color=white>{item.description}</color>");
+            sb.Append($"<size=20><color=orange>{consumable.Name}</color></size>\n");
+            sb.Append($"<color=white>{consumable.Description}</color>");
             return sb.ToString();
         }
     }

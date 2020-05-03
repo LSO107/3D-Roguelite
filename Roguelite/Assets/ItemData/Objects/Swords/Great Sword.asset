@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Great Sword
+  m_EditorClassIdentifier: Assembly-CSharp:ItemData:WeaponDefinition
+  Id: aa74f44b-ad87-4e2e-bb85-5ca478ae51d7
+  Name: Great Sword
+  Icon: {fileID: 21300000, guid: da491baf889dcbe478a538db574195e3, type: 3}
+  Prefab: {fileID: 3373009417025090258, guid: 405b8b018e2a48641bc64bffd2dde1b7, type: 3}
+  BaseGoldCost: 40
+  EquipmentSlotId: 3
+  m_Attack: 15
+  m_Strength: 13
+  m_Defence: 0
+  m_Agility: 0
+  WeaponType: 1

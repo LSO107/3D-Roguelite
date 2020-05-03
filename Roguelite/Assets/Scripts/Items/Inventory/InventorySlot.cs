@@ -4,21 +4,21 @@ namespace Items.Inventory
 {
     internal sealed class InventorySlot
     {
-        public ItemDefinition ItemDefinition { get; private set; }
+        public Item Item { get; private set; }
 
-        public InventorySlot(ItemDefinition itemDefinition)
+        public InventorySlot(Item item)
         {
-            ItemDefinition = itemDefinition;
+            Item = item;
         }
 
-        public void SetItem(ItemDefinition itemDefinition)
+        public void SetItem(Item item)
         {
-            ItemDefinition = itemDefinition;
+            Item = item;
         }
 
         public void Empty()
         {
-            ItemDefinition = null;
+            Item = null;
         }
     }
 }

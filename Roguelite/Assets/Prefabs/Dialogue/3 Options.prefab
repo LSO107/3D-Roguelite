@@ -597,6 +597,7 @@ GameObject:
   - component: {fileID: 244211973340685810}
   - component: {fileID: 244211973340685811}
   - component: {fileID: 244211973492769106}
+  - component: {fileID: 244211973492769107}
   m_Layer: 0
   m_Name: 3 Options
   m_TagString: Untagged
@@ -675,5 +676,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_OptionOne: {fileID: 244211973129138684}
+  m_ButtonOne: {fileID: 244211973045884280}
   m_OptionTwo: {fileID: 244211972009040150}
+  m_ButtonTwo: {fileID: 244211972736229295}
   m_OptionThree: {fileID: 244211972027231299}
+  m_ButtonThree: {fileID: 244211972681217492}
+--- !u!225 &244211973492769107
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244211973340685809}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

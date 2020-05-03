@@ -38,11 +38,13 @@ internal sealed class NpcEngine : MonoBehaviour
 
         m_CurrentScript = ScriptActivator.CreateScriptInstance<NpcScript>(npcType, npcId);
 
+        Debug.Log("Current State: " + m_CurrentScript.State);
         m_CurrentScript.Execute();
     }
 
     public void GoToNextState(int state)
     {
+        Debug.Log("Next State: " + state);
         m_CurrentScript.State = state;
         m_CurrentScript.Execute();
     }

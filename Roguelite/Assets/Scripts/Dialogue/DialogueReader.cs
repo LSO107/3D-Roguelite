@@ -16,7 +16,7 @@ namespace Dialogue
             const string scriptsPath = "Assets/Scripts/Dialogue/RogueliteNpcScripts.dll";
             if (!File.Exists(scriptsPath))
             { 
-                Debug.LogError("FUCKING DIDNT FIND THE FUCKING THING");
+                Debug.LogError("Could not find RogueliteNpcScripts.dll");
                 return;
             }
 

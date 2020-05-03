@@ -1,5 +1,6 @@
 ﻿using Extensions;
 using ItemData;
+using Items.Inventory;
 using UnityEngine;
 using Random = System.Random;
 
@@ -56,12 +57,12 @@ internal sealed class TestPanel : MonoBehaviour
     public void DropItem()
     {
         var number = m_Random.Next(2);
-        ItemDefinition item;
+        Item item;
 
         if (number == 1)
         {
-            item = m_ItemGenerator.GenerateEquipmentItem();
-            var t = item as EquipmentItem;
+            item = m_ItemGenerator.GenerateEquipmentFromTemplate();
+            var t = item as Equipment;
             foreach (var stat in t.StatBonuses.Values)
             {
                 Debug.Log(stat);

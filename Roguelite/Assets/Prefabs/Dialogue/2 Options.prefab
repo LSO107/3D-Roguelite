@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 4370329769658973647}
   - component: {fileID: 4370329769658973640}
   - component: {fileID: 4370329770205992911}
+  - component: {fileID: 4370329770205992912}
   m_Layer: 0
   m_Name: 2 Options
   m_TagString: Untagged
@@ -284,7 +285,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_OptionOne: {fileID: 4370329769422191174}
+  m_ButtonOne: {fileID: 4370329770344124487}
   m_OptionTwo: {fileID: 4370329769928023381}
+  m_ButtonTwo: {fileID: 4370329768980521254}
+--- !u!225 &4370329770205992912
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4370329769658973642}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &4370329769928023383
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ internal sealed class WeaponTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<ActorData>() == null )
+        if (other.GetComponent<ActorData>() == null || m_MyActorData == null)
             return;
 
         var targetCombatData = other.GetComponent<CharacterCombat>();

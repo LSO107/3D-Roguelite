@@ -2,7 +2,7 @@
 {
     public interface IScriptInterfaces
     {
-        void OpenInterface(int id);
+        void OpenBlacksmithShop();
 
         void CloseInterfaces();
     }

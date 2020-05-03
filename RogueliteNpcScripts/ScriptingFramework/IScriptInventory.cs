@@ -2,6 +2,6 @@
 {
     public interface IScriptInventory
     {
-        int GetGold();
+        float GetGold();
     }
 }

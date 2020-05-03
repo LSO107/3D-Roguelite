@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ItemData;
 using Player;
+using UI.Tooltip;
 using UnityEngine;
 
 namespace Items.Inventory
@@ -14,7 +15,7 @@ namespace Items.Inventory
         private readonly InventorySlot[] m_Slots;
         private const int InventorySize = 6;
 
-        public PlayerInventory(IEnumerable<ItemDefinition> items)
+        public PlayerInventory(IEnumerable<Item> items)
         {
             m_Slots = new InventorySlot[InventorySize];
             for (var i = 0; i < m_Slots.Length; i++)
@@ -28,7 +29,7 @@ namespace Items.Inventory
             }
         }
 
-        public void AddItem(ItemDefinition itemDefinition)
+        public void AddItem(Item item)
         {
             if (!HasEmptySlots(1))
             {
@@ -37,7 +38,7 @@ namespace Items.Inventory
 
             var firstEmptySlot = GetFirstEmptySlot();
 
-            m_Slots[firstEmptySlot].SetItem(itemDefinition);
+            m_Slots[firstEmptySlot].SetItem(item);
             PlayerManager.InventoryUI.UpdateSlots();
         }
 
@@ -45,7 +46,7 @@ namespace Items.Inventory
         {
             var slot = m_Slots[slotIndex];
 
-            if (slot.ItemDefinition == null)
+            if (slot.Item == null)
             {
                 throw new Exception($"Could not empty slot at index {slotIndex} as it was already empty.");
             }
@@ -55,9 +56,9 @@ namespace Items.Inventory
 
         public void RemoveItem(Type itemType)
         {
-            var slotsWithItems = m_Slots.Where(slot => slot.ItemDefinition != null);
+            var slotsWithItems = m_Slots.Where(slot => slot.Item != null);
             var matchingSlot = slotsWithItems.FirstOrDefault
-                    (slot => slot.ItemDefinition.GetType() == itemType);
+                    (slot => slot.Item.GetType() == itemType);
 
             if (matchingSlot == null)
             {
@@ -69,14 +70,14 @@ namespace Items.Inventory
 
         public bool HasEmptySlots(int amountOfSlots)
         {
-            return m_Slots.Count(slot => slot.ItemDefinition == null) >= amountOfSlots;
+            return m_Slots.Count(slot => slot.Item == null) >= amountOfSlots;
         }
 
         public int GetFirstEmptySlot()
         {
             for (var i = 0; i < m_Slots.Length; i++)
             {
-                if (m_Slots[i].ItemDefinition == null)
+                if (m_Slots[i].Item == null)
                 {
                     return i;
                 }
@@ -86,21 +87,21 @@ namespace Items.Inventory
             return 0;
         }
 
-        public ItemDefinition GetItemInSlot(int slotIndex)
+        public Item GetItemInSlot(int slotIndex)
         {
-            return m_Slots[slotIndex].ItemDefinition;
+            return m_Slots[slotIndex].Item;
         }
 
         public void UseItem(int slotIndex)
         {
             var item = GetItemInSlot(slotIndex);
 
-            if (item is ConsumableItem consumable)
+            if (item is Consumable consumable)
             {
                 consumable.Use();
                 RemoveItem(slotIndex);
             }
-            else if (item is EquipmentItem)
+            else if (item is Equipment)
             {
                 PlayerManager.EquipItem(slotIndex);
             }
