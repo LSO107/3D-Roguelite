@@ -1,19 +1,20 @@
 ﻿using Extensions;
 using ItemData;
+using ItemGeneration;
 using Items.Inventory;
 using UnityEngine;
 using Random = System.Random;
 
 internal sealed class TestPanel : MonoBehaviour
 {
-    private ItemGenerator m_ItemGenerator;
+    private ItemFactory m_ItemFactory;
     private Random m_Random;
 
     private int m_AttackType = 0;
 
     private void Start()
     {
-        m_ItemGenerator = new ItemGenerator();
+        m_ItemFactory = new ItemFactory();
         m_Random = new Random();
     }
 
@@ -61,7 +62,7 @@ internal sealed class TestPanel : MonoBehaviour
 
         if (number == 1)
         {
-            item = m_ItemGenerator.GenerateEquipmentFromTemplate();
+            item = m_ItemFactory.GenerateEquipmentFromTemplate();
             var t = item as Equipment;
             foreach (var stat in t.StatBonuses.Values)
             {
@@ -70,7 +71,7 @@ internal sealed class TestPanel : MonoBehaviour
         }
         else
         {
-            item = m_ItemGenerator.GeneratePotion();
+            item = m_ItemFactory.GeneratePotion();
         }
         GameManager.Instance.PlayerManager.Inventory.AddItem(item);
     }

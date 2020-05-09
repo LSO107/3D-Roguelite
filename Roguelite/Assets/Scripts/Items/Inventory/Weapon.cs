@@ -9,29 +9,10 @@ namespace Items.Inventory
     {
         public WeaponType WeaponType { get; }
 
-        public Weapon(string name,
-                      Sprite icon,
-                      GameObject prefab,
-                      int goldCost,
-                      EquipmentSlotId slotId,
-                      Dictionary<StatBonus, int> statBonuses,
-                      int attack,
-                      int strength,
-                      int defence,
-                      int agility,
-                      WeaponType weaponType) 
-            : base(name,
-                   icon,
-                   prefab,
-                   goldCost,
-                   slotId,
-                   statBonuses,
-                   attack,
-                   strength,
-                   defence,
-                   agility)
+        public Weapon(WeaponDefinition definition)
+            : base(definition)
         {
-            WeaponType = weaponType;
+            WeaponType = definition.WeaponType;
         }
     }
 }

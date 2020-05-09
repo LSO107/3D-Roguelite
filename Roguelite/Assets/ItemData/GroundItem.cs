@@ -1,4 +1,5 @@
-﻿using Items;
+﻿using ItemGeneration;
+using Items;
 using Items.Inventory;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace ItemData
     internal sealed class GroundItem : MonoBehaviour
     {
         private PlayerInventory m_Inventory;
-        private ItemGenerator m_ItemGenerator;
+        private ItemFactory m_ItemFactory;
         private GroundItemManager m_GroundItems;
 
         private string m_ItemId = string.Empty;
@@ -20,7 +21,7 @@ namespace ItemData
         {
             m_Inventory = GameManager.Instance.PlayerManager.Inventory;
             m_GroundItems = GroundItemManager.Instance;
-            m_ItemGenerator = new ItemGenerator();
+            m_ItemFactory = new ItemFactory();
             m_PlayerLocation = GameManager.Instance.PlayerManager.transform;
         }
 
@@ -50,7 +51,7 @@ namespace ItemData
 
             if (item == null)
             {
-                var newItem = m_ItemGenerator.GenerateEquipmentFromTemplate();
+                var newItem = m_ItemFactory.GenerateEquipmentFromTemplate();
                 m_Inventory.AddItem(newItem);
                 Debug.Log("Item was not found on the ground, new item bonuses generated");
             }
