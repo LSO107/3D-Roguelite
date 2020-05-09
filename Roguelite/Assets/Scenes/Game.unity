@@ -8321,7 +8321,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 3.0092666e-36, y: 1.009742e-28, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 2.3509887e-38, z: -2.306054e+18, w: 2.1175824e-22}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -15969,7 +15969,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.3999634, y: 0.8000488}
+  m_AnchoredPosition: {x: -2.3999023, y: 0.8000488}
   m_SizeDelta: {x: 35.599976, y: 23.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1319024259
@@ -21431,6 +21431,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2fed47d680ee26e4f9e352d74c11efe7, type: 2}
   - {fileID: 11400000, guid: 557e25e79f9482b4b9b9c3924dc3650c, type: 2}
   - {fileID: 11400000, guid: e8241aef11bb0aa49bcef95546ab4fdb, type: 2}
+  m_Chestplates:
+  - {fileID: 11400000, guid: 32703f731ff8f3744b1d2c6d66575493, type: 2}
+  - {fileID: 11400000, guid: dab71af41ffa39a468644768d2b7dbf5, type: 2}
+  - {fileID: 11400000, guid: 81fdebf0de57aab43a85b5200c097ddd, type: 2}
+  m_Platelegs:
+  - {fileID: 11400000, guid: bb3830132baee6143a0d69d5544155ea, type: 2}
+  - {fileID: 11400000, guid: 5fe5563130565a34f8d7cf0c95dec542, type: 2}
+  - {fileID: 11400000, guid: 236e8a9559b704f4398c334fc8050a7e, type: 2}
+  m_Weapons:
+  - {fileID: 11400000, guid: 95e064f0d14ba2547b7a324ff312ec71, type: 2}
+  - {fileID: 11400000, guid: 78b0cafafab1d254eb6acf8b5b68d959, type: 2}
+  - {fileID: 11400000, guid: 5e3263e230f08cb4791bb6eac34b0db5, type: 2}
 --- !u!4 &1789649681
 Transform:
   m_ObjectHideFlags: 0
