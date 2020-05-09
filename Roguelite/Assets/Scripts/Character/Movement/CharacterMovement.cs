@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using Character.Combat;
 using UnityEngine;
 
@@ -16,21 +17,21 @@ namespace Character.Movement
 
 		private Rigidbody m_Rigidbody;
 		private Animator m_Animator;
+
 		private float m_TurnAmount;
 		private float m_ForwardAmount;
 
-        private static readonly int Forward = Animator.StringToHash("Forward");
+        private float forceMovementDuration = 0f;
+
+        private static readonly int Forward = Animator.StringToHash("MoveForward");
         private static readonly int Turn = Animator.StringToHash("Turn");
 
         public bool CanMove = true;
-
-        private CharacterStats m_CharacterStats;
 
         private void Start()
 		{
 			m_Animator = GetComponent<Animator>();
 			m_Rigidbody = GetComponent<Rigidbody>();
-            m_CharacterStats = GetComponent<CharacterStats>();
         }
 
         public void Move(Vector3 move)
@@ -44,7 +45,7 @@ namespace Character.Movement
 			m_TurnAmount = Mathf.Atan2(move.x, move.z);
 			m_ForwardAmount = move.z;
 
-			ApplyExtraTurnRotation();
+            ApplyExtraTurnRotation();
             UpdateAnimator(move);
 		}
 
@@ -59,7 +60,6 @@ namespace Character.Movement
         {
             yield return new WaitForSeconds(2);
             CanMove = true;
-			Debug.Log("HI");
         }
 
         private void UpdateAnimator(Vector3 move)
@@ -89,6 +89,8 @@ namespace Character.Movement
                 return;
 
             var v = (m_Animator.deltaPosition * m_MoveSpeedMultiplier) / Time.deltaTime;
+            // TODO: Get float in relation to camera direction
+            //v += new Vector3(0, 0, m_Animator.GetFloat("Forward") * 2);
             v.y = m_Rigidbody.velocity.y;
             m_Rigidbody.velocity = v;
         }

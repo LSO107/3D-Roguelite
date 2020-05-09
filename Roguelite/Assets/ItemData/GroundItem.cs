@@ -1,4 +1,5 @@
-﻿using Items.Inventory;
+﻿using Items;
+using Items.Inventory;
 using UnityEngine;
 
 namespace ItemData
@@ -6,8 +7,8 @@ namespace ItemData
     internal sealed class GroundItem : MonoBehaviour
     {
         private PlayerInventory m_Inventory;
-        private ItemDatabase m_ItemDatabase;
         private ItemGenerator m_ItemGenerator;
+        private GroundItemManager m_GroundItems;
 
         private string m_ItemId = string.Empty;
         private float m_Timer;
@@ -18,7 +19,7 @@ namespace ItemData
         private void Start()
         {
             m_Inventory = GameManager.Instance.PlayerManager.Inventory;
-            m_ItemDatabase = GameManager.Instance.ItemDatabase.GroundItems;
+            m_GroundItems = GroundItemManager.Instance;
             m_ItemGenerator = new ItemGenerator();
             m_PlayerLocation = GameManager.Instance.PlayerManager.transform;
         }
@@ -45,27 +46,27 @@ namespace ItemData
             if (distance > 2)
                 return;
 
-            var itemDefinition = m_ItemDatabase.FindItem(m_ItemId);
+            var item = m_GroundItems.FindItem(m_ItemId);
 
-            if (itemDefinition == null)
+            if (item == null)
             {
-                var item = m_ItemGenerator.GenerateEquipmentItem();
-                m_Inventory.AddItem(item);
-                Debug.Log("Item was not in database, new item bonuses generated");
+                var newItem = m_ItemGenerator.GenerateEquipmentFromTemplate();
+                m_Inventory.AddItem(newItem);
+                Debug.Log("Item was not found on the ground, new item bonuses generated");
             }
             else
             {
-                m_Inventory.AddItem(itemDefinition);
-                Debug.Log("Item found in database, recreated existing item");
+                m_Inventory.AddItem(item);
+                Debug.Log("Item found on the ground, recreated existing item");
             }
 
-            GameManager.Instance.ItemDatabase.GroundItems.RemoveItem(m_ItemId);
+            m_GroundItems.RemoveItem(m_ItemId);
             Destroy(gameObject);
         }
 
         private void DestroyGroundItem()
         {
-            m_ItemDatabase.RemoveItem(m_ItemId);
+            m_GroundItems.RemoveItem(m_ItemId);
             Destroy(gameObject);
         }
     }

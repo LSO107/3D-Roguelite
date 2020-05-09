@@ -1,5 +1,6 @@
 ﻿using ItemData;
 using Items.Definitions;
+using Items.Inventory;
 using UI.Tooltip;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,12 +23,12 @@ namespace UI.EquipmentUI
             UpdateItemSprite(null);
         }
 
-        public void UpdateItemSprite(EquipmentItem item)
+        public void UpdateItemSprite(Equipment equipment)
         {
-            m_TooltipPointerHandler.UpdateItem(item);
-            spriteImage.sprite = item != null ? item.Icon : DefaultIcon;
+            m_TooltipPointerHandler.UpdateItem(equipment);
+            spriteImage.sprite = equipment != null ? equipment.Icon : DefaultIcon;
             var colour = spriteImage.color;
-            colour.a = item != null ? 1 : 0.2f;
+            colour.a = equipment != null ? 1 : 0.2f;
             spriteImage.color = colour;
         }
     }

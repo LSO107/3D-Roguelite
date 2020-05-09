@@ -9,7 +9,7 @@ namespace Items.Inventory
 {
     internal sealed class PlayerEquipment
     {
-        private readonly Dictionary<EquipmentSlotId, EquipmentItem> m_EquipmentSlots;
+        private readonly Dictionary<EquipmentSlotId, Equipment> m_EquipmentSlots;
         private readonly EquipmentUI m_EquipmentUI;
         private readonly PlayerStats m_PlayerStats;
 
@@ -18,7 +18,7 @@ namespace Items.Inventory
             m_EquipmentUI = GameManager.Instance.PlayerManager.EquipmentUI;
             m_PlayerStats = GameManager.Instance.PlayerManager.PlayerStats;
 
-            m_EquipmentSlots = new Dictionary<EquipmentSlotId, EquipmentItem>
+            m_EquipmentSlots = new Dictionary<EquipmentSlotId, Equipment>
             {
                 { EquipmentSlotId.Head, null },
                 { EquipmentSlotId.Torso, null },
@@ -27,9 +27,9 @@ namespace Items.Inventory
             };
         }
 
-        public void Equip(EquipmentItem item)
+        public void Equip(Equipment definition)
         {
-            m_EquipmentSlots[item.EquipmentSlotId] = item;
+            m_EquipmentSlots[definition.EquipmentSlotId] = definition;
             m_EquipmentUI.UpdateLabels();
             m_PlayerStats.UpdateStats();
         }
@@ -44,7 +44,7 @@ namespace Items.Inventory
         /// <summary>
         /// Returns the item in the slotId or null
         /// </summary>
-        public EquipmentItem GetEquipmentInSlot(EquipmentSlotId slotId)
+        public Equipment GetEquipmentInSlot(EquipmentSlotId slotId)
         {
             return m_EquipmentSlots[slotId];
         }

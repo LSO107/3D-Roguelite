@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Iron Bat
+  m_EditorClassIdentifier: Assembly-CSharp:ItemData:WeaponDefinition
+  Id: 52c7e91e-b008-42ea-a437-1f7121546ba6
+  Name: Iron Bat
+  Icon: {fileID: 21300000, guid: ea7245dd1868f994eaf04106167674d0, type: 3}
+  Prefab: {fileID: 2575716888332312457, guid: a0f1e0e88b12019428046ecca88d8697, type: 3}
+  BaseGoldCost: 12
+  EquipmentSlotId: 3
+  m_Attack: 7
+  m_Strength: 4
+  m_Defence: 0
+  m_Agility: 0
+  WeaponType: 3

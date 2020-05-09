@@ -1,8 +1,10 @@
 ﻿using Extensions;
 using ItemData;
+using Items;
 using Items.Inventory;
 using TMPro;
 using UI.InventoryPanelUI;
+using UI.Tooltip;
 using UnityEngine;
 
 namespace UI.ItemOptions
@@ -15,6 +17,7 @@ namespace UI.ItemOptions
         private CanvasGroup m_ItemContextMenu;
         private PlayerInventory m_Inventory;
         private InventoryUI m_InventoryUI;
+        private GroundItemManager m_GroundItemManager;
 
         private int m_SlotIndex;
         public bool IsOpen => m_ItemContextMenu.interactable;
@@ -23,6 +26,7 @@ namespace UI.ItemOptions
         private void Awake()
         {
             m_ItemContextMenu = GetComponent<CanvasGroup>();
+            m_GroundItemManager = GroundItemManager.Instance;
         }
 
         public void Initialize()
@@ -56,7 +60,7 @@ namespace UI.ItemOptions
 
             var groundItem = Instantiate(item.Prefab, location, item.Prefab.transform.rotation);
             groundItem.GetComponentInChildren<GroundItem>().RegisterGroundItem(item.Id);
-            GameManager.Instance.ItemDatabase.GroundItems.AddItem(item);
+            m_GroundItemManager.AddItem(item);
 
             m_Inventory.RemoveItem(m_SlotIndex);
             m_InventoryUI.UpdateSlots();
@@ -72,10 +76,10 @@ namespace UI.ItemOptions
 
             switch (item)
             {
-                case EquipmentItem _:
+                case Equipment _:
                     m_ItemUseText.text = "Equip";
                     break;
-                case ConsumableItem _:
+                case Consumable _:
                     m_ItemUseText.text = "Drink";
                     break;
                 default:

@@ -31,8 +31,7 @@ namespace Player
         {
             PlayerStats = GetComponent<PlayerStats>();
 
-            var inventory = new List<ItemDefinition>();
-            Inventory = new PlayerInventory(inventory);
+            Inventory = new PlayerInventory(new List<Item>());
             Equipment = new PlayerEquipment();
 
             Health = GetComponent<HealthObject>();
@@ -49,7 +48,7 @@ namespace Player
 
         public void EquipItem(int slotIndex)
         {
-            if (!(Inventory.GetItemInSlot(slotIndex) is EquipmentItem equipment))
+            if (!(Inventory.GetItemInSlot(slotIndex) is Equipment equipment))
                 return;
 
             var item = Equipment.GetEquipmentInSlot(equipment.EquipmentSlotId);
