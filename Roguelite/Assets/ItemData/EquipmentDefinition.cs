@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Items.Definitions;
 using UnityEngine;
 
@@ -32,6 +33,12 @@ namespace ItemData
         {
             var item = Instantiate(this);
             return item;
+        }
+
+        public IEnumerable<StatBonus> GetStatBonuses()
+        {
+            return StatBonuses.Where(d => d.Value > 0)
+                              .Select(d => d.Key);
         }
     }
 }
