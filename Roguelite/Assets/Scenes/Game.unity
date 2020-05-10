@@ -1809,6 +1809,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4497375659974461096, guid: cb16588f4a0622942a7fd97eabacee1f,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb16588f4a0622942a7fd97eabacee1f, type: 3}
 --- !u!1001 &193675574
@@ -3247,6 +3252,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497375659974461096, guid: cb16588f4a0622942a7fd97eabacee1f,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb16588f4a0622942a7fd97eabacee1f, type: 3}
@@ -8321,7 +8331,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 2.3509887e-38, z: -2.306054e+18, w: 2.1175824e-22}
+  m_BoundingSphereOverride: {x: 0, y: 0.25, z: 0.05078125, w: -0.0546875}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -21886,6 +21896,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497375659974461096, guid: cb16588f4a0622942a7fd97eabacee1f,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb16588f4a0622942a7fd97eabacee1f, type: 3}
@@ -55930,6 +55945,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497375659974461096, guid: cb16588f4a0622942a7fd97eabacee1f,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb16588f4a0622942a7fd97eabacee1f, type: 3}

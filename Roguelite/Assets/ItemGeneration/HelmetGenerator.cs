@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ItemData;
 using Items.Definitions;
@@ -11,7 +12,7 @@ namespace ItemGeneration
 {
     internal sealed class HelmetGenerator : IItemGenerator
     {
-        private Random m_Random;
+        private readonly Random m_Random;
         private readonly ILog m_Log;
 
         public HelmetGenerator(Random random, ILog log)
@@ -30,44 +31,24 @@ namespace ItemGeneration
                 throw new ArgumentException("Equipment must be of type helmet, was " + definition.EquipmentSlotId);
             }
 
-            var maxBonus = GameManager.Instance.PlayerManager.PlayerStats.CombatLevel + GetFlatRarityBonus(rarity) * GetPercentageRarityBonus(rarity);
+            var minBonus = MinimumFlatBonus[rarity];
+            var maxBonus = Mathf.RoundToInt(GetMaxBonus(rarity));
 
+            m_Log.Log($"Min bonus is {minBonus}", LogLevel.Info);
             m_Log.Log($"Max bonus is {maxBonus}", LogLevel.Info);
 
-            return GenerateEquipmentWithBonuses(definition, Mathf.RoundToInt(maxBonus));
+            return GenerateEquipmentWithBonuses(definition, minBonus, maxBonus);
         }
 
-        private static float GetPercentageRarityBonus(RarityModifier rarity)
+        private static float GetMaxBonus(RarityModifier rarity)
         {
-            switch (rarity)
-            {
-                case RarityModifier.Common:
-                    return 1.0f;
-                case RarityModifier.Rare:
-                    return 1.2f;
-                case RarityModifier.Epic:
-                    return 1.4f;
-                default:
-                    throw new ArgumentException("Rarity was wrong");
-            }
+            var levelBonus = GameManager.Instance.PlayerManager.PlayerStats.CombatLevel;
+            var rarityBonus = (levelBonus + MaximumFlatBonus[rarity]) * PercentageBonus[rarity];
+
+            return levelBonus + rarityBonus;
         }
 
-        private static int GetFlatRarityBonus(RarityModifier rarity)
-        {
-            switch (rarity)
-            {
-                case RarityModifier.Common:
-                    return 1;
-                case RarityModifier.Rare:
-                    return 3;
-                case RarityModifier.Epic:
-                    return 5;
-                default:
-                    throw new ArgumentException("Rarity was wrong");
-            }
-        }
-
-        private Equipment GenerateEquipmentWithBonuses(EquipmentDefinition def, int maxBonus)
+        private Equipment GenerateEquipmentWithBonuses(EquipmentDefinition def, int minBonus, int maxBonus)
         {
             var statsToBoost = def.GetStatBonuses().ToList();
 
@@ -75,7 +56,7 @@ namespace ItemGeneration
 
             foreach (var stat in statsToBoost)
             {
-                var rand = m_Random.Next(maxBonus + 1);
+                var rand = m_Random.Next(minBonus, maxBonus + 1);
 
                 m_Log.Log($"Applying a bonus of {rand} to stat {stat}", LogLevel.Info);
 
@@ -86,5 +67,29 @@ namespace ItemGeneration
 
             return equipment;
         }
+
+        private static readonly IReadOnlyDictionary<RarityModifier, int> MinimumFlatBonus
+            = new Dictionary<RarityModifier, int>
+        {
+            { RarityModifier.Common, 0 },
+            { RarityModifier.Rare, 2 },
+            { RarityModifier.Epic, 4 }
+        };
+
+        private static readonly IReadOnlyDictionary<RarityModifier, int> MaximumFlatBonus 
+            = new Dictionary<RarityModifier, int>
+            {
+                { RarityModifier.Common, 1 },
+                { RarityModifier.Rare, 3 },
+                { RarityModifier.Epic, 5 },
+            };
+
+        private static readonly IReadOnlyDictionary<RarityModifier, float> PercentageBonus
+            = new Dictionary<RarityModifier, float>
+            {
+                { RarityModifier.Common, 1.0f },
+                { RarityModifier.Rare, 1.2f },
+                { RarityModifier.Epic, 1.4f },
+            };
     }
 }

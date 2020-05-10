@@ -6,16 +6,29 @@ namespace Player
     {
         [SerializeField] private Transform m_Player;
         [SerializeField] private float m_MovementSpeed = 5f;
+        private float m_RotationSpeed = 5f;
 
         [SerializeField] private float m_OffSetZ = -5;
 
-        private void Update()
-        {
-            var pos = transform.position;
-            var playerPos = m_Player.position;
-            var targetPos = new Vector3(playerPos.x, pos.y, playerPos.z + m_OffSetZ);
+        public GameObject target;
+        public float rotateSpeed = 5;
+        Vector3 offset;
 
-            transform.position = Vector3.MoveTowards(pos, targetPos, m_MovementSpeed * Time.deltaTime);
+        void Start()
+        {
+            offset = target.transform.position - transform.position;
+        }
+
+        void LateUpdate()
+        {
+            var horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
+            target.transform.Rotate(0, horizontal, 0);
+
+            var desiredAngle = target.transform.eulerAngles.y;
+            var rotation = Quaternion.Euler(0, desiredAngle, 0);
+            transform.position = target.transform.position - (rotation * offset);
+
+            transform.LookAt(target.transform);
         }
     }
 }
