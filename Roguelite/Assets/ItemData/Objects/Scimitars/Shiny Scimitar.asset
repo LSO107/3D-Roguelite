@@ -9,17 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 984689b3aae34c7fb32b66fdf68a4f03, type: 3}
   m_Name: Shiny Scimitar
   m_EditorClassIdentifier: Assembly-CSharp:ItemData:WeaponDefinition
-  Id: 653ebebb-fa67-4d0d-9938-cfdea866d00f
   Name: Shiny Scimitar
-  Icon: {fileID: 21300000, guid: 6832572e73a42e74cbd272530b9d0dc0, type: 3}
-  Prefab: {fileID: 1773781232498540682, guid: 94505fec18d31804985b21dff985f051, type: 3}
-  BaseGoldCost: 20
+  Icon: {fileID: 21300000, guid: 58f5e4cb8f14e4840a2d491b248b9c8c, type: 3}
+  Prefab: {fileID: 0}
+  BaseGoldCost: 0
   EquipmentSlotId: 3
-  m_Attack: 12
-  m_Strength: 9
+  m_Attack: 3
+  m_Strength: 0
   m_Defence: 0
-  m_Agility: 0
-  WeaponType: 3
+  m_Agility: 5

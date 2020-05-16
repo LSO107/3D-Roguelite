@@ -9,17 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 984689b3aae34c7fb32b66fdf68a4f03, type: 3}
   m_Name: Jagged Scimitar
   m_EditorClassIdentifier: Assembly-CSharp:ItemData:WeaponDefinition
-  Id: 20ef429b-0e34-46a8-8aea-55f28c7e5119
-  Name: Jagged Scimitar
-  Icon: {fileID: 21300000, guid: 00fd2140eebdb904abcf014f1f313ab3, type: 3}
-  Prefab: {fileID: 1773781232498540682, guid: 94505fec18d31804985b21dff985f051, type: 3}
+  Name: 
+  Icon: {fileID: 21300000, guid: 58f5e4cb8f14e4840a2d491b248b9c8c, type: 3}
+  Prefab: {fileID: 0}
   BaseGoldCost: 0
   EquipmentSlotId: 3
-  m_Attack: 0
-  m_Strength: 0
+  m_Attack: 5
+  m_Strength: 5
   m_Defence: 0
   m_Agility: 0
-  WeaponType: 3

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 984689b3aae34c7fb32b66fdf68a4f03, type: 3}
   m_Name: Heavy Platelegs
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Heavy Platelegs
   Icon: {fileID: 21300000, guid: 7a832566d8dd1504d9942e4268c8f8b6, type: 3}
   Prefab: {fileID: 0}
   BaseGoldCost: 0

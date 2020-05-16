@@ -26,12 +26,13 @@ namespace Character.Movement
             var vertical = Input.GetAxis("Vertical");
 
             var camForward = Vector3.Scale(m_Camera.forward, new Vector3(1, 0, 1)).normalized;
-            var movement = vertical * camForward + horizontal * m_Camera.right;
+            var camRight = Vector3.Scale(m_Camera.right, new Vector3(1, 0, 1)).normalized;
+            var movement = vertical * camForward + horizontal * camRight;
 
-            if (!m_Run.isOn)
+            /*if (!m_Run.isOn)
             {
                 movement *= 0.6f;
-            }
+            }*/
 
             m_CharacterMovement.Move(movement);
         }

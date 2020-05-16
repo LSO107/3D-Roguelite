@@ -10,7 +10,7 @@ namespace Items.Inventory
         public string Name { get; }
         public Sprite Icon { get; }
         public GameObject Prefab { get; }
-        public int BaseGoldCost { get; }
+        public int GoldCost { get; }
 
         public Item(string name, Sprite icon, GameObject prefab, int goldCost)
         {
@@ -18,7 +18,7 @@ namespace Items.Inventory
             Name = name;
             Icon = icon;
             Prefab = prefab;
-            BaseGoldCost = goldCost;
+            GoldCost = goldCost;
         }
     }
 }

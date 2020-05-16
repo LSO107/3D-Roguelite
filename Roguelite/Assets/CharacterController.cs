@@ -3,7 +3,7 @@
 internal sealed class CharacterController : MonoBehaviour
 {
     private Rigidbody m_RigidBody;
-
+    
     [SerializeField] private float m_ForwardSpeed = 5f;
     [SerializeField] private float m_BackwardSpeed = 3f;
 

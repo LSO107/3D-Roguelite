@@ -9,17 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 984689b3aae34c7fb32b66fdf68a4f03, type: 3}
   m_Name: Great Sword
   m_EditorClassIdentifier: Assembly-CSharp:ItemData:WeaponDefinition
-  Id: aa74f44b-ad87-4e2e-bb85-5ca478ae51d7
   Name: Great Sword
-  Icon: {fileID: 21300000, guid: da491baf889dcbe478a538db574195e3, type: 3}
-  Prefab: {fileID: 3373009417025090258, guid: 405b8b018e2a48641bc64bffd2dde1b7, type: 3}
-  BaseGoldCost: 40
+  Icon: {fileID: 21300000, guid: fdedf586993f6dd4e898ee51b9447c30, type: 3}
+  Prefab: {fileID: 0}
+  BaseGoldCost: 0
   EquipmentSlotId: 3
-  m_Attack: 15
-  m_Strength: 13
+  m_Attack: 5
+  m_Strength: 5
   m_Defence: 0
   m_Agility: 0
-  WeaponType: 1

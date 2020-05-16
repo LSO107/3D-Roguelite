@@ -15,7 +15,6 @@ namespace ItemGeneration
         private readonly IItemGenerator m_PlatelegsGenerator;
         private readonly IItemGenerator m_WeaponGenerator;
 
-        private EquipmentDefinition m_Item;
         private readonly Random m_Random;
 
         public ItemFactory()
@@ -37,14 +36,29 @@ namespace ItemGeneration
             return con;
         }
 
-        public Equipment GenerateEquipmentFromTemplate()
+        public Equipment GenerateEquipmentFromTemplate(EquipmentSlotId equipmentType)
         {
             var itemDatabase = GameManager.Instance.ItemDatabase;
-            m_Item = itemDatabase.GetRandomWeapon();
-            GameObject.Instantiate(m_Item.Prefab);
+
+            EquipmentDefinition itemDef = null;
+            switch (equipmentType)
+            {
+                case EquipmentSlotId.Weapon:
+                    itemDef = itemDatabase.GetRandomWeapon();
+                    break;
+                case EquipmentSlotId.Head:
+                    itemDef = itemDatabase.GetRandomHelmet();
+                    break;
+                case EquipmentSlotId.Torso:
+                    itemDef = itemDatabase.GetRandomChestplate();
+                    break;
+                case EquipmentSlotId.Legs:
+                    itemDef = itemDatabase.GetRandomPlatelegs();
+                    break;
+            }
 
             var rarity = GetRandomRarity();
-            return GenerateRandomBonuses(m_Item, rarity);
+            return GenerateRandomBonuses(itemDef, rarity);
         }
 
         private RarityModifier GetRandomRarity()
@@ -66,6 +80,9 @@ namespace ItemGeneration
 
         private Equipment GenerateRandomBonuses(EquipmentDefinition definition, RarityModifier rarity)
         {
+            if (definition == null)
+                return null;
+
             switch (definition.EquipmentSlotId)
             {
                 case EquipmentSlotId.Torso:

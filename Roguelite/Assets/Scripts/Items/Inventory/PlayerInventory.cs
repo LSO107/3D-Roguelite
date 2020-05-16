@@ -31,6 +31,11 @@ namespace Items.Inventory
 
         public void AddItem(Item item)
         {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
             if (!HasEmptySlots(1))
             {
                 throw new Exception("Could not add item to inventory as inventory is full");

@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Heavy Helmet
   Icon: {fileID: 21300000, guid: 2cff1b2f3091985428c228612c5bca8d, type: 3}
   Prefab: {fileID: 0}
-  BaseGoldCost: 0
+  BaseGoldCost: 7
   EquipmentSlotId: 0
   m_Attack: 0
   m_Strength: 3
