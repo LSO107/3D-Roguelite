@@ -46,14 +46,14 @@ internal sealed class TestPanel : MonoBehaviour
     {
         GameManager.Instance.PlayerManager.Currency.AddGold(10);
         GameManager.Instance.PlayerManager.Currency.AddTokens(1);
-        Debug.Log(GameManager.Instance.PlayerManager.Currency.CurrencyQuantity);
+        Debug.Log(GameManager.Instance.PlayerManager.Currency.Quantity);
     }
 
     public void RemoveMoney()
     {
         GameManager.Instance.PlayerManager.Currency.RemoveGold(10);
         GameManager.Instance.PlayerManager.Currency.RemoveTokens(1);
-        Debug.Log(GameManager.Instance.PlayerManager.Currency.CurrencyQuantity);
+        Debug.Log(GameManager.Instance.PlayerManager.Currency.Quantity);
     }
 
     public void DropItem()

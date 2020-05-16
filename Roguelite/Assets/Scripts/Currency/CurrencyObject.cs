@@ -5,16 +5,20 @@ namespace Currency
 {
     internal sealed class CurrencyObject : MonoBehaviour
     {
-        public float CurrencyQuantity => m_CurrencyDefinition.GoldQuantity;
+        public float Quantity => m_CurrencyDefinition.GoldQuantity;
 
         private CurrencyDefinition m_CurrencyDefinition;
 
         [SerializeField] private TextMeshProUGUI m_GoldQuantityText;
         [SerializeField] private TextMeshProUGUI m_TokenQuantityText;
 
-        private void Start()
+        private void Awake()
         {
             m_CurrencyDefinition = new CurrencyDefinition();
+        }
+
+        private void Start()
+        {
             m_GoldQuantityText.text = m_CurrencyDefinition.GoldQuantity.ToString();
             m_TokenQuantityText.text = m_CurrencyDefinition.GoldQuantity.ToString();
         }

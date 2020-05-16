@@ -15,13 +15,13 @@ namespace UI.ShopUI
 
         private TooltipPointerHandler m_TooltipPointerHandler;
 
-        private static float PlayerGold => GameManager.Instance.PlayerManager.Currency.CurrencyQuantity;
+        private static float PlayerGold => GameManager.Instance.PlayerManager.Currency.Quantity;
 
         private void Awake()
         {
             m_TooltipPointerHandler = GetComponent<TooltipPointerHandler>();
             m_Image = GetComponent<Image>();
-            UpdateSlotGroup(null);
+            //UpdateSlotGroup(null);
         }
 
         public void UpdateSlotGroup(Item item)

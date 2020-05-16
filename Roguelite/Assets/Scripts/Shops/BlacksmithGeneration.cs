@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using Currency;
+﻿using Currency;
 using ItemGeneration;
 using Items.Definitions;
 using Items.Inventory;
+using System.Collections.Generic;
 using UI.ShopUI;
 using UnityEngine;
 
 namespace Shops
 {
-    internal sealed class BlacksmithGeneration : MonoBehaviour
+    internal sealed class BlacksmithGeneration : Shop
     {
         [SerializeField] private ShopUI m_BlacksmithShopUI;
         [SerializeField] private int m_Slots;
@@ -24,8 +24,7 @@ namespace Shops
             m_ItemFactory = new ItemFactory();
             m_Inventory = GameManager.Instance.PlayerManager.Inventory;
             m_Currency = GameManager.Instance.PlayerManager.Currency;
-
-            //m_BlacksmithShopUI.Instantiate();
+                
             //GenerateShopItems();
         }
 
@@ -39,23 +38,30 @@ namespace Shops
                 m_ItemFactory.GenerateEquipmentFromTemplate(EquipmentSlotId.Weapon)
             };
 
-            // BlacksmithUI.DisplayItems(m_ShopItems);
             m_BlacksmithShopUI.UpdateShopItems(m_ShopItems);
         }
 
-        public void PurchaseItem(int slotIndex)
+        public override void PurchaseItem(int slotIndex)
         {
             var item = m_ShopItems[slotIndex];
 
-            if (m_Currency.CurrencyQuantity < item.GoldCost || !m_Inventory.HasEmptySlots(1))
+            if (m_Currency.Quantity < item.GoldCost || !m_Inventory.HasEmptySlots(1))
                 return;
 
-            m_Currency.RemoveGold(item.GoldCost);
-            m_ShopItems.Remove(item);
-            m_Inventory.AddItem(item);
+            Debug.Log($"Purchased item in slot: {slotIndex}");
 
-            // Update UI
+            m_Currency.RemoveGold(item.GoldCost);
+
+            m_Inventory.AddItem(item);
+            m_ShopItems.Remove(item);
+            m_ShopItems.Add(CreateShopItem(item));
+
             m_BlacksmithShopUI.UpdateShopItems(m_ShopItems);
+        }
+
+        private Equipment CreateShopItem(Equipment item)
+        {
+            return m_ItemFactory.GenerateEquipmentFromTemplate(item.EquipmentSlotId);
         }
     }
 }

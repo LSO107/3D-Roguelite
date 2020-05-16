@@ -49,19 +49,8 @@ namespace ItemData
 
         public EquipmentDefinition GetRandomWeapon()
         {
-            var rand = m_Random.Next(m_Weapons.Count);
-            Debug.Log($"Database chosen: {rand}");
-
-            var db = m_Weapons[rand];
-            Debug.Log($"Database length: {db.Count}");
-
-            var number = m_Random.Next(db.Count);
-            Debug.Log($"item number from db: {number}");
-
-            var item = db[number];
-            Debug.Log($"chosen weapon slot: {item.EquipmentSlotId}");
-
-            return item;
+            var db = m_Weapons[m_Random.Next(m_Weapons.Count)];
+            return db[m_Random.Next(db.Count)];
         }
 
         public EquipmentDefinition GetRandomHelmet()
