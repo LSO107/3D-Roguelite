@@ -21,7 +21,6 @@ namespace UI.ShopUI
         {
             m_TooltipPointerHandler = GetComponent<TooltipPointerHandler>();
             m_Image = GetComponent<Image>();
-            //UpdateSlotGroup(null);
         }
 
         public void UpdateSlotGroup(Item item)

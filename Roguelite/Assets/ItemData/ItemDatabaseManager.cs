@@ -28,10 +28,7 @@ namespace ItemData
         private void Awake()
         {
             m_Random = new Random();
-        }
 
-        private void Start()
-        {
             m_Weapons = new List<List<EquipmentDefinition>>
             {
                 m_Daggers,

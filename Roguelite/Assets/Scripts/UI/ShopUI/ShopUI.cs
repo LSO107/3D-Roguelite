@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Extensions;
+using Items.Definitions;
 using Items.Inventory;
 using Shops;
 using UnityEngine;
@@ -56,7 +57,7 @@ namespace UI.ShopUI
             UpdateCurrencyQuantityText();
         }
 
-        public void UpdateShopItems(List<Equipment> items)
+        public void UpdateShopItems(IList<Item> items)
         {
             for (var i = 0; i < m_Slots.Count; i++)
             {

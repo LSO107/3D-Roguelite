@@ -13,7 +13,7 @@ namespace Shops
         [SerializeField] private ShopUI m_BlacksmithShopUI;
         [SerializeField] private int m_Slots;
 
-        private List<Equipment> m_ShopItems;
+        private List<Item> m_ShopItems;
         private ItemFactory m_ItemFactory;
 
         private PlayerInventory m_Inventory;
@@ -25,12 +25,12 @@ namespace Shops
             m_Inventory = GameManager.Instance.PlayerManager.Inventory;
             m_Currency = GameManager.Instance.PlayerManager.Currency;
                 
-            //GenerateShopItems();
+            GenerateShopItems();
         }
 
         public void GenerateShopItems()
         {
-            m_ShopItems = new List<Equipment>
+            m_ShopItems = new List<Item>
             {
                 m_ItemFactory.GenerateEquipmentFromTemplate(EquipmentSlotId.Head),
                 m_ItemFactory.GenerateEquipmentFromTemplate(EquipmentSlotId.Torso),
@@ -54,7 +54,7 @@ namespace Shops
 
             m_Inventory.AddItem(item);
             m_ShopItems.Remove(item);
-            m_ShopItems.Add(CreateShopItem(item));
+            m_ShopItems.Add(CreateShopItem(item as Equipment));
 
             m_BlacksmithShopUI.UpdateShopItems(m_ShopItems);
         }
