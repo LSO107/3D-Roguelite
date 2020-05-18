@@ -34,8 +34,6 @@ internal sealed class NpcEngine : MonoBehaviour
             return;
         }
 
-        //var playerManager = GameManager.Instance.PlayerManager;
-
         m_CurrentScript = ScriptActivator.CreateScriptInstance<NpcScript>(npcType, npcId);
 
         Debug.Log("Current State: " + m_CurrentScript.State);

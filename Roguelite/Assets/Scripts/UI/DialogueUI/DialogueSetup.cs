@@ -14,6 +14,7 @@ internal sealed class DialogueSetup : MonoBehaviour
     [SerializeField] private CanvasGroup m_ContinueCanvasGroup;
 
     [SerializeField] private CanvasGroup m_BlacksmithCanvasGroup;
+    [SerializeField] private CanvasGroup m_PotionShopCanvasGroup;
     private CanvasGroup m_ActiveCanvasGroup;
 
     public static DialogueSetup Instance;
@@ -29,32 +30,43 @@ internal sealed class DialogueSetup : MonoBehaviour
     public void DisplayContinue(string line, int nextState)
     {
         m_Continue.Setup(line, () => m_NpcEngine.GoToNextState(nextState));
-        EnableCanvasGroup(m_ContinueCanvasGroup);
+        DisplayCanvasGroup(m_ContinueCanvasGroup);
     }
 
     public void DisplayTwoOptions(DialogueOption optionOne, DialogueOption optionTwo)
     {
         m_TwoOptions.Setup(optionOne, optionTwo, i => m_NpcEngine.GoToNextState(i));
-        EnableCanvasGroup(m_TwoOptionCanvasGroup);
+        DisplayCanvasGroup(m_TwoOptionCanvasGroup);
     }
 
     public void DisplayThreeOptions(DialogueOption optionOne, DialogueOption optionTwo, DialogueOption optionThree)
     {
         m_ThreeOptions.Setup(optionOne, optionTwo, optionThree, i => m_NpcEngine.GoToNextState(i));
-        EnableCanvasGroup(m_ThreeOptionCanvasGroup);
+        DisplayCanvasGroup(m_ThreeOptionCanvasGroup);
     }
 
     public void OpenBlacksmithShop()
     {
-        EnableCanvasGroup(m_BlacksmithCanvasGroup);
+        DisplayCanvasGroup(m_BlacksmithCanvasGroup);
     }
 
-    private void EnableCanvasGroup(CanvasGroup canvasGroup)
+    public void OpenPotionShop()
     {
-        canvasGroup.ToggleCanvasGroup(true);
+        DisplayCanvasGroup(m_PotionShopCanvasGroup);
+    }
 
-        if (m_ActiveCanvasGroup != null) 
+    public void EndDialogue()
+    {
+        DisplayCanvasGroup(null);
+    }
+
+    private void DisplayCanvasGroup(CanvasGroup canvasGroup)
+    {
+        if (m_ActiveCanvasGroup != null)
             m_ActiveCanvasGroup.ToggleCanvasGroup(false);
+
+        if (canvasGroup != null)
+            canvasGroup.ToggleCanvasGroup(true);
 
         m_ActiveCanvasGroup = canvasGroup;
     }

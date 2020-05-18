@@ -10,7 +10,6 @@ public class ContinueDialogueSetup : MonoBehaviour
 
     public void Setup(string text, Action clickAction)
     {
-        print("HELLO");
         m_Button.onClick.RemoveAllListeners();
         m_Text.text = text;
         m_Button.onClick.AddListener(() => clickAction());

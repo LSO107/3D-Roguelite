@@ -8,7 +8,7 @@ using static ScriptingFramework.Attributes;
 namespace RogueliteNpcScripts
 {
     [Npc(0)]
-    public class Test : NpcScript
+    public class BlacksmithShopkeeper : NpcScript
     {
         private Random m_Random = new Random();
 

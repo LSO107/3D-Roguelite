@@ -87,8 +87,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8990441343620904119}
-  - component: {fileID: -6308038574100171059}
   - component: {fileID: 4867688279356301963}
+  - component: {fileID: -4946504150854631102}
   m_Layer: 0
   m_Name: Platelegs
   m_TagString: Untagged
@@ -114,18 +114,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 6.6390004, z: 180}
---- !u!114 &-6308038574100171059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5377068278132016804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4502b1d5209944b0bc2dad0fcdbb93ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &4867688279356301963
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -139,6 +127,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 12.590959, y: 6.4618416, z: 19.973196}
   m_Center: {x: -0.027734175, y: -1.0258005, z: 9.486586}
+--- !u!114 &-4946504150854631102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5377068278132016804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4502b1d5209944b0bc2dad0fcdbb93ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6350721470897249011
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,30 +5,30 @@ namespace Player
     internal sealed class CameraFollow : MonoBehaviour
     {
         [SerializeField] private Transform m_Player;
-        [SerializeField] private float m_MovementSpeed = 5f;
         private float m_RotationSpeed = 5f;
 
-        [SerializeField] private float m_OffSetZ = -5;
+        [SerializeField] private float m_OffSetZ = -3;
 
-        public GameObject target;
         public float rotateSpeed = 5;
         Vector3 offset;
 
+        private Vector3 m_TargetPosition;
+
         void Start()
         {
-            offset = target.transform.position - transform.position;
+            offset = m_Player.position - transform.position;
         }
 
         void LateUpdate()
         {
             var horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
-            target.transform.Rotate(0, horizontal, 0);
+            m_Player.transform.Rotate(0, horizontal, 0);
 
-            var desiredAngle = target.transform.eulerAngles.y;
+            var desiredAngle = m_Player.eulerAngles.y;
             var rotation = Quaternion.Euler(0, desiredAngle, 0);
-            transform.position = target.transform.position - (rotation * offset);
+            transform.position = m_Player.position - (rotation * offset);
 
-            transform.LookAt(target.transform);
+            transform.LookAt(m_Player.position + new Vector3(0, 1.5f, 0));
         }
     }
 }

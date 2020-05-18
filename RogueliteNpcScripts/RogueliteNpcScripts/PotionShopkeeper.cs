@@ -5,20 +5,20 @@ using static ScriptingFramework.Attributes;
 namespace RogueliteNpcScripts
 {
     [Npc(1)]
-    public class Test1 : NpcScript
+    public class PotionShopkeeper : NpcScript
     {
         public override void Execute()
         {
             switch (State)
             {
                 case 0:
-                    Dialogue.SendNpcOneLine("Hello", 1);
+                    Dialogue.SendNpcOneLine("Hello, welcome to the potion shop", 1);
                     break;
                 case 1:
-                    Dialogue.SendNpcOneLine("My famry are dead", 0);
+                    Dialogue.SendNpcOneLine("Would you like to see my potions?", 2);
                     break;
-                default:
-                    Dialogue.EndChat();
+                case 2:
+                    Interface.OpenPotionShop();
                     break;
             }
         }

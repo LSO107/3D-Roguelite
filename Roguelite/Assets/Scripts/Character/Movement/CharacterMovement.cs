@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using Character.Combat;
 using UnityEngine;
 
 namespace Character.Movement
@@ -11,8 +8,6 @@ namespace Character.Movement
 	[RequireComponent(typeof(Animator))]
 	internal sealed class CharacterMovement : MonoBehaviour
 	{
-		[SerializeField] private float m_MovingTurnSpeed = 360;
-		[SerializeField] private float m_StationaryTurnSpeed = 180;
 		[SerializeField] private float m_MoveSpeedMultiplier = 1f;
 		[SerializeField] private float m_AnimSpeedMultiplier = 1f;
 
@@ -35,10 +30,10 @@ namespace Character.Movement
 
         public void Move(Vector3 move)
 		{
-            if (move.magnitude > 1f)
+            /*if (move.magnitude > 1f)
             {
 				move.Normalize();
-            }
+            }*/
 
 			move = transform.InverseTransformDirection(move);
 

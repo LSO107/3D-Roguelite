@@ -9,9 +9,8 @@ namespace Player
     {
         private Animator m_Animator;
         private CharacterCombat m_CharacterCombat;
-        private CharacterMovement m_CharacterMovement;
 
-        private int m_AttackType;
+        private int m_AttackAnimation = 1;
 
         public bool IsInputBlocked { get; private set; }
 
@@ -19,7 +18,6 @@ namespace Player
         {
             m_Animator = GetComponent<Animator>();
             m_CharacterCombat = GetComponent<CharacterCombat>();
-            m_CharacterMovement = GetComponent<CharacterMovement>();
         }
 
         private void Update()
@@ -53,15 +51,19 @@ namespace Player
         {
             m_CharacterCombat.UpdateState(CombatState.Attacking);
 
-            m_Animator.SetInteger("Attack Type", m_AttackType);
-            m_Animator.SetTrigger("Attack");
-            m_AttackType++;
+            m_Animator.SetInteger("Attack", m_AttackAnimation);
+            /*m_AttackType++;
 
             if (m_AttackType >= 5)
-                m_AttackType = 0;
+                m_AttackType = 0;*/
 
-            yield return new WaitUntil(() => m_Animator.GetBool("Attack") == false);
+            yield return new WaitUntil(() => m_Animator.GetInteger("Attack") == 0);
             m_CharacterCombat.UpdateState(CombatState.None);
+        }
+
+        public void ResetAttackAnimation()
+        {
+            m_Animator.SetInteger("Attack", 0);
         }
 
         private IEnumerator Block()

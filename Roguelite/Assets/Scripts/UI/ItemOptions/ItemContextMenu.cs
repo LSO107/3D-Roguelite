@@ -58,7 +58,7 @@ namespace UI.ItemOptions
 
             var item = m_Inventory.GetItemInSlot(m_SlotIndex);
 
-            var groundItem = Instantiate(item.Prefab, location, item.Prefab.transform.rotation);
+            var groundItem = Instantiate(item.Prefab, location + new Vector3(0, 0.1f, 0), item.Prefab.transform.rotation);
             groundItem.GetComponentInChildren<GroundItem>().RegisterGroundItem(item.Id);
             m_GroundItemManager.AddItem(item);
 

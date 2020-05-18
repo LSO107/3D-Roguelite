@@ -9,6 +9,11 @@ namespace Dialogue
             DialogueSetup.Instance.OpenBlacksmithShop();
         }
 
+        public void OpenPotionShop()
+        {
+            DialogueSetup.Instance.OpenPotionShop();
+        }
+
         public void CloseInterfaces()
         {
             throw new System.NotImplementedException();

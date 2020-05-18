@@ -36,7 +36,7 @@ namespace Dialogue
 
         public void EndChat()
         {
-            throw new System.NotImplementedException();
+            DialogueSetup.Instance.EndDialogue();
         }
     }
 }
