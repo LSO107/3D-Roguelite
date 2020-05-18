@@ -19,6 +19,7 @@ namespace RogueliteNpcScripts
                     break;
                 case 2:
                     Interface.OpenPotionShop();
+                    Dialogue.EndChat();
                     break;
             }
         }
