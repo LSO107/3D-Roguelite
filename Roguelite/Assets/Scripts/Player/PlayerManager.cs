@@ -1,15 +1,12 @@
 ﻿using System.Collections.Generic;
-using Character;
 using Character.Health;
 using Currency;
-using ItemData;
 using Items.Definitions;
 using Items.Inventory;
 using Player.Experience;
 using UI.EquipmentUI;
 using UI.InventoryPanelUI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Player
 {

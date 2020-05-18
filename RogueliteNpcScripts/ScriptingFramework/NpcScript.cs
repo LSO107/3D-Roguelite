@@ -4,6 +4,8 @@
     {
         public IDialogueProvider Dialogue { get; set; }
 
+        public IEventProvider Event { get; set; }
+
         public IScriptInterfaces Interface { get; set; }
 
         public IScriptInventory Inventory { get; set; }

@@ -49,18 +49,7 @@ namespace ItemData
 
             var item = m_GroundItems.FindItem(m_ItemId);
 
-            if (item == null)
-            {
-                var newItem = m_ItemFactory.GenerateEquipmentFromTemplate();
-                m_Inventory.AddItem(newItem);
-                Debug.Log("Item was not found on the ground, new item bonuses generated");
-            }
-            else
-            {
-                m_Inventory.AddItem(item);
-                Debug.Log("Item found on the ground, recreated existing item");
-            }
-
+            m_Inventory.AddItem(item);
             m_GroundItems.RemoveItem(m_ItemId);
             Destroy(gameObject);
         }

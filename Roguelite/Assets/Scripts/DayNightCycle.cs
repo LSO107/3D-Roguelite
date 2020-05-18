@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 internal sealed class DayNightCycle : MonoBehaviour
@@ -13,19 +14,39 @@ internal sealed class DayNightCycle : MonoBehaviour
 
     float sunInitialIntensity;
 
-    private List<ScheduledEvent> m_ScheduledEvents;
+    private readonly List<ScheduledEvent> m_ScheduledEvents = new List<ScheduledEvent>();
+
+    private readonly List<Action> m_StartOfDayEvents = new List<Action>();
+    private readonly List<Action> m_EndOfDayEvents = new List<Action>();
+
+    public static DayNightCycle Instance;
 
     private void Awake()
     {
-        m_Sun = GetComponent<Light>();
-        m_ScheduledEvents = new List<ScheduledEvent>();
-        sunInitialIntensity = m_Sun.intensity;
+        if (Instance != this && Instance != null)
+        {
+            Destroy(this);
+        }
 
+        Instance = this;
+
+        m_Sun = GetComponent<Light>();
+        sunInitialIntensity = m_Sun.intensity;
         m_ScheduledEvents.Add(new ScheduledEvent(0.5f, () => Debug.Log("Scheduled Event Triggered")));
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            StartNewDay();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            EndDay();
+        }
+
         if (currentTimeOfDay >= 1)
         {
             return;
@@ -49,14 +70,46 @@ internal sealed class DayNightCycle : MonoBehaviour
         m_ScheduledEvents.Add(scheduledEvent);
     }
 
+    public void RegisterStartOfDayEvent(Action action)
+    {
+        m_StartOfDayEvents.Add(action);
+    }
+
+    public void RegisterEndOfDayEvent(Action action)
+    {
+        m_EndOfDayEvents.Add(action);
+    }
+
     public void StartNewDay()
     {
+        print("Starting new day :D");
+        foreach (var startEvent in m_StartOfDayEvents)
+        {
+            startEvent();
+        }
+
         foreach (var scheduledEvent in m_ScheduledEvents)
         {
             scheduledEvent.Reset();
         }
 
         currentTimeOfDay = 0f;
+    }
+
+    public void EndDay()
+    {
+        foreach (var endEvent in m_EndOfDayEvents)
+        {
+            endEvent();
+        }
+
+        var remainingEvents = m_ScheduledEvents.Where(scheduledEvent => !scheduledEvent.HasRunToday);
+        foreach (var scheduledEvent in remainingEvents)
+        {
+            scheduledEvent.InvokeAction();
+        }
+
+        currentTimeOfDay = 1f;
     }
 
     private void HandleScheduledEvents()

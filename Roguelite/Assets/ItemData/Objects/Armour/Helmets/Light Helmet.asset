@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984689b3aae34c7fb32b66fdf68a4f03, type: 3}
+  m_Name: Light Helmet
+  m_EditorClassIdentifier: 
+  Name: Light Helmet
+  Icon: {fileID: 21300000, guid: 70c36587a6c68a3438d446500494e4fd, type: 3}
+  Prefab: {fileID: 1297658733933631021, guid: 8564894eb91b0614a9a5e655148f1690, type: 3}
+  BaseGoldCost: 3
+  EquipmentSlotId: 0
+  m_Attack: 5
+  m_Strength: 0
+  m_Defence: 0
+  m_Agility: 3

@@ -1,6 +1,7 @@
 ﻿using Extensions;
 using ItemData;
 using ItemGeneration;
+using Items.Definitions;
 using Items.Inventory;
 using UnityEngine;
 using Random = System.Random;
@@ -45,14 +46,14 @@ internal sealed class TestPanel : MonoBehaviour
     {
         GameManager.Instance.PlayerManager.Currency.AddGold(10);
         GameManager.Instance.PlayerManager.Currency.AddTokens(1);
-        Debug.Log(GameManager.Instance.PlayerManager.Currency.CurrencyQuantity);
+        Debug.Log(GameManager.Instance.PlayerManager.Currency.Quantity);
     }
 
     public void RemoveMoney()
     {
         GameManager.Instance.PlayerManager.Currency.RemoveGold(10);
         GameManager.Instance.PlayerManager.Currency.RemoveTokens(1);
-        Debug.Log(GameManager.Instance.PlayerManager.Currency.CurrencyQuantity);
+        Debug.Log(GameManager.Instance.PlayerManager.Currency.Quantity);
     }
 
     public void DropItem()
@@ -62,7 +63,7 @@ internal sealed class TestPanel : MonoBehaviour
 
         if (number == 1)
         {
-            item = m_ItemFactory.GenerateEquipmentFromTemplate();
+            item = m_ItemFactory.GenerateEquipmentFromTemplate(EquipmentSlotId.Weapon);
             var t = item as Equipment;
             foreach (var stat in t.StatBonuses.Values)
             {

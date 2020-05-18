@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Runtime.CompilerServices;
-using Character.Combat;
 using UnityEngine;
 
 namespace Character.Movement
@@ -10,25 +8,21 @@ namespace Character.Movement
 	[RequireComponent(typeof(Animator))]
 	internal sealed class CharacterMovement : MonoBehaviour
 	{
-		[SerializeField] private float m_MovingTurnSpeed = 360;
-		[SerializeField] private float m_StationaryTurnSpeed = 180;
 		[SerializeField] private float m_MoveSpeedMultiplier = 1f;
 		[SerializeField] private float m_AnimSpeedMultiplier = 1f;
 
 		private Rigidbody m_Rigidbody;
 		private Animator m_Animator;
 
-		private float m_TurnAmount;
 		private float m_ForwardAmount;
+		private float m_LateralAmount;
 
-        private float forceMovementDuration = 0f;
-
-        private static readonly int Forward = Animator.StringToHash("MoveForward");
-        private static readonly int Turn = Animator.StringToHash("Turn");
+        private static readonly int Forward = Animator.StringToHash("Forward");
+        private static readonly int Lateral = Animator.StringToHash("Lateral");
 
         public bool CanMove = true;
 
-        private void Start()
+        private void Awake()
 		{
 			m_Animator = GetComponent<Animator>();
 			m_Rigidbody = GetComponent<Rigidbody>();
@@ -36,16 +30,16 @@ namespace Character.Movement
 
         public void Move(Vector3 move)
 		{
-            if (move.magnitude > 1f)
+            /*if (move.magnitude > 1f)
             {
 				move.Normalize();
-            }
+            }*/
 
 			move = transform.InverseTransformDirection(move);
-			m_TurnAmount = Mathf.Atan2(move.x, move.z);
+
+            m_LateralAmount = move.x;
 			m_ForwardAmount = move.z;
 
-            ApplyExtraTurnRotation();
             UpdateAnimator(move);
 		}
 
@@ -63,9 +57,9 @@ namespace Character.Movement
         }
 
         private void UpdateAnimator(Vector3 move)
-		{
-			m_Animator.SetFloat(Forward, m_ForwardAmount, 0.1f, Time.deltaTime);
-			m_Animator.SetFloat(Turn, m_TurnAmount, 0.1f, Time.deltaTime);
+        {
+            m_Animator.SetFloat(Forward, m_ForwardAmount, 0.1f, Time.deltaTime);
+			m_Animator.SetFloat(Lateral, m_LateralAmount, 0.1f, Time.deltaTime);
 
 			if (move.magnitude > 0)
 			{
@@ -75,12 +69,6 @@ namespace Character.Movement
 			{
                 m_Animator.speed = 1;
 			}
-		}
-
-        private void ApplyExtraTurnRotation()
-		{
-			var turnSpeed = Mathf.Lerp(m_StationaryTurnSpeed, m_MovingTurnSpeed, m_ForwardAmount);
-			transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
 		}
 
         public void OnAnimatorMove()

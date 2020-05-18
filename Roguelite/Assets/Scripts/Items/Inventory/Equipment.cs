@@ -2,7 +2,6 @@
 using System.Linq;
 using ItemData;
 using Items.Definitions;
-using UnityEngine;
 
 namespace Items.Inventory
 {

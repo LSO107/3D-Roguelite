@@ -1,5 +1,6 @@
 ﻿using ItemData;
 using Player;
+using Shops;
 using UI.ItemOptions;
 using UI.Tooltip;
 using UnityEngine;
@@ -13,6 +14,8 @@ internal sealed class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    public BlacksmithGeneration m_Blacksmith;
+
     public void Awake()
     {
         if (Instance == null)
@@ -22,6 +25,14 @@ internal sealed class GameManager : MonoBehaviour
         else if (Instance != this)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            m_Blacksmith.GenerateShopItems();
         }
     }
 }

@@ -45,6 +45,7 @@
     <Compile Include="Attributes.cs" />
     <Compile Include="DialogueOption.cs" />
     <Compile Include="IDialogueProvider.cs" />
+    <Compile Include="IEventProvider.cs" />
     <Compile Include="IScriptInterfaces.cs" />
     <Compile Include="IScriptInventory.cs" />
     <Compile Include="IScriptPlayer.cs" />
