@@ -1,6 +1,9 @@
 ﻿using System;
+using Character.Movement;
 using Extensions;
+using Player;
 using ScriptingFramework;
+using UI.ShopUI;
 using UnityEngine;
 
 internal sealed class DialogueSetup : MonoBehaviour
@@ -13,8 +16,8 @@ internal sealed class DialogueSetup : MonoBehaviour
     [SerializeField] private CanvasGroup m_TwoOptionCanvasGroup;
     [SerializeField] private CanvasGroup m_ContinueCanvasGroup;
 
-    [SerializeField] private CanvasGroup m_BlacksmithCanvasGroup;
-    [SerializeField] private CanvasGroup m_PotionShopCanvasGroup;
+    [SerializeField] private ShopUI m_Blacksmith;
+    [SerializeField] private ShopUI m_PotionShop;
     private CanvasGroup m_ActiveCanvasGroup;
 
     public static DialogueSetup Instance;
@@ -47,17 +50,20 @@ internal sealed class DialogueSetup : MonoBehaviour
 
     public void OpenBlacksmithShop()
     {
-        DisplayCanvasGroup(m_BlacksmithCanvasGroup);
+        m_Blacksmith.OpenShop();
     }
 
     public void OpenPotionShop()
     {
-        DisplayCanvasGroup(m_PotionShopCanvasGroup);
+        m_PotionShop.OpenShop();
     }
 
     public void EndDialogue()
     {
+        Debug.Log("DIALOGUE ENDED.");
         DisplayCanvasGroup(null);
+        GameManager.Instance.PlayerManager.GetComponent<CharacterUserInput>().IsFrozen = false;
+        Camera.main.GetComponent<CameraFollow>().FreeCamera();
     }
 
     private void DisplayCanvasGroup(CanvasGroup canvasGroup)

@@ -14,13 +14,19 @@ namespace Player
 
         private Vector3 m_TargetPosition;
 
-        void Start()
+        private CameraMode m_CameraMode;
+
+        private void Start()
         {
             offset = m_Player.position - transform.position;
+            FreeCamera();
         }
 
-        void LateUpdate()
+        private void LateUpdate()
         {
+            if (m_CameraMode == CameraMode.Locked)
+                return;
+
             var horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
             m_Player.transform.Rotate(0, horizontal, 0);
 
@@ -30,5 +36,25 @@ namespace Player
 
             transform.LookAt(m_Player.position + new Vector3(0, 1.5f, 0));
         }
+
+        public void LockCamera()
+        {
+            m_CameraMode = CameraMode.Locked;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+        public void FreeCamera()
+        {
+            m_CameraMode = CameraMode.Free;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
+    internal enum CameraMode
+    {
+        Free,
+        Locked
     }
 }

@@ -38,6 +38,7 @@ namespace RogueliteNpcScripts
                     Dialogue.SendNpcOneLine(GetRandomLine(m_Answers), 1);
                     break;
                 case 3:
+                    Dialogue.EndChat();
                     Interface.OpenBlacksmithShop();
                     break;
                 default:

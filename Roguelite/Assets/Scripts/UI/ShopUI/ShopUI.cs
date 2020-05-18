@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using Character.Movement;
 using Extensions;
 using Items.Definitions;
 using Items.Inventory;
+using Player;
 using Shops;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -65,7 +67,19 @@ namespace UI.ShopUI
             }
         }
 
-        public void OpenShop() => m_CanvasGroup.ToggleCanvasGroup(true);
-        public void CloseShop() => m_CanvasGroup.ToggleCanvasGroup(false);
+        public void OpenShop()
+        {
+            Debug.Log("SHOP OPENED");
+            GameManager.Instance.PlayerManager.GetComponent<CharacterUserInput>().IsFrozen = true;
+            Camera.main.GetComponent<CameraFollow>().LockCamera();
+            m_CanvasGroup.ToggleCanvasGroup(true);
+        }
+
+        public void CloseShop()
+        {
+            GameManager.Instance.PlayerManager.GetComponent<CharacterUserInput>().IsFrozen = false;
+            Camera.main.GetComponent<CameraFollow>().FreeCamera();
+            m_CanvasGroup.ToggleCanvasGroup(false);
+        }
     }
 }

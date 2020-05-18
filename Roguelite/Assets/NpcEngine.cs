@@ -1,4 +1,6 @@
-﻿using Dialogue;
+﻿using Character.Movement;
+using Dialogue;
+using Player;
 using ScriptingFramework;
 using UnityEngine;
 
@@ -33,6 +35,9 @@ internal sealed class NpcEngine : MonoBehaviour
             Debug.Log("NO NPC FOUND");
             return;
         }
+
+        GameManager.Instance.PlayerManager.GetComponent<CharacterUserInput>().IsFrozen = true;
+        Camera.main.GetComponent<CameraFollow>().LockCamera();
 
         m_CurrentScript = ScriptActivator.CreateScriptInstance<NpcScript>(npcType, npcId);
 

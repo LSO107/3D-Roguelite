@@ -12,6 +12,8 @@ namespace Character.Movement
 
         [SerializeField] private Toggle m_Run;
 
+        public bool IsFrozen;
+
         private void Start()
         {
             if (Camera.main != null)
@@ -22,11 +24,17 @@ namespace Character.Movement
 
         private void FixedUpdate()
         {
+            if (IsFrozen)
+            {
+                m_CharacterMovement.Move(new Vector3(0, 0, 0));
+                return;
+            }
+
             var horizontal = Input.GetAxis("Horizontal");
             var vertical = Input.GetAxis("Vertical");
 
-            var camForward = Vector3.Scale(m_Camera.forward, new Vector3(1, 0, 1)).normalized;
-            var camRight = Vector3.Scale(m_Camera.right, new Vector3(1, 0, 1)).normalized;
+            var camForward = Vector3.Scale(m_Camera.forward, new Vector3(1, 0, 1));
+            var camRight = Vector3.Scale(m_Camera.right, new Vector3(1, 0, 1));
             var movement = vertical * camForward + horizontal * camRight;
 
             /*if (!m_Run.isOn)
