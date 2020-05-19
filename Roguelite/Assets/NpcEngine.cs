@@ -1,5 +1,4 @@
-﻿using Character.Movement;
-using Dialogue;
+﻿using Dialogue;
 using Player;
 using ScriptingFramework;
 using UnityEngine;

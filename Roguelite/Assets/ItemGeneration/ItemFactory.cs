@@ -3,7 +3,6 @@ using ItemData;
 using Items.Definitions;
 using Items.Inventory;
 using Logging;
-using UnityEngine;
 using Random = System.Random;
 
 namespace ItemGeneration

@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using Character.Combat;
-using Character.Movement;
 using UnityEngine;
 
 namespace Player

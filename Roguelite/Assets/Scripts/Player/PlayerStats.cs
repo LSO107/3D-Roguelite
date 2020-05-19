@@ -5,7 +5,6 @@ using Character.Health;
 using Items.Definitions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
 
 namespace Player
 {

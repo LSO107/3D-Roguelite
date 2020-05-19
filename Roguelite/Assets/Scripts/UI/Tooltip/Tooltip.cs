@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Security.Cryptography;
 using System.Text;
 using Extensions;
-using ItemData;
 using Items.Definitions;
 using Items.Inventory;
 using Player;

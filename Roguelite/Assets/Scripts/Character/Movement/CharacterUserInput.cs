@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using Vector3 = UnityEngine.Vector3;
 
 namespace Character.Movement

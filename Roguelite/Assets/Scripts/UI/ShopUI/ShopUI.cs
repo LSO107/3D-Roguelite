@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using Character.Movement;
 using Extensions;
-using Items.Definitions;
 using Items.Inventory;
 using Player;
 using Shops;

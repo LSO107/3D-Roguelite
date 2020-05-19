@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using Extensions;
 using Items.Inventory;
 using Player;
-using TMPro;
 using UI.ItemOptions;
 using UnityEngine;
 using UnityEngine.EventSystems;

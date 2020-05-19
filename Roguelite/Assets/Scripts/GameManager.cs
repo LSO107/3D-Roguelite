@@ -1,5 +1,4 @@
 ﻿using ItemData;
-using Player;
 using Shops;
 using UI.ItemOptions;
 using UI.Tooltip;

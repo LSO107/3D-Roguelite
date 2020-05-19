@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ItemData;
 using Player;
-using UI.Tooltip;
 using UnityEngine;
 
 namespace Items.Inventory

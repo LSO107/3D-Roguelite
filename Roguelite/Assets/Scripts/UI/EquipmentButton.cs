@@ -1,5 +1,4 @@
-﻿using Character.Movement;
-using Player;
+﻿using Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;

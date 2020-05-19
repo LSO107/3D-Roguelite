@@ -1,11 +1,8 @@
-﻿using Character.Combat;
-using Character.Movement;
-using Extensions;
+﻿using Extensions;
 using Player;
 using ScriptingFramework;
 using UI.ShopUI;
 using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
 
 internal sealed class DialogueSetup : MonoBehaviour
 {

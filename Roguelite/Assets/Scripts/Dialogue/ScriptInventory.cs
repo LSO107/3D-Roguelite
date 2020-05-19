@@ -1,5 +1,4 @@
 ﻿using System;
-using Currency;
 using Player;
 using ScriptingFramework;
 
@@ -16,8 +15,7 @@ namespace Dialogue
 
         public float GetGold()
         {
-            //return GameManager.Instance.PlayerManager.Currency.CurrencyQuantity;
-            return 0;
+            return PlayerManager.Instance.Currency.Quantity;
         }
     }
 }

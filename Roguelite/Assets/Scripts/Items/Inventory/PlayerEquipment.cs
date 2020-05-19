@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using ItemData;
 using Items.Definitions;
 using Player;
 using UI.EquipmentUI;

@@ -1,6 +1,4 @@
-﻿using ItemData;
-using Items.Definitions;
-using Items.Inventory;
+﻿using Items.Inventory;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

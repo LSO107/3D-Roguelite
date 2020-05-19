@@ -1,5 +1,4 @@
 ﻿using Extensions;
-using ItemData;
 using ItemGeneration;
 using Items.Definitions;
 using Items.Inventory;
