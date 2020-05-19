@@ -36,7 +36,7 @@ internal sealed class NpcEngine : MonoBehaviour
             return;
         }
 
-        PlayerManager.Instance.BlockInput();
+        PlayerManager.Instance.DisableInput();
 
         m_CurrentScript = ScriptActivator.CreateScriptInstance<NpcScript>(npcType, npcId);
 

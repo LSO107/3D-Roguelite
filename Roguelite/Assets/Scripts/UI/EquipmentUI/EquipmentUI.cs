@@ -69,13 +69,13 @@ namespace UI.EquipmentUI
 
         public void OpenEquipmentInterface()
         {
-            PlayerManager.Instance.BlockInput();
+            PlayerManager.Instance.DisableInput();
             m_CanvasGroup.ToggleCanvasGroup(true);
         }
 
         public void CloseEquipmentInterface()
         {
-            PlayerManager.Instance.UnblockInput();
+            PlayerManager.Instance.EnableInput();
             m_CanvasGroup.ToggleCanvasGroup(false);
         }
 

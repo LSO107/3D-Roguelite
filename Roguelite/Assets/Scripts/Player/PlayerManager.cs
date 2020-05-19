@@ -90,14 +90,14 @@ namespace Player
             InventoryUI.UpdateSlots();
         }
 
-        public void BlockInput()
+        public void DisableInput()
         {
             GetComponent<CharacterUserInput>().IsFrozen = true;
             GetComponent<PlayerController>().ToggleIsInputBlocked(true);
             m_Camera.LockCamera();
         }
 
-        public void UnblockInput()
+        public void EnableInput()
         {
             GetComponent<CharacterUserInput>().IsFrozen = false;
             GetComponent<PlayerController>().ToggleIsInputBlocked(false);

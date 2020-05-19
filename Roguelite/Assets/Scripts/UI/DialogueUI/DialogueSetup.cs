@@ -62,7 +62,7 @@ internal sealed class DialogueSetup : MonoBehaviour
     public void EndDialogue()
     {
         DisplayCanvasGroup(null);
-        PlayerManager.Instance.UnblockInput();
+        PlayerManager.Instance.EnableInput();
     }
 
     private void DisplayCanvasGroup(CanvasGroup canvasGroup)

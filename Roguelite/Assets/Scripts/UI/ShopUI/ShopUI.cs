@@ -69,13 +69,13 @@ namespace UI.ShopUI
 
         public void OpenShop()
         {
-            PlayerManager.Instance.BlockInput();
+            PlayerManager.Instance.DisableInput();
             m_CanvasGroup.ToggleCanvasGroup(true);
         }
 
         public void CloseShop()
         {
-            PlayerManager.Instance.UnblockInput();
+            PlayerManager.Instance.EnableInput();
             m_CanvasGroup.ToggleCanvasGroup(false);
         }
     }
