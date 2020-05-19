@@ -86,12 +86,12 @@ namespace UI.InventoryPanelUI
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            PlayerManager.Instance.GetComponent<PlayerController>().ToggleInputBlocked();
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(true);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            PlayerManager.Instance.GetComponent<PlayerController>().ToggleInputBlocked();
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(false);
         }
     }
 }

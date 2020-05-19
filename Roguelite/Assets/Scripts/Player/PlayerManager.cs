@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Character.Health;
+using Character.Movement;
 using Currency;
 using Items.Definitions;
 using Items.Inventory;
@@ -24,6 +25,8 @@ namespace Player
         public InventoryUI InventoryUI;
         public EquipmentUI EquipmentUI;
 
+        private CameraFollow m_Camera;
+
         public static PlayerManager Instance;
 
         private void Awake()
@@ -37,6 +40,7 @@ namespace Player
                 Destroy(gameObject);
             }
 
+            m_Camera = Camera.main.GetComponent<CameraFollow>();
             PlayerStats = GetComponent<PlayerStats>();
 
             Inventory = new PlayerInventory(new List<Item>());
@@ -84,6 +88,20 @@ namespace Player
 
             EquipmentUI.UpdateSlot(equipment.EquipmentSlotId);
             InventoryUI.UpdateSlots();
+        }
+
+        public void BlockInput()
+        {
+            GetComponent<CharacterUserInput>().IsFrozen = true;
+            GetComponent<PlayerController>().ToggleIsInputBlocked(true);
+            m_Camera.LockCamera();
+        }
+
+        public void UnblockInput()
+        {
+            GetComponent<CharacterUserInput>().IsFrozen = false;
+            GetComponent<PlayerController>().ToggleIsInputBlocked(false);
+            m_Camera.FreeCamera();
         }
     }
 }

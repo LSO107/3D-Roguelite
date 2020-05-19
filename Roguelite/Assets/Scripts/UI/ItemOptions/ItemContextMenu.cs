@@ -1,12 +1,10 @@
-﻿using Character.Movement;
-using Extensions;
+﻿using Extensions;
 using ItemData;
 using Items;
 using Items.Inventory;
 using Player;
 using TMPro;
 using UI.InventoryPanelUI;
-using UI.Tooltip;
 using UnityEngine;
 
 namespace UI.ItemOptions
@@ -39,7 +37,7 @@ namespace UI.ItemOptions
 
         public void ShowItemContextMenu(int slotIndex)
         {
-            PlayerManager.Instance.GetComponent<PlayerController>().ToggleInputBlocked();
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(true);
 
             m_SlotIndex = slotIndex;
             SetItemOptionText(slotIndex);
@@ -51,7 +49,7 @@ namespace UI.ItemOptions
         public void HideItemContextMenu()
         {
             m_ItemContextMenu.ToggleCanvasGroup(false);
-            PlayerManager.Instance.GetComponent<PlayerController>().ToggleInputBlocked();
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(false);
         }
 
         public void UseItemButton()

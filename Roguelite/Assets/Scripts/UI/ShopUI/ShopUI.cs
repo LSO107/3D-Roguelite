@@ -69,17 +69,13 @@ namespace UI.ShopUI
 
         public void OpenShop()
         {
-            PlayerManager.Instance.GetComponent<CharacterUserInput>().IsFrozen = true;
-            PlayerManager.Instance.GetComponent<PlayerController>().ToggleInputBlocked();
-            Camera.main.GetComponent<CameraFollow>().LockCamera();
+            PlayerManager.Instance.BlockInput();
             m_CanvasGroup.ToggleCanvasGroup(true);
         }
 
         public void CloseShop()
         {
-            PlayerManager.Instance.GetComponent<CharacterUserInput>().IsFrozen = false;
-            PlayerManager.Instance.GetComponent<PlayerController>().ToggleInputBlocked();
-            Camera.main.GetComponent<CameraFollow>().FreeCamera();
+            PlayerManager.Instance.UnblockInput();
             m_CanvasGroup.ToggleCanvasGroup(false);
         }
     }

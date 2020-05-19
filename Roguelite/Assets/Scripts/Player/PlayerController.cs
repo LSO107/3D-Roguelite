@@ -42,9 +42,9 @@ namespace Player
             }
         }
 
-        public void ToggleInputBlocked()
+        public void ToggleIsInputBlocked(bool toggle)
         {
-            IsInputBlocked = !IsInputBlocked;
+            IsInputBlocked = toggle;
         }
 
         private IEnumerator Attack()

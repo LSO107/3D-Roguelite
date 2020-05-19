@@ -36,9 +36,7 @@ internal sealed class NpcEngine : MonoBehaviour
             return;
         }
 
-        PlayerManager.Instance.GetComponent<CharacterUserInput>().IsFrozen = true;
-        PlayerManager.Instance.GetComponent<PlayerController>().ToggleInputBlocked();
-        Camera.main.GetComponent<CameraFollow>().LockCamera();
+        PlayerManager.Instance.BlockInput();
 
         m_CurrentScript = ScriptActivator.CreateScriptInstance<NpcScript>(npcType, npcId);
 
