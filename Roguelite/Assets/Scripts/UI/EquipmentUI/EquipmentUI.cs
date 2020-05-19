@@ -21,9 +21,11 @@ namespace UI.EquipmentUI
 
         public List<EquipmentSlotUI> EquipmentSlots = new List<EquipmentSlotUI>();
 
+        public bool IsEquipmentOpen => m_CanvasGroup.interactable;
+
         public void Instantiate()
         {
-            m_PlayerManager = GameManager.Instance.PlayerManager;
+            m_PlayerManager = PlayerManager.Instance;
             m_CanvasGroup = GetComponent<CanvasGroup>();
 
             foreach (var button in EquipmentSlots)
@@ -67,11 +69,13 @@ namespace UI.EquipmentUI
 
         public void OpenEquipmentInterface()
         {
+            PlayerManager.Instance.DisableInput();
             m_CanvasGroup.ToggleCanvasGroup(true);
         }
 
         public void CloseEquipmentInterface()
         {
+            PlayerManager.Instance.EnableInput();
             m_CanvasGroup.ToggleCanvasGroup(false);
         }
 

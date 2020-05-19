@@ -1,6 +1,4 @@
-﻿using System;
-using Character.Movement;
-using Extensions;
+﻿using Extensions;
 using Player;
 using ScriptingFramework;
 using UI.ShopUI;
@@ -60,10 +58,8 @@ internal sealed class DialogueSetup : MonoBehaviour
 
     public void EndDialogue()
     {
-        Debug.Log("DIALOGUE ENDED.");
         DisplayCanvasGroup(null);
-        GameManager.Instance.PlayerManager.GetComponent<CharacterUserInput>().IsFrozen = false;
-        Camera.main.GetComponent<CameraFollow>().FreeCamera();
+        PlayerManager.Instance.EnableInput();
     }
 
     private void DisplayCanvasGroup(CanvasGroup canvasGroup)

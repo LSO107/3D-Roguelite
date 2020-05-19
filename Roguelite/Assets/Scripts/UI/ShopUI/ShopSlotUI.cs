@@ -1,4 +1,5 @@
 ﻿using Items.Inventory;
+using Player;
 using UI.Tooltip;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +16,7 @@ namespace UI.ShopUI
 
         private TooltipPointerHandler m_TooltipPointerHandler;
 
-        private static float PlayerGold => GameManager.Instance.PlayerManager.Currency.Quantity;
+        private static float PlayerGold => PlayerManager.Instance.Currency.Quantity;
 
         private void Awake()
         {

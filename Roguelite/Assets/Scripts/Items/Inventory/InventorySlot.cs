@@ -1,6 +1,4 @@
-﻿using ItemData;
-
-namespace Items.Inventory
+﻿namespace Items.Inventory
 {
     internal sealed class InventorySlot
     {

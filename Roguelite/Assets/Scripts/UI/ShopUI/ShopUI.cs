@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using Character.Movement;
 using Extensions;
-using Items.Definitions;
 using Items.Inventory;
 using Player;
 using Shops;
@@ -21,7 +19,7 @@ namespace UI.ShopUI
 
         private CanvasGroup m_CanvasGroup;
 
-        private static float CurrencyQuantity => GameManager.Instance.PlayerManager.Currency.Quantity;
+        private static float CurrencyQuantity => PlayerManager.Instance.Currency.Quantity;
         public void UpdateCurrencyQuantityText() => m_PlayerCurrencyText.text = CurrencyQuantity.ToString();
 
         private void Awake()
@@ -69,16 +67,13 @@ namespace UI.ShopUI
 
         public void OpenShop()
         {
-            Debug.Log("SHOP OPENED");
-            GameManager.Instance.PlayerManager.GetComponent<CharacterUserInput>().IsFrozen = true;
-            Camera.main.GetComponent<CameraFollow>().LockCamera();
+            PlayerManager.Instance.DisableInput();
             m_CanvasGroup.ToggleCanvasGroup(true);
         }
 
         public void CloseShop()
         {
-            GameManager.Instance.PlayerManager.GetComponent<CharacterUserInput>().IsFrozen = false;
-            Camera.main.GetComponent<CameraFollow>().FreeCamera();
+            PlayerManager.Instance.EnableInput();
             m_CanvasGroup.ToggleCanvasGroup(false);
         }
     }

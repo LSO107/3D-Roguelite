@@ -1,8 +1,8 @@
 ﻿using Extensions;
-using ItemData;
 using ItemGeneration;
 using Items.Definitions;
 using Items.Inventory;
+using Player;
 using UnityEngine;
 using Random = System.Random;
 
@@ -22,38 +22,38 @@ internal sealed class TestPanel : MonoBehaviour
     public void Damage()
     {
         //GameManager.Instance.PlayerManager.Health.Damage(10);
-        GameManager.Instance.PlayerManager.PlayerStats.TakeDamage(10);
+        PlayerManager.Instance.PlayerStats.TakeDamage(10);
     }
 
     public void Heal()
     {
-        GameManager.Instance.PlayerManager.Health.Heal(10);
+        PlayerManager.Instance.Health.Heal(10);
     }
 
     public void AddExperience()
     {
-        GameManager.Instance.PlayerManager.Experience.IncreaseExperience(10);
+        PlayerManager.Instance.Experience.IncreaseExperience(10);
     }
 
     public void ToggleEquipment()
     {
-        var equipment = GameManager.Instance.PlayerManager.EquipmentUI;
+        var equipment = PlayerManager.Instance.EquipmentUI;
         var canvasGroup = equipment.GetComponent<CanvasGroup>();
         canvasGroup.ToggleCanvasGroup(!canvasGroup.interactable);
     }
 
     public void AddMoney()
     {
-        GameManager.Instance.PlayerManager.Currency.AddGold(10);
-        GameManager.Instance.PlayerManager.Currency.AddTokens(1);
-        Debug.Log(GameManager.Instance.PlayerManager.Currency.Quantity);
+        PlayerManager.Instance.Currency.AddGold(10);
+        PlayerManager.Instance.Currency.AddTokens(1);
+        Debug.Log(PlayerManager.Instance.Currency.Quantity);
     }
 
     public void RemoveMoney()
     {
-        GameManager.Instance.PlayerManager.Currency.RemoveGold(10);
-        GameManager.Instance.PlayerManager.Currency.RemoveTokens(1);
-        Debug.Log(GameManager.Instance.PlayerManager.Currency.Quantity);
+        PlayerManager.Instance.Currency.RemoveGold(10);
+        PlayerManager.Instance.Currency.RemoveTokens(1);
+        Debug.Log(PlayerManager.Instance.Currency.Quantity);
     }
 
     public void DropItem()
@@ -74,12 +74,12 @@ internal sealed class TestPanel : MonoBehaviour
         {
             item = m_ItemFactory.GeneratePotion();
         }
-        GameManager.Instance.PlayerManager.Inventory.AddItem(item);
+        PlayerManager.Instance.Inventory.AddItem(item);
     }
 
     public void Attack()
     {
-        var anim = GameManager.Instance.PlayerManager.gameObject.GetComponent<Animator>();
+        var anim = PlayerManager.Instance.gameObject.GetComponent<Animator>();
         var isAttacking = anim.GetBool("Attack");
 
         if (isAttacking)

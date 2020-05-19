@@ -2,9 +2,9 @@
 using ItemData;
 using Items;
 using Items.Inventory;
+using Player;
 using TMPro;
 using UI.InventoryPanelUI;
-using UI.Tooltip;
 using UnityEngine;
 
 namespace UI.ItemOptions
@@ -21,7 +21,6 @@ namespace UI.ItemOptions
 
         private int m_SlotIndex;
         public bool IsOpen => m_ItemContextMenu.interactable;
-        public void HideItemContextMenu() => m_ItemContextMenu.ToggleCanvasGroup(false);
 
         private void Awake()
         {
@@ -31,18 +30,26 @@ namespace UI.ItemOptions
 
         public void Initialize()
         {
-            var pm = GameManager.Instance.PlayerManager;
+            var pm = PlayerManager.Instance;
             m_Inventory = pm.Inventory;
             m_InventoryUI = pm.InventoryUI;
         }
 
         public void ShowItemContextMenu(int slotIndex)
         {
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(true);
+
             m_SlotIndex = slotIndex;
             SetItemOptionText(slotIndex);
             m_ItemContextMenu.ToggleCanvasGroup(true);
             m_ScreenOverlay.ToggleCanvasGroup(true);
             transform.position = Input.mousePosition;
+        }
+
+        public void HideItemContextMenu()
+        {
+            m_ItemContextMenu.ToggleCanvasGroup(false);
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(false);
         }
 
         public void UseItemButton()
@@ -54,7 +61,7 @@ namespace UI.ItemOptions
 
         public void DropItemButton()
         {
-            var location = GameManager.Instance.PlayerManager.transform.position;
+            var location = PlayerManager.Instance.transform.position;
 
             var item = m_Inventory.GetItemInSlot(m_SlotIndex);
 

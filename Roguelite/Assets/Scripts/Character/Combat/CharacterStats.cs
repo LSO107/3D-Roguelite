@@ -1,4 +1,5 @@
 ﻿using Character.Health;
+using Player;
 using Player.Experience;
 using UnityEngine;
 using Random = System.Random;
@@ -25,7 +26,7 @@ namespace Character.Combat
 
         private void Start()
         {
-            m_PlayerExperience = GameManager.Instance.PlayerManager.Experience;
+            m_PlayerExperience = PlayerManager.Instance.Experience;
         }
 
         public void TakeDamage()

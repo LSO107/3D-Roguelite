@@ -40,15 +40,15 @@ namespace Player
         public void LockCamera()
         {
             m_CameraMode = CameraMode.Locked;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            /*Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;*/
         }
 
         public void FreeCamera()
         {
             m_CameraMode = CameraMode.Free;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            /*Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;*/
         }
     }
 

@@ -1,5 +1,4 @@
 ﻿using ItemData;
-using Player;
 using Shops;
 using UI.ItemOptions;
 using UI.Tooltip;
@@ -7,7 +6,7 @@ using UnityEngine;
 
 internal sealed class GameManager : MonoBehaviour
 {
-    public PlayerManager PlayerManager;
+    //public PlayerManager PlayerManager;
     public ItemContextMenu ItemContextMenu;
     public ItemDatabaseManager ItemDatabase;
     public Tooltip Tooltip;

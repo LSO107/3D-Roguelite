@@ -1,5 +1,4 @@
-﻿using Character.Movement;
-using Dialogue;
+﻿using Dialogue;
 using Player;
 using ScriptingFramework;
 using UnityEngine;
@@ -36,8 +35,7 @@ internal sealed class NpcEngine : MonoBehaviour
             return;
         }
 
-        GameManager.Instance.PlayerManager.GetComponent<CharacterUserInput>().IsFrozen = true;
-        Camera.main.GetComponent<CameraFollow>().LockCamera();
+        PlayerManager.Instance.DisableInput();
 
         m_CurrentScript = ScriptActivator.CreateScriptInstance<NpcScript>(npcType, npcId);
 

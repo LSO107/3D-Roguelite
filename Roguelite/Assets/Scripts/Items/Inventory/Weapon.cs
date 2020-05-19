@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using ItemData;
-using Items.Definitions;
-using UnityEngine;
+﻿using ItemData;
 
 namespace Items.Inventory
 {

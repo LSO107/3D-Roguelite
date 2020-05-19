@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using Character.Combat;
-using Character.Movement;
 using UnityEngine;
 
 namespace Player
@@ -42,9 +41,9 @@ namespace Player
             }
         }
 
-        public void ToggleInputBlocked()
+        public void ToggleIsInputBlocked(bool toggle)
         {
-            IsInputBlocked = !IsInputBlocked;
+            IsInputBlocked = toggle;
         }
 
         private IEnumerator Attack()

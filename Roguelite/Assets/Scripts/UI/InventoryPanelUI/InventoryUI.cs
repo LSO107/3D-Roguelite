@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
-using Extensions;
 using Items.Inventory;
-using TMPro;
+using Player;
 using UI.ItemOptions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace UI.InventoryPanelUI
 {
-    internal sealed class InventoryUI : MonoBehaviour
+    internal sealed class InventoryUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         private PlayerInventory m_Inventory;
 
@@ -18,7 +17,7 @@ namespace UI.InventoryPanelUI
 
         public void Instantiate()
         {
-            m_Inventory = GameManager.Instance.PlayerManager.Inventory;
+            m_Inventory = PlayerManager.Instance.Inventory;
 
             for (var i = 0; i < ItemUI.Count; i++)
             {
@@ -81,6 +80,16 @@ namespace UI.InventoryPanelUI
                 m_Inventory.UseItem(slotIndex);
                 UpdateSlot(slotIndex);
             }
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(true);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(false);
         }
     }
 }

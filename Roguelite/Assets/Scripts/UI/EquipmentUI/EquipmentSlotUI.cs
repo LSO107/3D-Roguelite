@@ -1,5 +1,4 @@
-﻿using ItemData;
-using Items.Definitions;
+﻿using Items.Definitions;
 using Items.Inventory;
 using UI.Tooltip;
 using UnityEngine;

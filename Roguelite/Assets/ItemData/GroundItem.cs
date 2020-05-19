@@ -1,6 +1,7 @@
 ﻿using ItemGeneration;
 using Items;
 using Items.Inventory;
+using Player;
 using UnityEngine;
 
 namespace ItemData
@@ -19,10 +20,10 @@ namespace ItemData
 
         private void Start()
         {
-            m_Inventory = GameManager.Instance.PlayerManager.Inventory;
+            m_Inventory = PlayerManager.Instance.Inventory;
             m_GroundItems = GroundItemManager.Instance;
             m_ItemFactory = new ItemFactory();
-            m_PlayerLocation = GameManager.Instance.PlayerManager.transform;
+            m_PlayerLocation = PlayerManager.Instance.transform;
         }
 
         private void Update()

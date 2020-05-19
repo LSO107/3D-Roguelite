@@ -1,6 +1,5 @@
 ﻿using UI.HUD;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Player.Experience
 {
