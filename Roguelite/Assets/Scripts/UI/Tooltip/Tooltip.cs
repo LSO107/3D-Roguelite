@@ -5,6 +5,7 @@ using Extensions;
 using ItemData;
 using Items.Definitions;
 using Items.Inventory;
+using Player;
 using TMPro;
 using UnityEngine;
 
@@ -55,7 +56,7 @@ namespace UI.Tooltip
         {
             var sb = new StringBuilder();
 
-            var eq = GameManager.Instance.PlayerManager.Equipment;
+            var eq = PlayerManager.Instance.Equipment;
 
             sb.Append($"<size=20><color=orange>{equipment.Name}</color></size>\n");
 

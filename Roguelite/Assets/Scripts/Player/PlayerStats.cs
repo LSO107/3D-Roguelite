@@ -74,14 +74,14 @@ namespace Player
             CombatLevel++;
             IncreaseBaseStats();
             UpdateStats();
-            var equipment = GameManager.Instance.PlayerManager.EquipmentUI;
+            var equipment = PlayerManager.Instance.EquipmentUI;
             equipment.UpdateCombatLevelLabel();
             equipment.UpdateLabels();
         }
 
         public void UpdateStats()
         {
-            m_EquipmentStats = GameManager.Instance.PlayerManager.Equipment.GetEquipmentStatBonuses();
+            m_EquipmentStats = PlayerManager.Instance.Equipment.GetEquipmentStatBonuses();
 
             var attack = m_BaseStats[StatBonus.Attack] + m_EquipmentStats[StatBonus.Attack];
             var strength = m_BaseStats[StatBonus.Strength] + m_EquipmentStats[StatBonus.Strength];

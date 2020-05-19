@@ -3,6 +3,7 @@ using System.Linq;
 using Currency;
 using ItemGeneration;
 using Items.Inventory;
+using Player;
 using UI.ShopUI;
 using UnityEngine;
 
@@ -22,8 +23,8 @@ namespace Shops
         private void Start()
         {
             m_ItemFactory = new ItemFactory();
-            m_Inventory = GameManager.Instance.PlayerManager.Inventory;
-            m_Currency = GameManager.Instance.PlayerManager.Currency;
+            m_Inventory = PlayerManager.Instance.Inventory;
+            m_Currency = PlayerManager.Instance.Currency;
 
             GenerateShopItems();
         }

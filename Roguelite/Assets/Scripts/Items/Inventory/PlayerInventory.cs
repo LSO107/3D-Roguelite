@@ -10,7 +10,7 @@ namespace Items.Inventory
 {
     internal sealed class PlayerInventory
     {
-        private static PlayerManager PlayerManager => GameManager.Instance.PlayerManager;
+        private static PlayerManager PlayerManager => PlayerManager.Instance;
 
         private readonly InventorySlot[] m_Slots;
         private const int InventorySize = 6;

@@ -32,14 +32,14 @@ namespace UI.ItemOptions
 
         public void Initialize()
         {
-            var pm = GameManager.Instance.PlayerManager;
+            var pm = PlayerManager.Instance;
             m_Inventory = pm.Inventory;
             m_InventoryUI = pm.InventoryUI;
         }
 
         public void ShowItemContextMenu(int slotIndex)
         {
-            GameManager.Instance.PlayerManager.GetComponent<PlayerController>().ToggleInputBlocked();
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleInputBlocked();
 
             m_SlotIndex = slotIndex;
             SetItemOptionText(slotIndex);
@@ -51,7 +51,7 @@ namespace UI.ItemOptions
         public void HideItemContextMenu()
         {
             m_ItemContextMenu.ToggleCanvasGroup(false);
-            GameManager.Instance.PlayerManager.GetComponent<PlayerController>().ToggleInputBlocked();
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleInputBlocked();
         }
 
         public void UseItemButton()
@@ -63,7 +63,7 @@ namespace UI.ItemOptions
 
         public void DropItemButton()
         {
-            var location = GameManager.Instance.PlayerManager.transform.position;
+            var location = PlayerManager.Instance.transform.position;
 
             var item = m_Inventory.GetItemInSlot(m_SlotIndex);
 

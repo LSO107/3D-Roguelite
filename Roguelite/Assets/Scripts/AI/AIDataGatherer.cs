@@ -1,14 +1,15 @@
 ﻿using Character.Health;
 using Items.Inventory;
+using Player;
 using UnityEngine;
 
 namespace AI
 {
     internal static class AIDataGatherer
     {
-        private static HealthObject PlayerHealth => GameManager.Instance.PlayerManager.Health;
-        private static Vector3 PlayerLocation => GameManager.Instance.PlayerManager.transform.position;
-        private static PlayerEquipment PlayerEquipment => GameManager.Instance.PlayerManager.Equipment;
+        private static HealthObject PlayerHealth => PlayerManager.Instance.Health;
+        private static Vector3 PlayerLocation => PlayerManager.Instance.transform.position;
+        private static PlayerEquipment PlayerEquipment => PlayerManager.Instance.Equipment;
 
         public static AIDataObject GetData(Transform requester)
         {

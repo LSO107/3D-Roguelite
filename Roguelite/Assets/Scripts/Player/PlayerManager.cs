@@ -24,8 +24,19 @@ namespace Player
         public InventoryUI InventoryUI;
         public EquipmentUI EquipmentUI;
 
+        public static PlayerManager Instance;
+
         private void Awake()
         {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else if (Instance != this)
+            {
+                Destroy(gameObject);
+            }
+
             PlayerStats = GetComponent<PlayerStats>();
 
             Inventory = new PlayerInventory(new List<Item>());

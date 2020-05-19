@@ -5,6 +5,7 @@ using ItemData;
 using Items.Definitions;
 using Items.Inventory;
 using Logging;
+using Player;
 using UnityEngine;
 using Random = System.Random;
 
@@ -42,7 +43,7 @@ namespace ItemGeneration
 
         private static float GetMaxBonus(RarityModifier rarity)
         {
-            var levelBonus = GameManager.Instance.PlayerManager.PlayerStats.CombatLevel * 2;
+            var levelBonus = PlayerManager.Instance.PlayerStats.CombatLevel * 2;
             var rarityBonus = (levelBonus + MaximumFlatBonus[rarity]) * PercentageBonus[rarity];
 
             return levelBonus + rarityBonus;

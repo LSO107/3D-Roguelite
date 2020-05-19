@@ -15,8 +15,8 @@ namespace Items.Inventory
 
         public PlayerEquipment()
         {
-            m_EquipmentUI = GameManager.Instance.PlayerManager.EquipmentUI;
-            m_PlayerStats = GameManager.Instance.PlayerManager.PlayerStats;
+            m_EquipmentUI = PlayerManager.Instance.EquipmentUI;
+            m_PlayerStats = PlayerManager.Instance.PlayerStats;
 
             m_EquipmentSlots = new Dictionary<EquipmentSlotId, Equipment>
             {

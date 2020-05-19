@@ -62,8 +62,8 @@ internal sealed class DialogueSetup : MonoBehaviour
     public void EndDialogue()
     {
         DisplayCanvasGroup(null);
-        GameManager.Instance.PlayerManager.GetComponent<CharacterUserInput>().IsFrozen = false;
-        GameManager.Instance.PlayerManager.GetComponent<PlayerController>().ToggleInputBlocked();
+        PlayerManager.Instance.GetComponent<CharacterUserInput>().IsFrozen = false;
+        PlayerManager.Instance.GetComponent<PlayerController>().ToggleInputBlocked();
         Camera.main.GetComponent<CameraFollow>().FreeCamera();
     }
 

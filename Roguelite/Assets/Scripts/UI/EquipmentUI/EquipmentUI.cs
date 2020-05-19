@@ -23,7 +23,7 @@ namespace UI.EquipmentUI
 
         public void Instantiate()
         {
-            m_PlayerManager = GameManager.Instance.PlayerManager;
+            m_PlayerManager = PlayerManager.Instance;
             m_CanvasGroup = GetComponent<CanvasGroup>();
 
             foreach (var button in EquipmentSlots)

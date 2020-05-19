@@ -21,7 +21,7 @@ namespace UI.ShopUI
 
         private CanvasGroup m_CanvasGroup;
 
-        private static float CurrencyQuantity => GameManager.Instance.PlayerManager.Currency.Quantity;
+        private static float CurrencyQuantity => PlayerManager.Instance.Currency.Quantity;
         public void UpdateCurrencyQuantityText() => m_PlayerCurrencyText.text = CurrencyQuantity.ToString();
 
         private void Awake()
@@ -69,16 +69,16 @@ namespace UI.ShopUI
 
         public void OpenShop()
         {
-            GameManager.Instance.PlayerManager.GetComponent<CharacterUserInput>().IsFrozen = true;
-            GameManager.Instance.PlayerManager.GetComponent<PlayerController>().ToggleInputBlocked();
+            PlayerManager.Instance.GetComponent<CharacterUserInput>().IsFrozen = true;
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleInputBlocked();
             Camera.main.GetComponent<CameraFollow>().LockCamera();
             m_CanvasGroup.ToggleCanvasGroup(true);
         }
 
         public void CloseShop()
         {
-            GameManager.Instance.PlayerManager.GetComponent<CharacterUserInput>().IsFrozen = false;
-            GameManager.Instance.PlayerManager.GetComponent<PlayerController>().ToggleInputBlocked();
+            PlayerManager.Instance.GetComponent<CharacterUserInput>().IsFrozen = false;
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleInputBlocked();
             Camera.main.GetComponent<CameraFollow>().FreeCamera();
             m_CanvasGroup.ToggleCanvasGroup(false);
         }

@@ -19,7 +19,7 @@ namespace UI.InventoryPanelUI
 
         public void Instantiate()
         {
-            m_Inventory = GameManager.Instance.PlayerManager.Inventory;
+            m_Inventory = PlayerManager.Instance.Inventory;
 
             for (var i = 0; i < ItemUI.Count; i++)
             {
@@ -86,12 +86,12 @@ namespace UI.InventoryPanelUI
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            GameManager.Instance.PlayerManager.GetComponent<PlayerController>().ToggleInputBlocked();
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleInputBlocked();
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            GameManager.Instance.PlayerManager.GetComponent<PlayerController>().ToggleInputBlocked();
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleInputBlocked();
         }
     }
 }
