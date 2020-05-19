@@ -69,7 +69,6 @@ namespace UI.ShopUI
 
         public void OpenShop()
         {
-            Debug.Log("SHOP OPENED");
             GameManager.Instance.PlayerManager.GetComponent<CharacterUserInput>().IsFrozen = true;
             Camera.main.GetComponent<CameraFollow>().LockCamera();
             m_CanvasGroup.ToggleCanvasGroup(true);

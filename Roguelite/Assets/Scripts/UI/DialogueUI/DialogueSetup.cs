@@ -60,7 +60,6 @@ internal sealed class DialogueSetup : MonoBehaviour
 
     public void EndDialogue()
     {
-        Debug.Log("DIALOGUE ENDED.");
         DisplayCanvasGroup(null);
         GameManager.Instance.PlayerManager.GetComponent<CharacterUserInput>().IsFrozen = false;
         Camera.main.GetComponent<CameraFollow>().FreeCamera();

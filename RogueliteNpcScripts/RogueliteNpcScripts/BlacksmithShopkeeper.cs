@@ -32,7 +32,7 @@ namespace RogueliteNpcScripts
                     Dialogue.SendNpcOneLine(GetRandomLine(m_OpeningLines), 1);
                     break;
                 case 1:
-                    Dialogue.SendOptions(new [] { new DialogueOption("How is life?", 2), new DialogueOption("Can I see your shop?", 3),  });
+                    Dialogue.SendOptions(new [] { new DialogueOption("Can I see your shop?", 3), new DialogueOption("How is life?", 2), new DialogueOption("Bye", -1) });
                     break;
                 case 2:
                     Dialogue.SendNpcOneLine(GetRandomLine(m_Answers), 1);
