@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Extensions;
 using Items.Inventory;
+using Player;
 using TMPro;
 using UI.ItemOptions;
 using UnityEngine;
@@ -8,7 +9,7 @@ using UnityEngine.EventSystems;
 
 namespace UI.InventoryPanelUI
 {
-    internal sealed class InventoryUI : MonoBehaviour
+    internal sealed class InventoryUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         private PlayerInventory m_Inventory;
 
@@ -81,6 +82,16 @@ namespace UI.InventoryPanelUI
                 m_Inventory.UseItem(slotIndex);
                 UpdateSlot(slotIndex);
             }
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            GameManager.Instance.PlayerManager.GetComponent<PlayerController>().ToggleInputBlocked();
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            GameManager.Instance.PlayerManager.GetComponent<PlayerController>().ToggleInputBlocked();
         }
     }
 }
