@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Character.Combat;
 using Character.Movement;
 using Extensions;
 using Player;
 using ScriptingFramework;
 using UI.ShopUI;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 
 internal sealed class DialogueSetup : MonoBehaviour
 {
@@ -62,6 +63,7 @@ internal sealed class DialogueSetup : MonoBehaviour
     {
         DisplayCanvasGroup(null);
         GameManager.Instance.PlayerManager.GetComponent<CharacterUserInput>().IsFrozen = false;
+        GameManager.Instance.PlayerManager.GetComponent<PlayerController>().ToggleInputBlocked();
         Camera.main.GetComponent<CameraFollow>().FreeCamera();
     }
 

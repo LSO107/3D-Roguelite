@@ -10,8 +10,6 @@ namespace Character.Movement
         private CharacterMovement m_CharacterMovement;
         private Transform m_Camera;
 
-        [SerializeField] private Toggle m_Run;
-
         public bool IsFrozen;
 
         private void Start()
@@ -37,10 +35,10 @@ namespace Character.Movement
             var camRight = Vector3.Scale(m_Camera.right, new Vector3(1, 0, 1));
             var movement = vertical * camForward + horizontal * camRight;
 
-            /*if (!m_Run.isOn)
+            if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
             {
                 movement *= 0.6f;
-            }*/
+            }
 
             m_CharacterMovement.Move(movement);
         }
