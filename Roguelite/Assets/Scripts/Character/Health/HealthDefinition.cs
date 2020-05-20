@@ -34,14 +34,6 @@ namespace Character.Health
         }
 
         /// <summary>
-        /// Decrease health by 10
-        /// </summary>
-        public void Damage()
-        {
-            Damage(10);
-        }
-
-        /// <summary>
         /// Decrease health by the amount
         /// </summary>
         public void Damage(int amount)
@@ -54,14 +46,6 @@ namespace Character.Health
         }
 
         /// <summary>
-        /// Increase health by 10
-        /// </summary>
-        public void Heal()
-        {
-            Heal(10);
-        }
-
-        /// <summary>
         /// Increase the health by the amount
         /// </summary>
         public void Heal(int amount)
@@ -71,6 +55,11 @@ namespace Character.Health
 
             CurrentHealth += amount;
             ClampHealth();
+        }
+
+        public void ResetHealth()
+        {
+            CurrentHealth = MaxHealth;
         }
 
         /// <summary>

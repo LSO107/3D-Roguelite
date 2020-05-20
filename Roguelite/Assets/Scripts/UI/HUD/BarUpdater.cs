@@ -7,7 +7,7 @@ namespace UI.HUD
     {
         private Slider m_Bar;
 
-        private void Start()
+        private void Awake()
         {
             m_Bar = GetComponent<Slider>();
         }

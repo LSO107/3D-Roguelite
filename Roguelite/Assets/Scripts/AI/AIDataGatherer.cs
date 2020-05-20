@@ -7,7 +7,7 @@ namespace AI
 {
     internal static class AIDataGatherer
     {
-        private static HealthObject PlayerHealth => PlayerManager.Instance.Health;
+        private static PlayerHealth PlayerHealth => PlayerManager.Instance.Health;
         private static Vector3 PlayerLocation => PlayerManager.Instance.transform.position;
         private static PlayerEquipment PlayerEquipment => PlayerManager.Instance.Equipment;
 
