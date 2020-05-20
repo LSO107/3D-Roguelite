@@ -21,7 +21,6 @@ namespace Character.Health
         private void Update()
         {
             RegenerateHealth();
-
             m_HealthBarInstantiated.transform.position = transform.position + m_Offset;
             m_HealthBarInstantiated.transform.LookAt(Camera.main.transform);
         }

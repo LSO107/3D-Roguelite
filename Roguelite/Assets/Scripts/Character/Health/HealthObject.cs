@@ -10,8 +10,7 @@ namespace Character.Health
 
         protected HealthDefinition m_HealthDefinition;
 
-        [SerializeField] 
-        protected BarUpdater m_HealthBarUpdater;
+        public BarUpdater m_HealthBarUpdater;
 
         protected float m_NextRegenerationTime;
         protected float m_RegenerationTime = 10;
