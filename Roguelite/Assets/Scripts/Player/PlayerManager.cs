@@ -15,7 +15,7 @@ namespace Player
     [RequireComponent(typeof(ExperienceObject))]
     internal sealed class PlayerManager : MonoBehaviour
     {
-        public HealthObject Health { get; private set; }
+        public PlayerHealth Health { get; private set; }
         public ExperienceObject Experience { get; private set; }
         public CurrencyObject Currency { get; private set; }
         public PlayerInventory Inventory { get; private set; }
@@ -46,7 +46,7 @@ namespace Player
             Inventory = new PlayerInventory(new List<Item>());
             Equipment = new PlayerEquipment();
 
-            Health = GetComponent<HealthObject>();
+            Health = GetComponent<PlayerHealth>();
             Experience = GetComponent<ExperienceObject>();
             Currency = GetComponent<CurrencyObject>();
         }

@@ -3,36 +3,30 @@ using UnityEngine;
 
 namespace Character.Health
 {
-    internal sealed class HealthObject : MonoBehaviour
+    internal abstract class HealthObject : MonoBehaviour
     {
         public int CurrentHealth => m_HealthDefinition.CurrentHealth;
         public int MaxHealth => m_HealthDefinition.MaxHealth;
 
-        private HealthDefinition m_HealthDefinition;
+        protected HealthDefinition m_HealthDefinition;
 
-        private Vector3 m_Offset;
-        private BarUpdater m_HealthBarUpdater;
-        private GameObject m_HealthBarInstantiated;
-        [SerializeField] private GameObject m_HealthBarPrefab;
+        [SerializeField] 
+        protected BarUpdater m_HealthBarUpdater;
 
-        private float m_NextRegenerationTime;
-        private float m_RegenerationTime = 10;
+        protected float m_NextRegenerationTime;
+        protected float m_RegenerationTime = 10;
 
-        public void Start()
+        protected abstract void ActionOnDeath();
+
+        protected void Awake()
         {
             m_HealthDefinition = new HealthDefinition();
-            m_Offset = new Vector3(0, 2f, 0);
-            m_HealthBarInstantiated = Instantiate(m_HealthBarPrefab, transform.position + m_Offset, Quaternion.identity);
-            m_HealthBarUpdater = m_HealthBarInstantiated.GetComponentInChildren<BarUpdater>();
         }
 
-        private void Update()
+        public void Heal(int amount)
         {
-            m_HealthBarInstantiated.transform.position = transform.position + m_Offset;
-            m_HealthBarInstantiated.transform.LookAt(Camera.main.transform);
-
-            if (Time.time >= m_NextRegenerationTime && CurrentHealth < MaxHealth)
-                RegenerateHealth();
+            m_HealthDefinition.Heal(amount);
+            m_HealthBarUpdater.UpdateBar(CurrentHealth, MaxHealth);
         }
 
         public void Damage(int amount)
@@ -42,21 +36,17 @@ namespace Character.Health
 
             if (m_HealthDefinition.IsDead)
             {
-                Destroy(m_HealthBarInstantiated);
-                Destroy(gameObject);
+                ActionOnDeath();
             }
         }
 
-        public void Heal(int amount)
+        protected void RegenerateHealth()
         {
-            m_HealthDefinition.Heal(amount);
-            m_HealthBarUpdater.UpdateBar(CurrentHealth, MaxHealth);
-        }
-
-        private void RegenerateHealth()
-        {
-            m_NextRegenerationTime = Time.time + m_RegenerationTime;
-            Heal(1);
+            if (Time.time >= m_NextRegenerationTime && CurrentHealth < MaxHealth)
+            {
+                m_NextRegenerationTime = Time.time + m_RegenerationTime;
+                Heal(1);
+            }
         }
     }
 }
