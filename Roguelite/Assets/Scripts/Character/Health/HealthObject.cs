@@ -21,7 +21,7 @@ namespace Character.Health
         public void Start()
         {
             m_HealthDefinition = new HealthDefinition();
-            m_Offset = new Vector3(0, 2.5f, 0);
+            m_Offset = new Vector3(0, 2f, 0);
             m_HealthBarInstantiated = Instantiate(m_HealthBarPrefab, transform.position + m_Offset, Quaternion.identity);
             m_HealthBarUpdater = m_HealthBarInstantiated.GetComponentInChildren<BarUpdater>();
         }
@@ -29,6 +29,7 @@ namespace Character.Health
         private void Update()
         {
             m_HealthBarInstantiated.transform.position = transform.position + m_Offset;
+            m_HealthBarInstantiated.transform.LookAt(Camera.main.transform);
 
             if (Time.time >= m_NextRegenerationTime && CurrentHealth < MaxHealth)
                 RegenerateHealth();
