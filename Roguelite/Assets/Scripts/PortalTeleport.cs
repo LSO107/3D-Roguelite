@@ -8,6 +8,8 @@ internal sealed class PortalTeleport : MonoBehaviour
     [SerializeField] private bool m_PortalActive = true;
     [SerializeField] private InteractNotice m_InteractNotice;
     [SerializeField] private string m_NoticeMessage;
+    [SerializeField] private Soundtrack m_Soundtrack;
+    [SerializeField] private AudioClip m_AudioClip;
 
     private Transform m_PlayerTransform;
 
@@ -27,6 +29,9 @@ internal sealed class PortalTeleport : MonoBehaviour
             m_PlayerTransform.position = m_Location;
 
             m_PlayerTransform.rotation = Quaternion.Euler(m_Rotation);
+
+            if (m_AudioClip != null)
+                m_Soundtrack.ChangeClip(m_AudioClip);
         }
     }
 

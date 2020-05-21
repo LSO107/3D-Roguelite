@@ -26,6 +26,7 @@ namespace Player
         public EquipmentUI EquipmentUI;
 
         private CameraFollow m_Camera;
+        public SoundEffectsManager SoundEffects;
 
         public static PlayerManager Instance;
 
@@ -41,6 +42,7 @@ namespace Player
             }
 
             m_Camera = Camera.main.GetComponent<CameraFollow>();
+            SoundEffects = GetComponent<SoundEffectsManager>();
             PlayerStats = GetComponent<PlayerStats>();
 
             Inventory = new PlayerInventory(new List<Item>());

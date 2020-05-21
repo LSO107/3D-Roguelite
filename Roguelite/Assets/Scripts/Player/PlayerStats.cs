@@ -22,6 +22,8 @@ namespace Player
 
         private System.Random m_Random;
 
+        [SerializeField] private SplatMarker m_SplatMarker;
+
         public void Initialize(int combatLevel)
         {
             m_Random = new System.Random();
@@ -55,6 +57,7 @@ namespace Player
             Debug.Log($"Damage: {randomDamage}, Blocked Damage: {blockedDamage}, Final Damage: {finalDamage}");
 
             m_HealthObject.Damage(finalDamage);
+            m_SplatMarker.Show(finalDamage);
 
             if (m_HealthObject.CurrentHealth <= 0)
             {
