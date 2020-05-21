@@ -31,6 +31,7 @@ internal sealed class WeaponTrigger : MonoBehaviour
             if (targetCombatData.CombatState == CombatState.Blocking)
             {
                 Debug.Log("Blocked Attack.");
+                other.GetComponent<CharacterStats>().splatMarker.Show(0);
             }
             else
             {

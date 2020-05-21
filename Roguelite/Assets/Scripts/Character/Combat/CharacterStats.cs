@@ -9,7 +9,7 @@ namespace Character.Combat
     [RequireComponent(typeof(HealthObject))]
     internal sealed class CharacterStats : MonoBehaviour
     {
-        [SerializeField] private Splat m_Splat;
+        [SerializeField] public SplatMarker splatMarker;
         [SerializeField] private int CombatLevel;
         public Stat Damage;
         public Stat Defence;
@@ -40,7 +40,7 @@ namespace Character.Combat
                 range = 0;
 
             Debug.Log($"Character took {range} amount of damage.");
-            m_Splat.Show(range);
+            splatMarker.Show(range);
             m_HealthObject.Damage(range);
 
             if (m_HealthObject.CurrentHealth <= 0)
