@@ -8,6 +8,8 @@ internal sealed class WeaponTrigger : MonoBehaviour
     private ActorData m_MyActorData;
     private CharacterCombat m_MyCombatData;
 
+    [SerializeField] private AudioClip m_HitAudioClip;
+
     private void Awake()
     {
         m_MyActorData = GetComponentInParent<ActorData>();
@@ -33,6 +35,7 @@ internal sealed class WeaponTrigger : MonoBehaviour
             else
             {
                 Debug.Log("Hit enemy");
+                PlayerManager.Instance.SoundEffects.Play(m_HitAudioClip);
                 other.GetComponentInParent<CharacterMovement>().KnockBack(transform.position);
                 other.GetComponent<CharacterStats>().TakeDamage();
             }
