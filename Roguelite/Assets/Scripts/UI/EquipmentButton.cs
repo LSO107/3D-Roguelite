@@ -1,43 +1,37 @@
 ﻿using Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace UI
 {
-    internal sealed class EquipmentButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    internal sealed class EquipmentButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
-        private Button m_Button;
+        [SerializeField] private EquipmentUI.EquipmentUI m_Eq;
+        [SerializeField] private ButtonManager m_ButtonManager;
 
-        private EquipmentUI.EquipmentUI m_Eq;
+        private PlayerController m_Player;
 
         private void Awake()
         {
-            m_Button = GetComponent<Button>();
-            m_Eq = PlayerManager.Instance.EquipmentUI;
-        }
-
-        public void OpenEquipmentUI()
-        {
-            PlayerManager.Instance.EquipmentUI.OpenEquipmentInterface();
-        }
-
-        public void CloseEquipmentUI()
-        {
-            PlayerManager.Instance.EquipmentUI.CloseEquipmentInterface();
+            m_Player = PlayerManager.Instance.GetComponent<PlayerController>();
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(true);
+            m_Player.ToggleIsInputBlocked(true);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            if (m_Eq.IsEquipmentOpen)
+            if (m_Eq.IsOpen)
                 return;
 
-            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(false);
+            m_Player.ToggleIsInputBlocked(false);
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            m_ButtonManager.DisableButtons();
         }
     }
 }
