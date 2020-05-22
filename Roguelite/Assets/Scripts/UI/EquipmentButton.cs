@@ -10,7 +10,7 @@ namespace UI
 
         private PlayerController m_Player;
 
-        private void Awake()
+        private void Start()
         {
             m_Player = PlayerManager.Instance.GetComponent<PlayerController>();
         }

@@ -7,10 +7,10 @@ using Random = System.Random;
 
 namespace AI
 {
-    internal sealed class AttackingBehaviour : MonoBehaviour, IBehaviour
+    internal sealed class AttackingBehaviour : MonoBehaviour, ICombatBehaviour
     {
-        private EnemyAI m_EnemyAI;
-        private BehaviourState m_CurrentState;
+        private EnemyAICombat m_EnemyAiCombat;
+        private CombatState m_CurrentState;
         private Random m_Random;
         private Animator m_Animator;
 
@@ -24,7 +24,7 @@ namespace AI
 
         public void Initialize(Random random)
         {
-            m_EnemyAI = GetComponent<EnemyAI>();
+            m_EnemyAiCombat = GetComponent<EnemyAICombat>();
             m_Animator = GetComponent<Animator>();
             m_Random = random;
         }
@@ -34,10 +34,10 @@ namespace AI
             if (!m_CanAttack)
                 return;
 
-            StartCoroutine(Attack());
+            //StartCoroutine(Attack());
         }
 
-        public void UpdateState(BehaviourState state)
+        public void UpdateState(CombatState state)
         {
             m_CurrentState = state;
         }
@@ -46,7 +46,7 @@ namespace AI
         {
             m_CanAttack = true;
             Debug.Log("Attacking now.");
-            m_EnemyAI.UpdateCombatState(CombatState.Attacking);
+            m_EnemyAiCombat.UpdateCombatState(Character.Combat.CombatState.Attacking);
         }
 
         public void Stop()
@@ -63,21 +63,21 @@ namespace AI
                 if (m_CurrentTime >= m_AttackTime)
                 {
                     var randomTime = m_Random.RandomFloat(MinimumAttackTime, MaximumAttackTime);
-                    m_EnemyAI.RegisterExecutionRequest(this, randomTime);
+                    m_EnemyAiCombat.RegisterExecutionRequest(this, randomTime);
                     m_CurrentTime = 0f;
                 }
             }
             else
             {
-                m_EnemyAI.UnregisterExecutionRequest(this);
+                m_EnemyAiCombat.UnregisterExecutionRequest(this);
                 m_CurrentTime = 0;
             }
         }
 
         private IEnumerator Attack()
         {
-            m_Animator.SetInteger("Attack Type", 0);
-            m_Animator.SetTrigger("Attack");
+            //m_Animator.SetInteger("Attack Type", 0);
+            //m_Animator.SetTrigger("Attack");
             yield return new WaitUntil(() => m_Animator.GetBool("Attack") == false);
         }
     }

@@ -2,13 +2,13 @@
 using Character.Combat;
 using Extensions;
 using UnityEngine;
-
+using CombatState = AI.CombatState;
 using Random = System.Random;
 
-internal sealed class BlockingBehaviour : MonoBehaviour, IBehaviour
+internal sealed class BlockingBehaviour : MonoBehaviour, ICombatBehaviour
 {
-    private EnemyAI m_EnemyAI;
-    private BehaviourState m_CurrentState;
+    private EnemyAICombat m_EnemyAiCombat;
+    private CombatState m_CurrentState;
 
     private float m_BlockTime = 2;
     private float m_CurrentTime;
@@ -18,13 +18,15 @@ internal sealed class BlockingBehaviour : MonoBehaviour, IBehaviour
 
     private Random m_Random;
 
+    private static readonly int IsBlocking = Animator.StringToHash("IsBlocking");
+
     public void Initialize(Random random)
     {
-        m_EnemyAI = GetComponent<EnemyAI>();
+        m_EnemyAiCombat = GetComponent<EnemyAICombat>();
         m_Random = random;
     }
 
-    public void UpdateState(BehaviourState state)
+    public void UpdateState(CombatState state)
     {
         m_CurrentState = state;
     }
@@ -32,12 +34,14 @@ internal sealed class BlockingBehaviour : MonoBehaviour, IBehaviour
     public void Execute()
     {
         Debug.Log("Blocking now");
-        m_EnemyAI.UpdateCombatState(CombatState.Blocking);
+        m_EnemyAiCombat.Animator.SetBool(IsBlocking, true);
+        m_EnemyAiCombat.UpdateCombatState(Character.Combat.CombatState.Blocking);
     }
 
     public void Stop()
     {
-        
+        Debug.Log("Stopped blocking");
+        m_EnemyAiCombat.Animator.SetBool(IsBlocking, false);
     }
 
     public void ProcessData(AIDataObject data)
@@ -49,13 +53,13 @@ internal sealed class BlockingBehaviour : MonoBehaviour, IBehaviour
             if (m_CurrentTime >= m_BlockTime)
             {
                 var randomTime = m_Random.RandomFloat(MinimumBlockTime, MaximumBlockTime);
-                m_EnemyAI.RegisterExecutionRequest(this, randomTime);
+                m_EnemyAiCombat.RegisterExecutionRequest(this, randomTime);
                 m_CurrentTime = 0f;
             }
         }
         else
         {
-            m_EnemyAI.UnregisterExecutionRequest(this);
+            m_EnemyAiCombat.UnregisterExecutionRequest(this);
             m_CurrentTime = 0;
         }
     }
