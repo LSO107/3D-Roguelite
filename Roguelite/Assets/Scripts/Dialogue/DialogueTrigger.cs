@@ -5,7 +5,8 @@ namespace Dialogue
 {
     internal sealed class DialogueTrigger : MonoBehaviour
     {
-        [SerializeField] private int m_NpcId;
+        public int NpcId;
+
         [SerializeField] private InteractNotice m_InteractNotice;
 
         private bool m_IsInTrigger;
@@ -15,7 +16,7 @@ namespace Dialogue
             if (m_IsInTrigger && Input.GetKeyDown(KeyCode.F))
             {
                 m_InteractNotice.Hide();
-                NpcEngine.Instance.StartDialogue(m_NpcId);
+                NpcEngine.Instance.StartDialogue(NpcId);
             }
         }
 
