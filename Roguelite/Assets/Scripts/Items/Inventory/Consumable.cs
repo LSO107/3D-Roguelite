@@ -2,16 +2,13 @@
 
 namespace Items.Inventory
 {
-    internal class Consumable : Item
+    internal abstract class Consumable : Item
     {
         public string Description { get; }
 
-        public virtual void Use()
-        {
+        public abstract void Use();
 
-        }
-
-        public Consumable(ConsumableDefinition con)
+        protected Consumable(ConsumableDefinition con)
             : base(con.Name, con.Icon, con.Prefab, con.BaseGoldCost)
         {
             Description = con.description;

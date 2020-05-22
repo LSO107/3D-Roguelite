@@ -19,7 +19,7 @@ namespace ItemData
         [SerializeField] private List<EquipmentDefinition> m_Platelegs = new List<EquipmentDefinition>();
 
         [Header("Consumables (Scriptable Objects)")]
-        [SerializeField] private List<ConsumableDefinition> m_HealthPotions = new List<ConsumableDefinition>();
+        [SerializeField] private List<PotionDefinition> m_HealthPotions = new List<PotionDefinition>();
 
         private Random m_Random;
 
@@ -38,7 +38,7 @@ namespace ItemData
             };
         }
 
-        public ConsumableDefinition GetRandomHealthPotion()
+        public PotionDefinition GetRandomHealthPotion()
         {
             var number = m_Random.Next(m_HealthPotions.Count);
             return m_HealthPotions[number];

@@ -25,13 +25,12 @@ namespace ItemGeneration
             m_WeaponGenerator = new WeaponGenerator(m_Random, new FileLog(@"C:\Users\leeok\Desktop\logs\weapongenerator.txt"));
         }
 
-        public Consumable GeneratePotion()
+        public HealthPotion GeneratePotion()
         {
             var itemDatabase = GameManager.Instance.ItemDatabase;
-            var consumableContainer = itemDatabase.GetRandomHealthPotion();
-            var potion = consumableContainer.CreateInstance();
+            var definition = itemDatabase.GetRandomHealthPotion();
 
-            var con = new Consumable(potion);
+            var con = new HealthPotion(definition);
             return con;
         }
 
