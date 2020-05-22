@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 984689b3aae34c7fb32b66fdf68a4f03, type: 3}
   m_Name: Jagged Scimitar
   m_EditorClassIdentifier: Assembly-CSharp:ItemData:WeaponDefinition
-  Name: 
+  Name: Jagged Scimitar
   Icon: {fileID: 21300000, guid: 58f5e4cb8f14e4840a2d491b248b9c8c, type: 3}
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 1773781232498540682, guid: 94505fec18d31804985b21dff985f051, type: 3}
   BaseGoldCost: 50
   EquipmentSlotId: 3
   m_Attack: 12
