@@ -1,37 +1,40 @@
 ﻿using UI;
 using UnityEngine;
 
-internal sealed class DialogueTrigger : MonoBehaviour
+namespace Dialogue
 {
-    [SerializeField] private int m_NpcId;
-    [SerializeField] private InteractNotice m_InteractNotice;
-
-    private bool m_IsInTrigger;
-
-    private void Update()
+    internal sealed class DialogueTrigger : MonoBehaviour
     {
-        if (m_IsInTrigger && Input.GetKeyDown(KeyCode.F))
+        [SerializeField] private int m_NpcId;
+        [SerializeField] private InteractNotice m_InteractNotice;
+
+        private bool m_IsInTrigger;
+
+        private void Update()
         {
-            m_InteractNotice.Hide();
-            NpcEngine.Instance.StartDialogue(m_NpcId);
+            if (m_IsInTrigger && Input.GetKeyDown(KeyCode.F))
+            {
+                m_InteractNotice.Hide();
+                NpcEngine.Instance.StartDialogue(m_NpcId);
+            }
         }
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag("Player"))
-            return;
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!other.CompareTag("Player"))
+                return;
 
-        m_IsInTrigger = true;
-        m_InteractNotice.Show("Press F to talk");
-    }
+            m_IsInTrigger = true;
+            m_InteractNotice.Show("Press F to talk");
+        }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (!other.CompareTag("Player"))
-            return;
+        private void OnTriggerExit(Collider other)
+        {
+            if (!other.CompareTag("Player"))
+                return;
 
-        m_IsInTrigger = false;
-        m_InteractNotice.Hide();
+            m_IsInTrigger = false;
+            m_InteractNotice.Hide();
+        }
     }
 }
