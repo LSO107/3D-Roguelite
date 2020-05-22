@@ -4,7 +4,6 @@
     {
         void OpenBlacksmithShop();
         void OpenPotionShop();
-
         void CloseInterfaces();
     }
 }

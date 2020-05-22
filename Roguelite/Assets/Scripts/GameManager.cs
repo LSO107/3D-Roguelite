@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using Dialogue;
 using ItemData;
 using Shops;
 using UI.ItemOptions;
@@ -13,6 +13,7 @@ internal sealed class GameManager : MonoBehaviour
     public ItemContextMenu ItemContextMenu;
     public ItemDatabaseManager ItemDatabase;
     public Tooltip Tooltip;
+    public DialogueTrigger[] Npcs;
 
     private bool m_FadeInProgress;
 
@@ -28,6 +29,8 @@ internal sealed class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        Npcs = FindObjectsOfType<DialogueTrigger>();
     }
 
     public void FadeScreen()

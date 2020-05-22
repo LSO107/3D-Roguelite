@@ -3,5 +3,6 @@
     public interface IEventProvider
     {
         void StartDay();
+        void RegisterGuideEvents();
     }
 }
