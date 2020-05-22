@@ -10,8 +10,11 @@ internal sealed class Torch : MonoBehaviour
         m_Torch = GetComponentInChildren<ParticleSystem>();
         m_Audio = GetComponentInChildren<AudioSource>();
 
-        DayNightCycle.Instance.RegisterEndOfDayEvent(() => Toggle(true));
-        DayNightCycle.Instance.RegisterStartOfDayEvent(() => Toggle(false));
+        //DayNightCycle.Instance.RegisterEndOfDayEvent(() => Toggle(true));
+        //DayNightCycle.Instance.RegisterStartOfDayEvent(() => Toggle(false));
+
+        DayNightCycle.Instance.RegisterScheduledEvent(0.3f, () => Toggle(false));
+        DayNightCycle.Instance.RegisterScheduledEvent(0.7f, () => Toggle(true));
     }
 
     private void Toggle(bool on)
