@@ -1,4 +1,6 @@
-﻿using ItemData;
+﻿using System;
+using System.Collections;
+using ItemData;
 using Shops;
 using UI.ItemOptions;
 using UI.Tooltip;
@@ -6,14 +8,15 @@ using UnityEngine;
 
 internal sealed class GameManager : MonoBehaviour
 {
-    //public PlayerManager PlayerManager;
+    public CanvasGroup ScreenToFade;
+    public BlacksmithGeneration Blacksmith;
     public ItemContextMenu ItemContextMenu;
     public ItemDatabaseManager ItemDatabase;
     public Tooltip Tooltip;
 
-    public static GameManager Instance;
+    private bool m_FadeInProgress;
 
-    public BlacksmithGeneration m_Blacksmith;
+    public static GameManager Instance;
 
     public void Awake()
     {
@@ -27,11 +30,36 @@ internal sealed class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void FadeScreen()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (m_FadeInProgress)
+            return;
+
+        StartCoroutine(ProcessFadingScreen());
+    }
+
+    private IEnumerator ProcessFadingScreen()
+    {
+        StartCoroutine(Fade(1, 1f));
+        yield return new WaitUntil(() => !m_FadeInProgress);
+
+        StartCoroutine(Fade(0, 3f));
+        yield return new WaitUntil(() => !m_FadeInProgress);
+    }
+
+    private IEnumerator Fade(float targetAlpha, float duration)
+    {
+        m_FadeInProgress = true;
+        float currentTime = 0;
+        var start = ScreenToFade.alpha;
+
+        while (currentTime < duration)
         {
-            m_Blacksmith.GenerateShopItems();
+            currentTime += Time.deltaTime;
+            ScreenToFade.alpha = Mathf.Lerp(start, targetAlpha, currentTime / duration);
+            yield return null;
         }
+
+        m_FadeInProgress = false;
     }
 }

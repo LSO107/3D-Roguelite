@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Extensions;
 using Player;
 using UnityEngine;
@@ -8,6 +9,8 @@ namespace Utils
 {
     public static class UserInterfaceUtils
     {
+        private static bool m_FadeInProgress;
+
         public static void OpenUserInterface(CanvasGroup canvasGroup)
         {
             PlayerManager.Instance.DisableInput();

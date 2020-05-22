@@ -1,4 +1,7 @@
-﻿using UI;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Player;
+using UI;
 using UnityEngine;
 
 internal sealed class PortalTeleport : MonoBehaviour
@@ -26,13 +29,21 @@ internal sealed class PortalTeleport : MonoBehaviour
         if (m_IsInTrigger && Input.GetKeyDown(KeyCode.F))
         {
             m_InteractNotice.Hide();
-            m_PlayerTransform.position = m_Location;
-
-            m_PlayerTransform.rotation = Quaternion.Euler(m_Rotation);
+            GameManager.Instance.FadeScreen();
+            StartCoroutine(TeleportPlayer(m_Location));
 
             if (m_AudioClip != null)
                 m_Soundtrack.ChangeClip(m_AudioClip);
         }
+    }
+
+    private IEnumerator TeleportPlayer(Vector3 location)
+    {
+        PlayerManager.Instance.DisableInput(1);
+        yield return new WaitForSeconds(1);
+
+        m_PlayerTransform.position = location;
+        m_PlayerTransform.rotation = Quaternion.Euler(m_Rotation);
     }
 
     private void OnTriggerEnter(Collider other)

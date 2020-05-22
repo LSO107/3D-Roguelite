@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Utils;
 
 internal sealed class DayNightCycle : MonoBehaviour
 {
@@ -82,6 +83,7 @@ internal sealed class DayNightCycle : MonoBehaviour
 
     public void StartNewDay()
     {
+        GameManager.Instance.FadeScreen();
         print("Starting new day :D");
         foreach (var startEvent in m_StartOfDayEvents)
         {

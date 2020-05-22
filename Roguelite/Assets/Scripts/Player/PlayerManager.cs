@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Character.Health;
 using Character.Movement;
 using Currency;
@@ -99,11 +100,23 @@ namespace Player
             m_Camera.LockCamera();
         }
 
+        public void DisableInput(float seconds)
+        {
+            StartCoroutine(DisableInputForSeconds(seconds));
+        }
+
         public void EnableInput()
         {
             GetComponent<CharacterUserInput>().IsFrozen = false;
             GetComponent<PlayerController>().ToggleIsInputBlocked(false);
             m_Camera.FreeCamera();
+        }
+
+        private IEnumerator DisableInputForSeconds(float seconds)
+        {
+            DisableInput();
+            yield return new WaitForSeconds(seconds);
+            EnableInput();
         }
     }
 }
