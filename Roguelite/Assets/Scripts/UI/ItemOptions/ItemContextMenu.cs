@@ -6,10 +6,11 @@ using Player;
 using TMPro;
 using UI.InventoryPanelUI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace UI.ItemOptions
 {
-    internal sealed class ItemContextMenu : MonoBehaviour
+    internal sealed class ItemContextMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private CanvasGroup m_ScreenOverlay;
         [SerializeField] private TextMeshProUGUI m_ItemUseText;
@@ -37,8 +38,6 @@ namespace UI.ItemOptions
 
         public void ShowItemContextMenu(int slotIndex)
         {
-            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(true);
-
             m_SlotIndex = slotIndex;
             SetItemOptionText(slotIndex);
             m_ItemContextMenu.ToggleCanvasGroup(true);
@@ -49,7 +48,6 @@ namespace UI.ItemOptions
         public void HideItemContextMenu()
         {
             m_ItemContextMenu.ToggleCanvasGroup(false);
-            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(false);
         }
 
         public void UseItemButton()
@@ -93,6 +91,16 @@ namespace UI.ItemOptions
                     m_ItemUseText.text = "Use";
                     break;
             }
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(true);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(false);
         }
     }
 }

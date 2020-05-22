@@ -1,4 +1,5 @@
 ﻿using Items.Inventory;
+using Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -26,7 +27,8 @@ namespace UI.Tooltip
         {
             if (m_Item == null || ItemContextMenuOpen)
                 return;
-            
+
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(true);
             m_Tooltip.OpenTooltip(m_Item);
         }
 

@@ -1,11 +1,13 @@
 ﻿using Items.Inventory;
+using Player;
 using UI.Tooltip;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace UI.InventoryPanelUI
 {
-    internal sealed class InventorySlotUI : MonoBehaviour
+    internal sealed class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         private Item m_Item;
         private Image m_Image;
@@ -33,6 +35,16 @@ namespace UI.InventoryPanelUI
             {
                 m_Image.color = Color.clear;
             }
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(true);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(false);
         }
     }
 }

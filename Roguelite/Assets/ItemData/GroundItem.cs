@@ -9,7 +9,6 @@ namespace ItemData
     internal sealed class GroundItem : MonoBehaviour
     {
         private PlayerInventory m_Inventory;
-        private ItemFactory m_ItemFactory;
         private GroundItemManager m_GroundItems;
 
         private string m_ItemId = string.Empty;
@@ -22,7 +21,6 @@ namespace ItemData
         {
             m_Inventory = PlayerManager.Instance.Inventory;
             m_GroundItems = GroundItemManager.Instance;
-            m_ItemFactory = new ItemFactory();
             m_PlayerLocation = PlayerManager.Instance.transform;
         }
 
@@ -39,6 +37,16 @@ namespace ItemData
         public void RegisterGroundItem(string itemId)
         {
             m_ItemId = itemId;
+        }
+
+        private void OnMouseEnter()
+        {
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(true);
+        }
+
+        private void OnMouseExit()
+        {
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(false);
         }
 
         private void OnMouseDown()

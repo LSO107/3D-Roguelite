@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 namespace UI.InventoryPanelUI
 {
-    internal sealed class InventoryUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    internal sealed class InventoryUI : MonoBehaviour
     {
         private PlayerInventory m_Inventory;
 
@@ -80,16 +80,6 @@ namespace UI.InventoryPanelUI
                 m_Inventory.UseItem(slotIndex);
                 UpdateSlot(slotIndex);
             }
-        }
-
-        public void OnPointerEnter(PointerEventData eventData)
-        {
-            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(true);
-        }
-
-        public void OnPointerExit(PointerEventData eventData)
-        {
-            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(false);
         }
     }
 }
