@@ -4,10 +4,9 @@ using UnityEngine.EventSystems;
 
 namespace UI
 {
-    internal sealed class EquipmentButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+    internal sealed class EquipmentButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private EquipmentUI.EquipmentUI m_Eq;
-        [SerializeField] private ButtonManager m_ButtonManager;
 
         private PlayerController m_Player;
 
@@ -27,11 +26,6 @@ namespace UI
                 return;
 
             m_Player.ToggleIsInputBlocked(false);
-        }
-
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            m_ButtonManager.DisableButtons();
         }
     }
 }

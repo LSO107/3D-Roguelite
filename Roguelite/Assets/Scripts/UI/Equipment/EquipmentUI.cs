@@ -71,6 +71,7 @@ namespace UI.EquipmentUI
 
         public void OpenEquipmentInterface()
         {
+            m_ButtonManager.DisableButtons();
             UserInterfaceUtils.OpenUserInterface(m_CanvasGroup);
         }
 

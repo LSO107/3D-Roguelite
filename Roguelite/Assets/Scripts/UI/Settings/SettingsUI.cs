@@ -17,6 +17,7 @@ namespace UI.Settings
 
         public void OpenSettings()
         {
+            m_ButtonManager.DisableButtons();
             UserInterfaceUtils.OpenUserInterface(m_CanvasGroup);
         }
 

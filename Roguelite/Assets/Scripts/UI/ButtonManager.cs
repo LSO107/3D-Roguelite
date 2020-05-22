@@ -2,17 +2,20 @@
 using UnityEngine.UI;
 using Utils;
 
-public sealed class ButtonManager : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private Button[] m_Buttons;
-
-    public void DisableButtons()
+    public sealed class ButtonManager : MonoBehaviour
     {
-        UserInterfaceUtils.DisableButtons(m_Buttons);
-    }
+        [SerializeField] private Button[] m_Buttons;
 
-    public void EnableButtons()
-    {
-        UserInterfaceUtils.EnableButtons(m_Buttons);
+        public void DisableButtons()
+        {
+            UserInterfaceUtils.DisableButtons(m_Buttons);
+        }
+
+        public void EnableButtons()
+        {
+            UserInterfaceUtils.EnableButtons(m_Buttons);
+        }
     }
 }

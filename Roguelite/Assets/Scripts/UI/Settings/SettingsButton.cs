@@ -4,10 +4,9 @@ using UnityEngine.EventSystems;
 
 namespace UI.Settings
 {
-    internal sealed class SettingsButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+    internal sealed class SettingsButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private SettingsUI m_Settings;
-        [SerializeField] private ButtonManager m_ButtonManager;
 
         private PlayerController m_Player;
 
@@ -27,11 +26,6 @@ namespace UI.Settings
                 return;
 
             m_Player.ToggleIsInputBlocked(false);
-        }
-
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            m_ButtonManager.DisableButtons();
         }
     }
 }
