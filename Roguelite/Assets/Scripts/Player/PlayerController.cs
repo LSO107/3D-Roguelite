@@ -9,7 +9,12 @@ namespace Player
         private Animator m_Animator;
         private CharacterCombat m_CharacterCombat;
 
-        private int m_AttackAnimation = 1;
+        private int m_SlashAnimation = 1;
+        private int m_HighSpinAnimation = 2;
+        private int m_SlideAnimation = 3;
+
+        private static readonly int AttackParam = Animator.StringToHash("Attack");
+        private static readonly int IsBlocking = Animator.StringToHash("IsBlocking");
 
         public bool IsInputBlocked { get; private set; }
 
@@ -24,11 +29,27 @@ namespace Player
             if (IsInputBlocked)
                 return;
 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Alpha1))
             {
                 if (CanDoAction)
                 {
-                    StartCoroutine(Attack());
+                    StartCoroutine(CombatAttack(m_SlashAnimation));
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse2) || Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                if (CanDoAction)
+                {
+                    StartCoroutine(CombatAttack(m_HighSpinAnimation));
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse3) || Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                if (CanDoAction)
+                {
+                    StartCoroutine(CombatAttack(m_SlideAnimation));
                 }
             }
 
@@ -46,34 +67,33 @@ namespace Player
             IsInputBlocked = toggle;
         }
 
-        private IEnumerator Attack()
+        private IEnumerator CombatAttack(int anim)
         {
             m_CharacterCombat.UpdateState(CombatState.Attacking);
 
-            m_Animator.SetInteger("Attack", m_AttackAnimation);
-            /*m_AttackType++;
+            m_Animator.SetInteger(AttackParam, anim);
 
-            if (m_AttackType >= 5)
-                m_AttackType = 0;*/
-
-            yield return new WaitUntil(() => m_Animator.GetInteger("Attack") == 0);
+            yield return new WaitUntil(() => m_Animator.GetInteger(AttackParam) == 0);
             m_CharacterCombat.UpdateState(CombatState.None);
         }
 
+        // Method is used in Animation Events to reset Attack
+        // at the end of each animation clip
+        //
         public void ResetAttackAnimation()
         {
-            m_Animator.SetInteger("Attack", 0);
+            m_Animator.SetInteger(AttackParam, 0);
         }
 
         private IEnumerator Block()
         {
             m_CharacterCombat.UpdateState(CombatState.Blocking);
-            m_Animator.SetBool("IsBlocking", true);
+            m_Animator.SetBool(IsBlocking, true);
 
             yield return new WaitUntil(() => Input.GetKeyUp(KeyCode.Mouse1));
 
             m_CharacterCombat.UpdateState(CombatState.None);
-            m_Animator.SetBool("IsBlocking", false);
+            m_Animator.SetBool(IsBlocking, false);
         }
 
         private bool CanDoAction => m_CharacterCombat.CombatState == CombatState.None;
