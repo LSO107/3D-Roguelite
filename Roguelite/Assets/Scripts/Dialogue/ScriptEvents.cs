@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using ScriptingFramework;
+﻿using ScriptingFramework;
 
 namespace Dialogue
 {
@@ -10,6 +9,9 @@ namespace Dialogue
             DayNightCycle.Instance.StartNewDay();
         }
 
+        /// <summary>
+        /// Register Guide events for start and end of day
+        /// </summary>
         public void RegisterGuideEvents()
         {
             var npcManager = NpcManager.Instance;
