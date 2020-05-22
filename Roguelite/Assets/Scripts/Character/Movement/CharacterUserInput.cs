@@ -9,6 +9,7 @@ namespace Character.Movement
         private CharacterMovement m_CharacterMovement;
         private Transform m_Camera;
 
+        public bool IsRunning { get; private set; }
         public bool IsFrozen;
 
         private void Start()
@@ -17,6 +18,11 @@ namespace Character.Movement
                 m_Camera = Camera.main.transform;
 
             m_CharacterMovement = GetComponent<CharacterMovement>();
+        }
+
+        public void ToggleRun()
+        {
+            IsRunning = !IsRunning;
         }
 
         private void FixedUpdate()
@@ -34,7 +40,7 @@ namespace Character.Movement
             var camRight = Vector3.Scale(m_Camera.right, new Vector3(1, 0, 1));
             var movement = vertical * camForward + horizontal * camRight;
 
-            if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
+            if (!IsRunning && !Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
             {
                 movement *= 0.6f;
             }
