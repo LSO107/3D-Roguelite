@@ -2,9 +2,7 @@
 {
     internal enum CombatState
     {  
-        LightAttack,
-        MediumAttack,
-        HeavyAttack,
+        Attacking,
         Blocking,
         None
     }

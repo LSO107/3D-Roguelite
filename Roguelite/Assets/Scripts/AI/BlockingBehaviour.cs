@@ -7,7 +7,7 @@ using Random = System.Random;
 
 internal sealed class BlockingBehaviour : MonoBehaviour, ICombatBehaviour
 {
-    private EnemyAICombat m_EnemyAiCombat;
+    private EnemyCombatLogic m_EnemyCombat;
     private CombatState m_CurrentState;
 
     private float m_BlockTime = 2;
@@ -22,7 +22,7 @@ internal sealed class BlockingBehaviour : MonoBehaviour, ICombatBehaviour
 
     public void Initialize(Random random)
     {
-        m_EnemyAiCombat = GetComponent<EnemyAICombat>();
+        m_EnemyCombat = GetComponent<EnemyCombatLogic>();
         m_Random = random;
     }
 
@@ -34,17 +34,17 @@ internal sealed class BlockingBehaviour : MonoBehaviour, ICombatBehaviour
     public void Execute()
     {
         Debug.Log("Blocking now");
-        m_EnemyAiCombat.Animator.SetBool(IsBlocking, true);
-        m_EnemyAiCombat.UpdateCombatState(Character.Combat.CombatState.Blocking);
+        m_EnemyCombat.Animator.SetBool(IsBlocking, true);
+        m_EnemyCombat.UpdateCombatState(Character.Combat.CombatState.Blocking);
     }
 
     public void Stop()
     {
         Debug.Log("Stopped blocking");
-        m_EnemyAiCombat.Animator.SetBool(IsBlocking, false);
+        m_EnemyCombat.Animator.SetBool(IsBlocking, false);
     }
 
-    public void ProcessData(AIDataObject data)
+    public void ProcessData(AiDataObject data)
     {
         if (data.DistanceFromPlayer <= 5)
         {
@@ -53,13 +53,13 @@ internal sealed class BlockingBehaviour : MonoBehaviour, ICombatBehaviour
             if (m_CurrentTime >= m_BlockTime)
             {
                 var randomTime = m_Random.RandomFloat(MinimumBlockTime, MaximumBlockTime);
-                m_EnemyAiCombat.RegisterExecutionRequest(this, randomTime);
+                m_EnemyCombat.RegisterExecutionRequest(this, randomTime);
                 m_CurrentTime = 0f;
             }
         }
         else
         {
-            m_EnemyAiCombat.UnregisterExecutionRequest(this);
+            m_EnemyCombat.UnregisterExecutionRequest(this);
             m_CurrentTime = 0;
         }
     }

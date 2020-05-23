@@ -11,11 +11,4 @@ namespace Character.Combat
             CombatState = state;
         }
     }
-
-    public enum CombatState
-    {
-        None,
-        Attacking,
-        Blocking
-    }
 }

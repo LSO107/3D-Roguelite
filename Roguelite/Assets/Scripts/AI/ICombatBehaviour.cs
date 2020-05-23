@@ -3,7 +3,7 @@
     internal interface ICombatBehaviour
     {
         void Initialize(System.Random random);
-        void ProcessData(AIDataObject data);
+        void ProcessData(AiDataObject data);
         void UpdateState(CombatState state);
         void Execute();
         void Stop();
