@@ -3,13 +3,16 @@ using UnityEngine;
 
 namespace Dialogue
 {
+    [RequireComponent(typeof(NpcData))]
     internal sealed class DialogueTrigger : MonoBehaviour
     {
-        public int NpcId;
+        [SerializeField] private int NpcId;
 
         [SerializeField] private InteractNotice m_InteractNotice;
 
         private bool m_IsInTrigger;
+
+        public int GetNpcId => NpcId;
 
         private void Update()
         {

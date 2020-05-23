@@ -10,8 +10,6 @@ namespace RogueliteNpcScripts
     {
         public override void Execute()
         {
-            Event.RegisterGuideEvents();
-
             switch (State)
             {
                 case 0:

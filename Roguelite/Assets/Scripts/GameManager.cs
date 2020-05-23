@@ -8,6 +8,7 @@ using UnityEngine;
 
 internal sealed class GameManager : MonoBehaviour
 {
+    public GameObject PuffEffect;
     public CanvasGroup ScreenToFade;
     public BlacksmithGeneration Blacksmith;
     public ItemContextMenu ItemContextMenu;
@@ -31,6 +32,11 @@ internal sealed class GameManager : MonoBehaviour
         }
 
         Npcs = FindObjectsOfType<DialogueTrigger>();
+    }
+
+    public void InstantiatePuff(Vector3 location)
+    {
+        Instantiate(PuffEffect, location + Vector3.up, Quaternion.identity);
     }
 
     public void FadeScreen()

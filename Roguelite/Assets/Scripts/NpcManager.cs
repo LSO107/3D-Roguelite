@@ -21,33 +21,46 @@ internal sealed class NpcManager : MonoBehaviour
         m_Npcs = FindObjectsOfType<DialogueTrigger>();
     }
 
-    /// <summary>
-    /// Returns the first GameObject found containing the npcId
-    /// </summary>
-    public GameObject GetNpc(int npcId)
+    private void Start()
     {
-        return m_Npcs.First(n => n.NpcId == npcId).gameObject;
+        RegisterGuideEvents();
     }
 
     /// <summary>
-    /// Teleport the Npc gameObject to the location
+    /// Returns the first GameObject found containing the npcId
     /// </summary>
-    public void TeleportNpc(GameObject npc, Vector3 location)
+    public NpcData GetNpc(int npcId)
     {
-        StartCoroutine(TeleportNpcWithDelay(npc, location, 0));
+        return m_Npcs.First(n => n.GetNpcId == npcId).GetComponent<NpcData>();
     }
 
     /// <summary>
     /// Teleport the Npc gameObject to the location after the delay period
     /// </summary>
-    public void TeleportNpc(GameObject npc, Vector3 location, float delay)
+    public void TeleportNpc(NpcData npc, Vector3 location, float delay)
     {
         StartCoroutine(TeleportNpcWithDelay(npc, location, delay));
     }
 
-    private IEnumerator TeleportNpcWithDelay(GameObject npc, Vector3 location, float delay)
+    private static IEnumerator TeleportNpcWithDelay(NpcData npc, Vector3 location, float delay)
     {
+        var gm = GameManager.Instance;
+
+        gm.InstantiatePuff(npc.StartLocation);
+        gm.InstantiatePuff(npc.CurrentLocation);
+
         yield return new WaitForSeconds(delay);
         npc.transform.position = location;
+    }
+
+    /// <summary>
+    /// Register Guide events for start and end of day
+    /// </summary>
+    private void RegisterGuideEvents()
+    {
+        var npc = GetNpc(3);
+
+        DayNightCycle.Instance.RegisterStartOfDayEvent(() => TeleportNpc(npc, npc.HiddenLocation, 0.75f));
+        DayNightCycle.Instance.RegisterEndOfDayEvent(() => TeleportNpc(npc, npc.StartLocation, 0.75f));
     }
 }
