@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Character.Movement;
 using Extensions;
 using Player;
 using UnityEngine;
@@ -9,17 +9,17 @@ namespace Utils
 {
     public static class UserInterfaceUtils
     {
-        private static bool m_FadeInProgress;
-
         public static void OpenUserInterface(CanvasGroup canvasGroup)
         {
-            PlayerManager.Instance.DisableInput();
+            PlayerManager.Instance.GetComponent<CharacterUserInput>().IsFrozen = true;
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(true);
             canvasGroup.ToggleCanvasGroup(true);
         }
 
         public static void CloseUserInterface(CanvasGroup canvasGroup)
         {
-            PlayerManager.Instance.EnableInput();
+            PlayerManager.Instance.GetComponent<CharacterUserInput>().IsFrozen = false;
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(false);
             canvasGroup.ToggleCanvasGroup(false);
         }
 

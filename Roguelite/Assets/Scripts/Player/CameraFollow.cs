@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Character.Movement;
+using UnityEngine;
 
 namespace Player
 {
@@ -17,6 +19,30 @@ namespace Player
         {
             m_Offset = m_Player.position - transform.position;
             FreeCamera();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.LeftAlt))
+            {
+                if (m_CameraMode == CameraMode.Free)
+                {
+                    LockCamera();
+                }
+                else
+                {
+                    FreeCamera();
+                }
+            }
+
+            if (m_CameraMode == CameraMode.Locked)
+            {
+                var horizontal = Input.GetAxis("Horizontal");
+                var vertical = Input.GetAxis("Vertical");
+
+                if (Math.Abs(horizontal) > 0 || Math.Abs(vertical) > 0)
+                    FreeCamera();
+            }
         }
 
         private void LateUpdate()
@@ -42,15 +68,15 @@ namespace Player
         public void LockCamera()
         {
             m_CameraMode = CameraMode.Locked;
-            /*Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;*/
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         public void FreeCamera()
         {
             m_CameraMode = CameraMode.Free;
-            /*Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;*/
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 
