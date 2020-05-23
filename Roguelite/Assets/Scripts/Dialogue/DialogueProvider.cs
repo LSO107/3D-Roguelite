@@ -32,6 +32,11 @@ namespace Dialogue
             {
                 DialogueSetup.Instance.DisplayThreeOptions(optionsList[0], optionsList[1], optionsList[2]);
             }
+
+            if (optionsList.Count == 4)
+            {
+                DialogueSetup.Instance.DisplayFourOptions(optionsList[0], optionsList[1], optionsList[2], optionsList[3]);
+            }
         }
 
         public void EndChat()

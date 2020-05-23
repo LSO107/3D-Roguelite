@@ -37,11 +37,13 @@ namespace Player
 
             if (m_CameraMode == CameraMode.Locked)
             {
-                var horizontal = Input.GetAxis("Horizontal");
-                var vertical = Input.GetAxis("Vertical");
-
-                if (Math.Abs(horizontal) > 0 || Math.Abs(vertical) > 0)
+                if (Input.GetKeyDown(KeyCode.W) ||
+                    Input.GetKeyDown(KeyCode.A) ||
+                    Input.GetKeyDown(KeyCode.S) ||
+                    Input.GetKeyDown(KeyCode.D))
+                {
                     FreeCamera();
+                }
             }
         }
 
