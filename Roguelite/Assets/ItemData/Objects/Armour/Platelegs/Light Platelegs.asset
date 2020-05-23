@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Light Platelegs
   Icon: {fileID: 21300000, guid: 7608d761aab2e88488f878caef9d5930, type: 3}
   Prefab: {fileID: 5377068278132016804, guid: c8c7bd10cffb33542a387f0e1f37ff25, type: 3}
-  BaseGoldCost: 0
+  BaseGoldCost: 4
   EquipmentSlotId: 2
   m_Attack: 5
   m_Strength: 0

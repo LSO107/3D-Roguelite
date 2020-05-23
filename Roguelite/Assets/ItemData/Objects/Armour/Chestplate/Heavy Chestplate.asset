@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Heavy Chestplate
   Icon: {fileID: 21300000, guid: 0738c0dd6ee530a4a9268deb1cee75e8, type: 3}
   Prefab: {fileID: 276160558369281293, guid: a138e4526ebf85c4685fe2bbbfceb0ec, type: 3}
-  BaseGoldCost: 0
+  BaseGoldCost: 61
   EquipmentSlotId: 1
   m_Attack: 0
   m_Strength: 5

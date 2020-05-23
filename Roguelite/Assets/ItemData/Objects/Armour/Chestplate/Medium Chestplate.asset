@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Medium Chestplate
   Icon: {fileID: 21300000, guid: 1445cfb578565454f913232b36f22947, type: 3}
   Prefab: {fileID: 276160558369281293, guid: a138e4526ebf85c4685fe2bbbfceb0ec, type: 3}
-  BaseGoldCost: 0
+  BaseGoldCost: 42
   EquipmentSlotId: 1
   m_Attack: 3
   m_Strength: 5
