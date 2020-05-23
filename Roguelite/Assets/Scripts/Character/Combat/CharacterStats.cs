@@ -9,10 +9,12 @@ namespace Character.Combat
     [RequireComponent(typeof(HealthObject))]
     internal sealed class CharacterStats : MonoBehaviour
     {
+#pragma warning disable 0649
         [SerializeField] public SplatMarker splatMarker;
         [SerializeField] private int CombatLevel;
         public Stat Damage;
         public Stat Defence;
+#pragma warning restore 0649
 
         private HealthObject m_HealthObject;
         private ExperienceObject m_PlayerExperience;
@@ -39,7 +41,6 @@ namespace Character.Combat
             if (range < 0)
                 range = 0;
 
-            Debug.Log($"Character took {range} amount of damage.");
             splatMarker.Show(range);
             m_HealthObject.Damage(range);
 

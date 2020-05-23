@@ -1,4 +1,5 @@
-﻿using ItemGeneration;
+﻿using System;
+using ItemGeneration;
 using Items;
 using Items.Inventory;
 using Player;

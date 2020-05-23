@@ -54,8 +54,6 @@ namespace Player
             if (finalDamage < 0)
                 finalDamage = 0;
 
-            Debug.Log($"Damage: {randomDamage}, Blocked Damage: {blockedDamage}, Final Damage: {finalDamage}");
-
             m_HealthObject.Damage(finalDamage);
             m_SplatMarker.Show(finalDamage);
 

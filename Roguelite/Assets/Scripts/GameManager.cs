@@ -8,6 +8,7 @@ using UnityEngine;
 
 internal sealed class GameManager : MonoBehaviour
 {
+#pragma warning disable 0649
     public GameObject PuffEffect;
     public CanvasGroup ScreenToFade;
     public BlacksmithGeneration Blacksmith;
@@ -15,6 +16,7 @@ internal sealed class GameManager : MonoBehaviour
     public ItemDatabaseManager ItemDatabase;
     public Tooltip Tooltip;
     public DialogueTrigger[] Npcs;
+#pragma warning restore 0649
 
     private bool m_FadeInProgress;
 

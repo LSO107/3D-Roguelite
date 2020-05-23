@@ -12,16 +12,17 @@ namespace UI.EquipmentUI
 {
     internal sealed class EquipmentUI : MonoBehaviour
     {
+#pragma warning disable 0649
         [SerializeField] private ButtonManager m_ButtonManager;
+        [SerializeField] private TextMeshProUGUI m_StatTypesText;
+        [SerializeField] private TextMeshProUGUI m_StatBonusesText;
+        [SerializeField] private TextMeshProUGUI m_CombatLevelText;
+#pragma warning restore 0649
 
         private PlayerManager m_PlayerManager;
         private CanvasGroup m_CanvasGroup;
 
-        [SerializeField] private TextMeshProUGUI m_StatTypesText;
-        [SerializeField] private TextMeshProUGUI m_StatBonusesText;
-        [SerializeField] private TextMeshProUGUI m_CombatLevelText;
-
-        public List<EquipmentSlotUI> EquipmentSlots = new List<EquipmentSlotUI>();
+        public List<EquipmentSlotUI> equipmentSlots = new List<EquipmentSlotUI>();
 
         public bool IsOpen => m_CanvasGroup.interactable;
 
@@ -30,7 +31,7 @@ namespace UI.EquipmentUI
             m_PlayerManager = PlayerManager.Instance;
             m_CanvasGroup = GetComponent<CanvasGroup>();
 
-            foreach (var button in EquipmentSlots)
+            foreach (var button in equipmentSlots)
             {
                 var eventTrigger = button.GetComponent<EventTrigger>();
                 AddCallbackToButton(eventTrigger, button.SlotId);
@@ -43,7 +44,7 @@ namespace UI.EquipmentUI
         {
             var definition = m_PlayerManager.Equipment.GetEquipmentInSlot(slot);
 
-            var matchingSlot = EquipmentSlots.Single(e => e.SlotId == slot);
+            var matchingSlot = equipmentSlots.Single(e => e.SlotId == slot);
             matchingSlot.UpdateItemSprite(definition);
         }
 

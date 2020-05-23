@@ -5,12 +5,12 @@ namespace StateMachineBehaviours
 {
     public class SlashBehaviour : StateMachineBehaviour
     {
-        [SerializeField] private AudioClip m_SlashClip;
-        [SerializeField] private float m_Delay = 0.3f;
+        [SerializeField] private AudioClip slashClip = null;
+        [SerializeField] private float delay = 0.3f;
 
-        override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            PlayerManager.Instance.SoundEffects.Play(m_SlashClip, m_Delay);
+            PlayerManager.Instance.SoundEffects.Play(slashClip, delay);
         }
     }
 }

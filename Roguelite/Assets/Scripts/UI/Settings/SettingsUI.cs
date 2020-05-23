@@ -5,7 +5,7 @@ namespace UI.Settings
 {
     internal sealed class SettingsUI : MonoBehaviour
     {
-        [SerializeField] private ButtonManager m_ButtonManager;
+        [SerializeField] private ButtonManager m_ButtonManager = null;
         private CanvasGroup m_CanvasGroup;
 
         public bool IsOpen => m_CanvasGroup.interactable;

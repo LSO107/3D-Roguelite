@@ -16,6 +16,9 @@ namespace Shops
         {
             DayNightCycle.Instance.RegisterStartOfDayEvent(() => StartCoroutine(Fade(0f, 0.5f)));
             DayNightCycle.Instance.RegisterEndOfDayEvent(() => StartCoroutine(Fade(1f, 0.5f)));
+
+            DayNightCycle.Instance.RegisterScheduledEvent(0.3f, () => StartCoroutine(Fade(0f, 0.5f)));
+            DayNightCycle.Instance.RegisterScheduledEvent(0.7f, () => StartCoroutine(Fade(1f, 0.5f)));
         }
 
         private IEnumerator Fade(float targetIntensity, float seconds)

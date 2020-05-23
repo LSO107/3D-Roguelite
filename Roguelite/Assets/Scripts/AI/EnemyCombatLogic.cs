@@ -101,38 +101,10 @@ namespace AI
 
         private IEnumerator BlockBehaviourChange(float time)
         {
-            print($"Blocking behaviour for {time} seconds.");
-
             m_CanPickNewBehaviour = false;
             yield return new WaitForSeconds(time);
 
             m_CanPickNewBehaviour = true;
-        }
-
-        private bool IsInState(params CombatState[] states)
-        {
-            return states.Any(state => m_CurrentState == state);
-        }
-
-        private void TransitionState(CombatState newState)
-        {
-            if (m_CurrentState == newState)
-            {
-                return;
-            }
-
-            m_CurrentState = newState;
-
-            UpdateChildrenStates();
-            Debug.Log(newState);
-        }
-
-        private void UpdateChildrenStates()
-        {
-            foreach (var behaviour in m_CombatBehaviours)
-            {
-                behaviour.UpdateState(m_CurrentState);
-            }
         }
     }
 }

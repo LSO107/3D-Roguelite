@@ -9,8 +9,10 @@ namespace Currency
 
         private CurrencyDefinition m_CurrencyDefinition;
 
+#pragma warning disable 0649
         [SerializeField] private TextMeshProUGUI m_GoldQuantityText;
         [SerializeField] private TextMeshProUGUI m_TokenQuantityText;
+#pragma warning restore 0649
 
         private void Awake()
         {

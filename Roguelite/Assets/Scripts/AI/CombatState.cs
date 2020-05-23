@@ -4,6 +4,6 @@
     {  
         Attacking,
         Blocking,
-        None
+        Idle
     }
 }

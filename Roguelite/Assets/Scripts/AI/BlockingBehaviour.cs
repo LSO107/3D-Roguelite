@@ -8,7 +8,6 @@ using Random = System.Random;
 internal sealed class BlockingBehaviour : MonoBehaviour, ICombatBehaviour
 {
     private EnemyCombatLogic m_EnemyCombat;
-    private CombatState m_CurrentState;
 
     private float m_BlockTime = 2;
     private float m_CurrentTime;
@@ -24,11 +23,6 @@ internal sealed class BlockingBehaviour : MonoBehaviour, ICombatBehaviour
     {
         m_EnemyCombat = GetComponent<EnemyCombatLogic>();
         m_Random = random;
-    }
-
-    public void UpdateState(CombatState state)
-    {
-        m_CurrentState = state;
     }
 
     public void Execute()

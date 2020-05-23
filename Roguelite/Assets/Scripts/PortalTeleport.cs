@@ -6,6 +6,7 @@ using UnityEngine;
 
 internal sealed class PortalTeleport : MonoBehaviour
 {
+#pragma warning disable 0649
     [SerializeField] private Vector3 m_Location;
     [SerializeField] private Vector3 m_Rotation;
     [SerializeField] private bool m_PortalActive = true;
@@ -13,6 +14,7 @@ internal sealed class PortalTeleport : MonoBehaviour
     [SerializeField] private string m_NoticeMessage;
     [SerializeField] private Soundtrack m_Soundtrack;
     [SerializeField] private AudioClip m_AudioClip;
+#pragma warning restore 0649
 
     private Transform m_PlayerTransform;
 

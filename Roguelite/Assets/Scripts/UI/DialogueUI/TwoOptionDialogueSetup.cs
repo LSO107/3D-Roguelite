@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class TwoOptionDialogueSetup : MonoBehaviour
 {
+#pragma warning disable 0649
     [SerializeField] private Text m_OptionOne;
     [SerializeField] private Button m_ButtonOne;
     [SerializeField] private Text m_OptionTwo;
     [SerializeField] private Button m_ButtonTwo;
+#pragma warning restore 0649
 
     public void Setup(DialogueOption optionOne, DialogueOption optionTwo, Action<int> onClick)
     {

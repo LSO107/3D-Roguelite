@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Character.Combat;
 using Extensions;
 using UnityEngine;
 
@@ -10,7 +9,6 @@ namespace AI
     internal sealed class AttackingBehaviour : MonoBehaviour, ICombatBehaviour
     {
         private EnemyCombatLogic m_EnemyCombat;
-        private CombatState m_CurrentState;
         private Random m_Random;
         private Animator m_Animator;
 
@@ -21,6 +19,9 @@ namespace AI
         private const float MaximumAttackTime = 6.0f;
 
         private bool m_CanAttack;
+        private bool m_IsAttacking;
+
+        private static readonly int AttackInt = Animator.StringToHash("Attack");
 
         public void Initialize(Random random)
         {
@@ -29,29 +30,31 @@ namespace AI
             m_Random = random;
         }
 
-        public void Update()
+        private void OnGUI()
         {
-            if (!m_CanAttack)
-                return;
-
-            // If some bool is true
-            StartCoroutine(Attack());
+            GUILayout.Label($"Attack: {m_Animator.GetInteger(AttackInt)}");
+            GUILayout.Label($"Can Attack: {m_CanAttack}");
         }
 
-        public void UpdateState(CombatState state)
+        public void Update()
         {
-            m_CurrentState = state;
+            if (!m_CanAttack || m_IsAttacking)
+                return;
+
+            Debug.Log("Doing attack :D");
+            // If some bool is true
+            StartCoroutine(Attack());
         }
 
         public void Execute()
         {
             m_CanAttack = true;
-            Debug.Log("Attacking now.");
             m_EnemyCombat.UpdateCombatState(Character.Combat.CombatState.Attacking);
         }
 
         public void Stop()
         {
+            Debug.Log("Stopping attacking??");
             m_CanAttack = false;
         }
 
@@ -77,12 +80,14 @@ namespace AI
 
         private IEnumerator Attack()
         {
-            // Set some bool to true
-            // Set the attack int
-            // Wait until the attack int is back to 0
-            yield return new WaitUntil(() => m_Animator.GetBool("") == false);
+            m_IsAttacking = false;
 
-            // Set some bool to false
+            var rnd = m_Random.Next(1, 4);
+            m_Animator.SetInteger(AttackInt, rnd);
+
+            yield return new WaitUntil(() => m_Animator.GetInteger(AttackInt) == 0);
+
+            m_IsAttacking = true;
         }
     }
 }

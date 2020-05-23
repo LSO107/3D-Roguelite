@@ -15,6 +15,10 @@ namespace AI
 
         public static AiDataObject GetData(Transform requester)
         {
+            // Get Enemy health data, how much lost in last X seconds? Current health?
+            // Time since last player attack?
+            // How long has player been blocking for?
+
             var distance = GetDistance(requester.position);
             var colliders = GetSurroundingTransforms(requester.position);
             return new AiDataObject(PlayerHealth.CurrentHealth, PlayerLocation, distance, colliders);

@@ -1,4 +1,5 @@
-﻿using Extensions;
+﻿using Dialogue;
+using Extensions;
 using Player;
 using ScriptingFramework;
 using UI.ShopUI;
@@ -6,6 +7,7 @@ using UnityEngine;
 
 internal sealed class DialogueSetup : MonoBehaviour
 {
+#pragma warning disable 0649
     [SerializeField] private FourOptionDialogueSetup m_FourOptions;
     [SerializeField] private ThreeOptionDialogueSetup m_ThreeOptions;
     [SerializeField] private TwoOptionDialogueSetup m_TwoOptions;
@@ -18,6 +20,8 @@ internal sealed class DialogueSetup : MonoBehaviour
 
     [SerializeField] private ShopUI m_Blacksmith;
     [SerializeField] private ShopUI m_PotionShop;
+#pragma warning restore 0649
+
     private CanvasGroup m_ActiveCanvasGroup;
 
     public static DialogueSetup Instance;

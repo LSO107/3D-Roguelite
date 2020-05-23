@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Character.Movement;
 using Extensions;
 using UnityEngine;
@@ -90,6 +89,29 @@ namespace AI
             }
 
             m_Movement.Move((m_HorizontalDirection + m_VerticalDirection) * 0.6f);
+        }
+
+        private void Retreat()
+        {
+            // Is my health low?
+
+            // Have I lost X health in the past X seconds?
+
+            // Move back from player + block?
+        }
+
+        private void Charge()
+        {
+            // Enough distance from player?
+
+            // Move to player at X speed
+
+            // Chance to attack or block at end of charge?
+        }
+
+        private void Circle()
+        {
+
         }
 
         private void AvoidObstacles(IEnumerable<Transform> transforms)
