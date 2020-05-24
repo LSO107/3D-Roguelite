@@ -12,7 +12,6 @@ namespace Shops
     internal sealed class BlacksmithGeneration : Shop
     {
         [SerializeField] private ShopUI m_BlacksmithShopUI;
-        [SerializeField] private int m_Slots;
 
         private List<Item> m_ShopItems;
         private ItemFactory m_ItemFactory;
@@ -27,12 +26,6 @@ namespace Shops
             m_Currency = PlayerManager.Instance.Currency;
                 
             GenerateShopItems();
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.K))
-                GenerateShopItems();
         }
 
         public void GenerateShopItems()
