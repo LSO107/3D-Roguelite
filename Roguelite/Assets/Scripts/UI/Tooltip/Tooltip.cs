@@ -21,6 +21,21 @@ namespace UI.Tooltip
             m_Text = GetComponentInChildren<TextMeshProUGUI>();
         }
 
+        public void ShowTooltipItemNameOnly(Item item)
+        {
+            transform.position = Input.mousePosition;
+
+            string colour;
+
+            if (item is Equipment eq)
+                colour = GetNameColour(eq.Rarity);
+            else
+                colour = "#c0c0c0ff";
+
+            m_Text.text = $"<size=20><color={colour}>{item.Name}</color></size>";
+            m_CanvasGroup.ToggleCanvasGroup(true);
+        }
+
         public void OpenTooltip(Item item)
         {
             transform.position = Input.mousePosition;

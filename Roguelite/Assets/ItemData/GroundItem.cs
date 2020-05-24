@@ -1,8 +1,7 @@
-﻿using System;
-using ItemGeneration;
-using Items;
+﻿using Items;
 using Items.Inventory;
 using Player;
+using UI.Tooltip;
 using UnityEngine;
 
 namespace ItemData
@@ -11,6 +10,7 @@ namespace ItemData
     {
         private PlayerInventory m_Inventory;
         private GroundItemManager m_GroundItems;
+        private Tooltip m_Tooltip;
 
         private string m_ItemId = string.Empty;
         private float m_Timer;
@@ -23,6 +23,7 @@ namespace ItemData
             m_Inventory = PlayerManager.Instance.Inventory;
             m_GroundItems = GroundItemManager.Instance;
             m_PlayerLocation = PlayerManager.Instance.transform;
+            m_Tooltip = GameManager.Instance.Tooltip;
         }
 
         private void Update()
@@ -45,9 +46,16 @@ namespace ItemData
             PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(true);
         }
 
+        private void OnMouseOver()
+        {
+            var item = m_GroundItems.FindItem(m_ItemId);
+            m_Tooltip.ShowTooltipItemNameOnly(item);
+        }
+
         private void OnMouseExit()
         {
             PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(false);
+            m_Tooltip.CloseTooltip();
         }
 
         private void OnMouseDown()
