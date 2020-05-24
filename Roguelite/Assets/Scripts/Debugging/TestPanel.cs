@@ -64,11 +64,6 @@ internal sealed class TestPanel : MonoBehaviour
         if (number == 1)
         {
             item = m_ItemFactory.GenerateEquipmentFromTemplate(EquipmentSlotId.Weapon);
-            var t = item as Equipment;
-            foreach (var stat in t.StatBonuses.Values)
-            {
-                Debug.Log(stat);
-            }
         }
         else
         {

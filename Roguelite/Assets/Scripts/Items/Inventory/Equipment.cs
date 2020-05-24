@@ -14,8 +14,9 @@ namespace Items.Inventory
         public int Strength { get; }
         public int Defence { get; }
         public int Agility { get; }
+        public RarityModifier Rarity { get; }
 
-        public Equipment(EquipmentDefinition eq)
+        public Equipment(EquipmentDefinition eq, RarityModifier rarity)
             : base(eq.Name, eq.Icon, eq.Prefab, eq.BaseGoldCost)
         {
             EquipmentSlotId = eq.EquipmentSlotId;
@@ -24,6 +25,7 @@ namespace Items.Inventory
             Defence = eq.m_Defence;
             Strength = eq.m_Strength;
             Agility = eq.m_Agility;
+            Rarity = rarity;
         }
     }
 }

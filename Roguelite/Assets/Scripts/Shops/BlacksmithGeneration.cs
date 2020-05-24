@@ -29,6 +29,12 @@ namespace Shops
             GenerateShopItems();
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.K))
+                GenerateShopItems();
+        }
+
         public void GenerateShopItems()
         {
             m_ShopItems = new List<Item>

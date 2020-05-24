@@ -6,8 +6,8 @@ namespace Items.Inventory
     {
         public WeaponType WeaponType { get; }
 
-        public Weapon(WeaponDefinition definition)
-            : base(definition)
+        public Weapon(WeaponDefinition definition, RarityModifier rarity)
+            : base(definition, rarity)
         {
             WeaponType = definition.WeaponType;
         }

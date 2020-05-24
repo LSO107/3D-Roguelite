@@ -54,7 +54,7 @@ namespace ItemGeneration
                     itemDef = itemDatabase.GetRandomPlatelegs();
                     break;
             }
-
+            
             var rarity = GetRandomRarity();
             return GenerateRandomBonuses(itemDef, rarity);
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Extensions;
+using ItemData;
 using Items.Definitions;
 using Items.Inventory;
 using Player;
@@ -56,7 +57,8 @@ namespace UI.Tooltip
 
             var eq = PlayerManager.Instance.Equipment;
 
-            sb.Append($"<size=20><color=orange>{equipment.Name}</color></size>\n");
+            var colour = GetNameColour(equipment.Rarity);
+            sb.Append($"<size=20><color={colour}>{equipment.Name}</color></size>\n");
 
             foreach (var value in Enum.GetValues(typeof(StatBonus)))
             {
@@ -77,8 +79,23 @@ namespace UI.Tooltip
                     sb.Append($"<color=white>{inventoryStat} {value}</color>\n");
                 }
             }
-
+            
             return sb.ToString();
+        }
+
+        private static string GetNameColour(RarityModifier rarity)
+        {
+            switch (rarity)
+            {
+                case RarityModifier.Common:
+                    return "#c0c0c0ff";
+                case RarityModifier.Rare:
+                    return "#0471FD";
+                case RarityModifier.Epic:
+                    return "orange";
+                default:
+                    throw new ArgumentException("Did not recognise rarity modifier");
+            }
         }
 
         /// <summary>

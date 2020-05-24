@@ -38,7 +38,7 @@ namespace ItemGeneration
             m_Log.Log($"Min bonus is {minBonus}", LogLevel.Info);
             m_Log.Log($"Max bonus is {maxBonus}", LogLevel.Info);
 
-            return GenerateEquipmentWithBonuses(definition, minBonus, maxBonus);
+            return GenerateEquipmentWithBonuses(definition, rarity, minBonus, maxBonus);
         }
 
         private static float GetMaxBonus(RarityModifier rarity)
@@ -49,11 +49,11 @@ namespace ItemGeneration
             return levelBonus + rarityBonus;
         }
 
-        private Equipment GenerateEquipmentWithBonuses(EquipmentDefinition def, int minBonus, int maxBonus)
+        private Equipment GenerateEquipmentWithBonuses(EquipmentDefinition def, RarityModifier rarity, int minBonus, int maxBonus)
         {
             var statsToBoost = def.GetStatBonuses().ToList();
 
-            var equipment = new Equipment(def);
+            var equipment = new Equipment(def, rarity);
 
             foreach (var stat in statsToBoost)
             {
