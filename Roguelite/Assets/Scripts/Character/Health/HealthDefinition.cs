@@ -6,6 +6,7 @@ namespace Character.Health
     {
         public int CurrentHealth { get; private set; }
         public int MaxHealth { get; }
+        public int DamageTaken { get; private set; }
         public bool IsDead => CurrentHealth <= 0;
 
         public HealthDefinition()
@@ -41,8 +42,14 @@ namespace Character.Health
             if (IsDead)
                 return;
 
+            DamageTaken += amount;
             CurrentHealth -= amount;
             ClampHealth();
+        }
+
+        public void ResetDamageTaken()
+        {
+            DamageTaken = 0;
         }
 
         /// <summary>

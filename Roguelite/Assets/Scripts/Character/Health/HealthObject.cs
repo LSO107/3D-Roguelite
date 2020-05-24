@@ -7,13 +7,14 @@ namespace Character.Health
     {
         public int CurrentHealth => m_HealthDefinition.CurrentHealth;
         public int MaxHealth => m_HealthDefinition.MaxHealth;
+        public int DamageTaken => m_HealthDefinition.DamageTaken;
 
         protected HealthDefinition m_HealthDefinition;
 
         public BarUpdater m_HealthBarUpdater;
 
-        protected float m_NextRegenerationTime;
-        protected float m_RegenerationTime = 10;
+        protected float NextRegenerationTime;
+        protected float RegenerationTime = 10;
 
         protected abstract void ActionOnDeath();
 
@@ -30,6 +31,7 @@ namespace Character.Health
 
         public void Damage(int amount)
         {
+            
             m_HealthDefinition.Damage(amount);
             m_HealthBarUpdater.UpdateBar(CurrentHealth, MaxHealth);
 
@@ -41,9 +43,9 @@ namespace Character.Health
 
         protected void RegenerateHealth()
         {
-            if (Time.time >= m_NextRegenerationTime && CurrentHealth < MaxHealth)
+            if (Time.time >= NextRegenerationTime && CurrentHealth < MaxHealth)
             {
-                m_NextRegenerationTime = Time.time + m_RegenerationTime;
+                NextRegenerationTime = Time.time + RegenerationTime;
                 Heal(1);
             }
         }

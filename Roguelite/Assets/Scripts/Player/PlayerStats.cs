@@ -42,6 +42,8 @@ namespace Player
             Damage = new Stat();
             Defence = new Stat();
 
+            Damage.SetBaseValue(5);
+
             UpdateStats();
         }
 

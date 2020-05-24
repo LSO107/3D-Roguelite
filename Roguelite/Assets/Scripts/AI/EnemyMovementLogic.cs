@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Character.Movement;
-using Extensions;
 using UnityEngine;
+
 using Random = System.Random;
 
 namespace AI
@@ -11,121 +11,72 @@ namespace AI
     {
         private CharacterMovement m_Movement;
 
-        private float m_ChangeHorizontalTime = 3f;
-        private float m_ChangeVerticalTime = 3f;
-
-        private float m_VerticalTime;
-        private float m_HorizontalTime;
-
-        private bool m_IsAvoidingObstacles;
-
-        private Vector3 m_HorizontalDirection;
-        private Vector3 m_VerticalDirection;
-
         private Random m_Random;
+
+        private IMovementBehaviour m_CurrentBehaviour;
+        private IMovementBehaviour[] m_AllBehaviours;
+
+        private List<IMovementBehaviour> m_ExecutingBehaviours;
 
         private void Awake()
         {
             m_Movement = GetComponent<CharacterMovement>();
             m_Random = new Random();
+
+            m_ExecutingBehaviours = new List<IMovementBehaviour>();
+            m_AllBehaviours = GetComponents<IMovementBehaviour>();
+
+            foreach (var behaviour in m_AllBehaviours)
+            {
+                behaviour.Initialize(m_Random, m_Movement);
+            }
         }
 
         private void Update()
         {
-            // Gather AI data
-            // Make decisions based on moving left/right/towards and away from player
             var data = AiDataGatherer.GetData(transform);
 
-            transform.LookAt(data.PlayerLocation);
-
-            var transforms = data.SurroundingTransforms;
-
-            if (transforms.Count > 0)
+            foreach (var behaviour in m_AllBehaviours)
             {
-                AvoidObstacles(transforms);
-            }
-            else
-            {
-                var right = transform.right;
-                var forward = transform.forward;
-
-                var horizontalDirections = new[]
-                {
-                    right,
-                    -right,
-                    Vector3.zero
-                };
-
-                var verticalDirections = new[]
-                {
-                    forward,
-                    -forward,
-                    Vector3.zero
-                };
-
-                if (m_IsAvoidingObstacles)
-                {
-                    m_HorizontalDirection = GetRandomDirection(horizontalDirections);
-                    m_VerticalDirection = GetRandomDirection(verticalDirections);
-                    m_IsAvoidingObstacles = false;
-                }
-                else
-                {
-                    m_HorizontalTime += Time.deltaTime;
-                    m_VerticalTime += Time.deltaTime;
-
-                    if (m_HorizontalTime >= m_ChangeHorizontalTime)
-                    {
-                        m_HorizontalDirection = GetRandomDirection(horizontalDirections);
-                        m_HorizontalTime = 0;
-                    }
-
-                    if (m_VerticalTime >= m_ChangeVerticalTime)
-                    {
-                        m_VerticalDirection = GetRandomDirection(verticalDirections);
-                        m_VerticalTime = 0;
-                    }
-                }
+                behaviour.ProcessData(data);
             }
 
-            m_Movement.Move((m_HorizontalDirection + m_VerticalDirection) * 0.6f);
+            if (m_ExecutingBehaviours.Any())
+            {
+                if (m_ExecutingBehaviours.First() != m_CurrentBehaviour)
+                {
+                    ChangeBehaviour(m_ExecutingBehaviours.First());
+                }
+            }
         }
 
-        private void Retreat()
+        public void RegisterExecutionRequest(IMovementBehaviour behaviour)
         {
-            // Is my health low?
-
-            // Have I lost X health in the past X seconds?
-
-            // Move back from player + block?
+            if (!m_ExecutingBehaviours.Contains(behaviour))
+            {
+                m_ExecutingBehaviours.Add(behaviour);
+            }
         }
 
-        private void Charge()
+        public void UnregisterExecutionRequest(IMovementBehaviour behaviour)
         {
-            // Enough distance from player?
-
-            // Move to player at X speed
-
-            // Chance to attack or block at end of charge?
+            if (m_ExecutingBehaviours.Contains(behaviour))
+            {
+                m_ExecutingBehaviours.Remove(behaviour);
+            }
         }
 
-        private void Circle()
+        public void StopCurrentRoutine()
         {
-
+            m_CurrentBehaviour.Stop();
+            // Pick a new behaviour
         }
 
-        private void AvoidObstacles(IEnumerable<Transform> transforms)
+        private void ChangeBehaviour(IMovementBehaviour behaviour)
         {
-            m_IsAvoidingObstacles = true;
-            var average = transforms.Select(t => t.position).GetMeanVector();
-
-            var dir = (transform.position - average);
-            m_Movement.Move(dir * 0.6f);
-        }
-
-        private Vector3 GetRandomDirection(IEnumerable<Vector3> directions)
-        {
-            return directions.GetRandomVector(m_Random);
+            m_CurrentBehaviour?.Stop();
+            m_CurrentBehaviour = behaviour;
+            m_CurrentBehaviour.Execute();
         }
     }
 }

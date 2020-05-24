@@ -12,6 +12,7 @@ namespace UI.ItemOptions
 {
     internal sealed class ItemContextMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
+#pragma warning disable 0649
         [SerializeField] private CanvasGroup m_ScreenOverlay;
         [SerializeField] private TextMeshProUGUI m_ItemUseText;
 
@@ -19,6 +20,7 @@ namespace UI.ItemOptions
         private PlayerInventory m_Inventory;
         private InventoryUI m_InventoryUI;
         private GroundItemManager m_GroundItemManager;
+#pragma warning restore 0649
 
         private int m_SlotIndex;
         public bool IsOpen => m_ItemContextMenu.interactable;

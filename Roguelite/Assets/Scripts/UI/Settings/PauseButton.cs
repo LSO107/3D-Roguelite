@@ -7,7 +7,7 @@ namespace UI.Settings
 {
     internal sealed class PauseButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField] private CanvasGroup m_PauseMenu;
+        [SerializeField] private CanvasGroup m_PauseMenu = null;
 
         private PlayerController m_Player;
 

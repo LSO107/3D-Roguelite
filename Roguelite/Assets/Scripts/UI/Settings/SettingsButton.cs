@@ -6,7 +6,7 @@ namespace UI.Settings
 {
     internal sealed class SettingsButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField] private SettingsUI m_Settings;
+        [SerializeField] private SettingsUI m_Settings = null;
 
         private PlayerController m_Player;
 

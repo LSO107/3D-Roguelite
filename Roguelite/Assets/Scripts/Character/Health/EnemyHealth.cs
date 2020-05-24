@@ -11,6 +11,9 @@ namespace Character.Health
 
         private Vector3 m_Offset;
 
+        [SerializeField] private float m_DamageTimer = 5f;
+        private float m_CurrentDamageTimer;
+
         private void Start()
         {
             m_Offset = new Vector3(0, 2f, 0);
@@ -23,8 +26,15 @@ namespace Character.Health
             RegenerateHealth();
             m_HealthBarInstantiated.transform.position = transform.position + m_Offset;
             m_HealthBarInstantiated.transform.LookAt(Camera.main.transform);
-        }
 
+            m_CurrentDamageTimer += Time.deltaTime;
+
+            if (m_CurrentDamageTimer >= m_DamageTimer)
+            {
+                m_HealthDefinition.ResetDamageTaken();
+                m_CurrentDamageTimer = 0;
+            }
+        }
 
         protected override void ActionOnDeath()
         {

@@ -5,7 +5,7 @@ namespace StateMachineBehaviours
 {
     public class BlockBehaviour : StateMachineBehaviour
     {
-        [SerializeField] private AudioClip m_BlockClip;
+        [SerializeField] private AudioClip m_BlockClip = null;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {

@@ -8,7 +8,7 @@ internal sealed class WeaponTrigger : MonoBehaviour
     private ActorData m_MyActorData;
     private CharacterCombat m_MyCombatData;
 
-    [SerializeField] private AudioClip m_HitAudioClip;
+    [SerializeField] private AudioClip m_HitAudioClip = null;
 
     private void Awake()
     {

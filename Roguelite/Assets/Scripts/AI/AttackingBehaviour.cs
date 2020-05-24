@@ -80,14 +80,14 @@ namespace AI
 
         private IEnumerator Attack()
         {
-            m_IsAttacking = false;
+            m_IsAttacking = true;
 
             var rnd = m_Random.Next(1, 4);
             m_Animator.SetInteger(AttackInt, rnd);
 
             yield return new WaitUntil(() => m_Animator.GetInteger(AttackInt) == 0);
 
-            m_IsAttacking = true;
+            m_IsAttacking = false;
         }
     }
 }

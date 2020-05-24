@@ -5,7 +5,7 @@ namespace StateMachineBehaviours
 {
     public class ImpactBehaviour : StateMachineBehaviour
     {
-        [SerializeField] private AudioClip m_ImpactClip;
+        [SerializeField] private AudioClip m_ImpactClip = null;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {

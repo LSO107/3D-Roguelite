@@ -18,10 +18,10 @@ namespace AI
             // Get Enemy health data, how much lost in last X seconds? Current health?
             // Time since last player attack?
             // How long has player been blocking for?
-
+            var requesterHealth = requester.GetComponent<EnemyHealth>();
             var distance = GetDistance(requester.position);
             var colliders = GetSurroundingTransforms(requester.position);
-            return new AiDataObject(PlayerHealth.CurrentHealth, PlayerLocation, distance, colliders);
+            return new AiDataObject(PlayerHealth.CurrentHealth, PlayerLocation, distance, colliders, requesterHealth);
         }
 
         private static IEnumerable<Transform> GetSurroundingTransforms(Vector3 requesterPosition)
