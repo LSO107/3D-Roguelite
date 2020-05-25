@@ -5,7 +5,7 @@ namespace Character.Health
 {
     internal sealed class EnemyHealth : HealthObject
     {
-        [SerializeField] private GameObject m_HealthBarPrefab;
+        [SerializeField] private GameObject m_HealthBarPrefab = null;
 
         private GameObject m_HealthBarInstantiated;
 

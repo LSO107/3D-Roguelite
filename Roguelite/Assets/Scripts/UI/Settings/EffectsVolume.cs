@@ -6,7 +6,7 @@ namespace UI.Settings
 {
     internal sealed class EffectsVolume : MonoBehaviour
     {
-        [SerializeField] private AudioMixer m_Mixer;
+        [SerializeField] private AudioMixer m_Mixer = null;
 
         private Slider m_Slider;
 

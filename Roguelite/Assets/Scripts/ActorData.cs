@@ -2,7 +2,7 @@
 
 internal sealed class ActorData : MonoBehaviour
 {
-    public ActorType ActorType;
+    public ActorType ActorType = 0;
 }
 
 public enum ActorType

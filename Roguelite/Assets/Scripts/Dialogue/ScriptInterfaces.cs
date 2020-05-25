@@ -1,4 +1,5 @@
 ﻿using ScriptingFramework;
+using UI.DialogueUI;
 
 namespace Dialogue
 {
@@ -16,7 +17,7 @@ namespace Dialogue
 
         public void CloseInterfaces()
         {
-            throw new System.NotImplementedException();
+            DialogueSetup.Instance.CloseShops();
         }
     }
 }

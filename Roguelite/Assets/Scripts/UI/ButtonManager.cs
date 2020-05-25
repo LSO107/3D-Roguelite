@@ -6,7 +6,7 @@ namespace UI
 {
     public sealed class ButtonManager : MonoBehaviour
     {
-        [SerializeField] private Button[] m_Buttons;
+        [SerializeField] private Button[] m_Buttons = null;
 
         public void DisableButtons()
         {

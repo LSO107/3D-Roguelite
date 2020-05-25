@@ -11,7 +11,7 @@ namespace Shops
 {
     internal sealed class BlacksmithGeneration : Shop
     {
-        [SerializeField] private ShopUI m_BlacksmithShopUI;
+        [SerializeField] private ShopUI m_BlacksmithShopUI = null;
 
         private List<Item> m_ShopItems;
         private ItemFactory m_ItemFactory;

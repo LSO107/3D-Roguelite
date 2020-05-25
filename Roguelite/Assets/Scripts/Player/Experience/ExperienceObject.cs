@@ -7,8 +7,10 @@ namespace Player.Experience
     {
         private ExperienceDefinition m_Experience;
 
+#pragma warning disable 0649
         [SerializeField] private BarUpdater m_ExperienceBarUpdater;
         [SerializeField] private float m_ExperienceRequired = 85f;
+#pragma warning restore 0649
 
         public float CurrentExperience => m_Experience.CurrentExperience;
         public float ExperienceRequired => m_Experience.ExperienceRequired;

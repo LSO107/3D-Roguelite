@@ -13,7 +13,7 @@ namespace UI.InventoryPanelUI
 
         public List<InventorySlotUI> ItemUI = new List<InventorySlotUI>();
 
-        [SerializeField] private ItemContextMenu m_ItemContextMenu;
+        [SerializeField] private ItemContextMenu m_ItemContextMenu = null;
 
         public void Instantiate()
         {

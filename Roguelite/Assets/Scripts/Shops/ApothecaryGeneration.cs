@@ -10,8 +10,7 @@ namespace Shops
 {
     internal sealed class ApothecaryGeneration : Shop
     {
-        [SerializeField] private ShopUI m_ApothecaryUI;
-        [SerializeField] private int m_Slots;
+        [SerializeField] private ShopUI m_ApothecaryUI = null;
 
         private List<Item> m_ShopItems;
         private ItemFactory m_ItemFactory;

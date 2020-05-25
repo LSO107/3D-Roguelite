@@ -1,12 +1,10 @@
-﻿using System;
-using Character.Movement;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Player
 {
     internal sealed class CameraFollow : MonoBehaviour
     {
-        [SerializeField] private Transform m_Player;
+        [SerializeField] private Transform m_Player = null;
 
         [SerializeField] private float rotateSpeed = 5;
         private Vector3 m_Offset;

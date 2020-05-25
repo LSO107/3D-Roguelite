@@ -5,8 +5,10 @@ internal sealed class SplatMarker : MonoBehaviour
 {
     private SpriteRenderer m_CurrentImage;
 
+#pragma warning disable 0649
     [SerializeField] private Sprite m_RedSplat;
     [SerializeField] private Sprite m_BlueSplat;
+#pragma warning restore 0649
 
     private TextMesh m_Text;
     private Camera m_Cam;

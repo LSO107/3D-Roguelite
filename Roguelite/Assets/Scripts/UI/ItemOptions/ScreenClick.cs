@@ -9,7 +9,7 @@ namespace UI.ItemOptions
     //
     internal sealed class ScreenClick : MonoBehaviour, IPointerClickHandler
     {
-        [SerializeField] private ItemContextMenu itemContextMenu;
+        [SerializeField] private ItemContextMenu itemContextMenu = null;
 
         private CanvasGroup m_CanvasGroup;
 

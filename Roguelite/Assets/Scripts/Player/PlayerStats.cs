@@ -22,7 +22,7 @@ namespace Player
 
         private System.Random m_Random;
 
-        [SerializeField] private SplatMarker m_SplatMarker;
+        [SerializeField] private SplatMarker m_SplatMarker = null;
 
         public void Initialize(int combatLevel)
         {

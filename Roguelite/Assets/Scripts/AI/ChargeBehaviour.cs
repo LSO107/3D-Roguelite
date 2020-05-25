@@ -13,6 +13,9 @@ namespace AI
         private bool m_IsCharging;
         private Vector3 m_ChargeLocation;
 
+        private float m_ChargeTime = 4f;
+        private float m_CurrentTime;
+
         public void Initialize(Random random, CharacterMovement movement)
         {
             m_Parent = GetComponent<EnemyMovementLogic>();
@@ -25,8 +28,12 @@ namespace AI
             if (!m_IsCharging)
                 return;
 
+            m_CurrentTime += Time.deltaTime;
+
             // probably add timer to stop it charging forever if player dodges
-            if (m_LastFrameData.DistanceFromPlayer <= 2f || Vector3.Distance(transform.position, m_ChargeLocation) <= 2f)
+            if (   m_LastFrameData.DistanceFromPlayer <= 2f
+                || Vector3.Distance(transform.position, m_ChargeLocation) <= 2f 
+                || m_CurrentTime >= m_ChargeTime)
             {
                 Debug.Log("Should stop charge now :D");
                 m_Parent.StopCurrentRoutine();
@@ -44,6 +51,7 @@ namespace AI
             GUILayout.Label($"Player: {m_LastFrameData.PlayerLocation}");
             GUILayout.Label($"Charge: {m_ChargeLocation}");
             GUILayout.Label($"Charging: {m_IsCharging}");
+            GUILayout.Label($"Time: {m_CurrentTime} / {m_ChargeTime}");
         }
 
         public void ProcessData(AiDataObject dataObject)
@@ -70,6 +78,7 @@ namespace AI
         {
             Debug.Log("Stopping charge");
             m_IsCharging = false;
+            m_CurrentTime = 0;
         }
 
         private void Charge()

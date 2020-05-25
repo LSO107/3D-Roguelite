@@ -14,6 +14,9 @@ namespace AI
         private AiDataObject m_LastFrameData;
         private EnemyMovementLogic m_Parent;
 
+        private float m_RetreatTime = 4;
+        private float m_CurrentTime;
+
         public void Initialize(Random random, CharacterMovement movement)
         {
             m_Parent = GetComponent<EnemyMovementLogic>();
@@ -26,6 +29,7 @@ namespace AI
             GUILayout.Label($"Retreating: {m_IsRetreating}");
             GUILayout.Label($"Distance: {m_LastFrameData.DistanceFromPlayer}");
             GUILayout.Label($"Damage In Past 5 Secs: {m_LastFrameData.Health.DamageTaken}");
+            GUILayout.Label($"Time: {m_CurrentTime} / {m_RetreatTime}");
         }
 
         private void Update()
@@ -38,9 +42,12 @@ namespace AI
             if (!m_IsRetreating)
                 return;
 
+            m_CurrentTime += Time.deltaTime;
+
             Retreat(m_LastFrameData.PlayerLocation);
 
-            if (m_LastFrameData.DistanceFromPlayer >= 10f)
+            if (   m_LastFrameData.DistanceFromPlayer >= 8f
+                || m_CurrentTime >= m_RetreatTime)
             {
                 m_Parent.UnregisterExecutionRequest(this);
                 // Probably add a retreat timer too 
@@ -72,6 +79,7 @@ namespace AI
         {
             Debug.Log("STOP RETREAT.");
             m_IsRetreating = false;
+            m_CurrentTime = 0;
             // Tell parent we can do combat again
         }
 

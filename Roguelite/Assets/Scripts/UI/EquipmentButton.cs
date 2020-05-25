@@ -6,7 +6,7 @@ namespace UI
 {
     internal sealed class EquipmentButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField] private EquipmentUI.EquipmentUI m_Eq;
+        [SerializeField] private EquipmentUI.EquipmentUI m_Eq = null;
 
         private PlayerController m_Player;
 
