@@ -43,13 +43,9 @@ namespace ItemData
 
         private void OnMouseEnter()
         {
-            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(true);
-        }
-
-        private void OnMouseOver()
-        {
             var item = m_GroundItems.FindItem(m_ItemId);
             m_Tooltip.ShowTooltipItemNameOnly(item);
+            PlayerManager.Instance.GetComponent<PlayerController>().ToggleIsInputBlocked(true);
         }
 
         private void OnMouseExit()
@@ -64,6 +60,8 @@ namespace ItemData
 
             if (distance > 2)
                 return;
+
+            m_Tooltip.CloseTooltip();
 
             var item = m_GroundItems.FindItem(m_ItemId);
 

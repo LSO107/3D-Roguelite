@@ -24,6 +24,7 @@ namespace ItemData
         private Random m_Random;
 
         private List<List<EquipmentDefinition>> m_Weapons;
+        private List<List<EquipmentDefinition>> m_Armour;
 
         private void Awake()
         {
@@ -36,6 +37,13 @@ namespace ItemData
                 m_Scimitars,
                 m_Bats
             };
+
+            m_Armour = new List<List<EquipmentDefinition>>
+            {
+                m_Helmets,
+                m_Chestplates,
+                m_Platelegs,
+            };
         }
 
         public PotionDefinition GetRandomHealthPotion()
@@ -47,6 +55,11 @@ namespace ItemData
         public EquipmentDefinition GetRandomWeapon()
         {
             var db = m_Weapons[m_Random.Next(m_Weapons.Count)];
+            return db[m_Random.Next(db.Count)];
+        }
+        public EquipmentDefinition GetRandomArmour()
+        {
+            var db = m_Armour[m_Random.Next(m_Armour.Count)];
             return db[m_Random.Next(db.Count)];
         }
 
