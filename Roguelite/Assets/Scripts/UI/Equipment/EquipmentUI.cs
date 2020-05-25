@@ -12,12 +12,10 @@ namespace UI.EquipmentUI
 {
     internal sealed class EquipmentUI : MonoBehaviour
     {
-#pragma warning disable 0649
         [SerializeField] private ButtonManager m_ButtonManager;
         [SerializeField] private TextMeshProUGUI m_StatTypesText;
         [SerializeField] private TextMeshProUGUI m_StatBonusesText;
         [SerializeField] private TextMeshProUGUI m_CombatLevelText;
-#pragma warning restore 0649
 
         private PlayerManager m_PlayerManager;
         private CanvasGroup m_CanvasGroup;

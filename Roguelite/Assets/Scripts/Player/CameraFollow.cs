@@ -47,15 +47,16 @@ namespace Player
 
         private void LateUpdate()
         {
-            if (m_CameraMode == CameraMode.Locked)
-                return;
-
             var horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
             var vertical = Input.GetAxis("Mouse Y") * rotateSpeed * Time.deltaTime;
 
             heightOffset += vertical;
             heightOffset = Mathf.Clamp(heightOffset, 0.5f, 1.5f);
-            m_Player.transform.Rotate(0, horizontal, 0);
+
+            if (m_CameraMode != CameraMode.Locked)
+            {
+                m_Player.transform.Rotate(0, horizontal, 0);
+            }
 
             var desiredAngle = m_Player.eulerAngles.y;
             var rotation = Quaternion.Euler(0, desiredAngle, 0);

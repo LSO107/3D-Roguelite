@@ -4,10 +4,8 @@ namespace UI
 {
     internal sealed class DisplayMessage : MonoBehaviour
     {
-#pragma warning disable 0649
         [SerializeField] private InteractNotice m_InteractNotice;
         [SerializeField] private string m_Message;
-#pragma warning restore 0649
 
         private Collider m_TriggerBox;
 

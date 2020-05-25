@@ -4,7 +4,6 @@ using System.Linq;
 using ItemData;
 using Items.Definitions;
 using Items.Inventory;
-using Logging;
 using Player;
 using UnityEngine;
 using Random = System.Random;
@@ -14,19 +13,14 @@ namespace ItemGeneration
     internal sealed class WeaponGenerator : IItemGenerator
     {
         private Random m_Random;
-        private ILog m_Log;
 
-        public WeaponGenerator(Random random, ILog log)
+        public WeaponGenerator(Random random)
         {
             m_Random = random;
-            m_Log = log;
         }
 
         public Equipment GenerateBonuses(EquipmentDefinition definition, RarityModifier rarity)
         {
-            m_Log.Log($"I am generating a {definition.Name} item with rarity {rarity}", LogLevel.Info);
-            m_Log.Log($"Base stats are {string.Join(", ", definition.StatBonuses.Select(m => $"{m.Key}: {m.Value}"))}", LogLevel.Info);
-
             if (definition.EquipmentSlotId != EquipmentSlotId.Weapon)
             {
                 throw new ArgumentException("Equipment must be of type weapon, was " + definition.EquipmentSlotId);
@@ -34,9 +28,6 @@ namespace ItemGeneration
 
             var minBonus = MinimumFlatBonus[rarity];
             var maxBonus = Mathf.RoundToInt(GetMaxBonus(rarity));
-
-            m_Log.Log($"Min bonus is {minBonus}", LogLevel.Info);
-            m_Log.Log($"Max bonus is {maxBonus}", LogLevel.Info);
 
             return GenerateEquipmentWithBonuses(definition, rarity, minBonus, maxBonus);
         }
@@ -59,12 +50,8 @@ namespace ItemGeneration
             {
                 var rand = m_Random.Next(minBonus, maxBonus + 1);
 
-                m_Log.Log($"Applying a bonus of {rand} to stat {stat}", LogLevel.Info);
-
                 equipment.StatBonuses[stat] += rand;
             }
-
-            m_Log.Log($"Final stats: {string.Join(", ", equipment.StatBonuses.Select(m => $"{m.Key}: {m.Value}"))}\n", LogLevel.Info);
 
             return equipment;
         }

@@ -19,10 +19,10 @@ namespace ItemGeneration
         public ItemFactory()
         {
             m_Random = new Random();
-            m_HelmetGenerator = new HelmetGenerator(m_Random, new FileLog(@"C:\Users\leeok\Desktop\logs\helmetgenerator.txt"));
-            m_ChestplateGenerator = new ChestplateGenerator(m_Random, new FileLog(@"C:\Users\leeok\Desktop\logs\chestgenerator.txt"));
-            m_PlatelegsGenerator = new PlatelegsGenerator(m_Random, new FileLog(@"C:\Users\leeok\Desktop\logs\legsgenerator.txt"));
-            m_WeaponGenerator = new WeaponGenerator(m_Random, new FileLog(@"C:\Users\leeok\Desktop\logs\weapongenerator.txt"));
+            m_HelmetGenerator = new HelmetGenerator(m_Random);
+            m_ChestplateGenerator = new ChestplateGenerator(m_Random);
+            m_PlatelegsGenerator = new PlatelegsGenerator(m_Random);
+            m_WeaponGenerator = new WeaponGenerator(m_Random);
         }
 
         public HealthPotion GeneratePotion()

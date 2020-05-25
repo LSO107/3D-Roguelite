@@ -82,8 +82,8 @@ internal sealed class DayNightCycle : MonoBehaviour
 
     public void StartNewDay()
     {
-        //GameManager.Instance.FadeScreen();
-        print("Starting new day :D");
+        print("Starting new day");
+
         foreach (var startEvent in m_StartOfDayEvents)
         {
             startEvent();

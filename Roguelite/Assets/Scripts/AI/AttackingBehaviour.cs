@@ -30,12 +30,6 @@ namespace AI
             m_Random = random;
         }
 
-        private void OnGUI()
-        {
-            GUILayout.Label($"Attack: {m_Animator.GetInteger(AttackInt)}");
-            GUILayout.Label($"Can Attack: {m_CanAttack}");
-        }
-
         public void Update()
         {
             if (!m_CanAttack || m_IsAttacking)
@@ -54,6 +48,7 @@ namespace AI
 
         public void Stop()
         {
+            m_Animator.SetInteger(AttackInt, 0);
             Debug.Log("Stopping attacking??");
             m_CanAttack = false;
         }

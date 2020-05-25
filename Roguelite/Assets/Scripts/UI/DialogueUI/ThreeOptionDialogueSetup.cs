@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class ThreeOptionDialogueSetup : MonoBehaviour
 {
-#pragma warning disable 0649
     [SerializeField] private Text m_OptionOne;
     [SerializeField] private Button m_ButtonOne;
 
@@ -14,7 +13,6 @@ public class ThreeOptionDialogueSetup : MonoBehaviour
     
     [SerializeField] private Text m_OptionThree;
     [SerializeField] private Button m_ButtonThree;
-#pragma warning restore 0649
     public void Setup(DialogueOption optionOne, DialogueOption optionTwo, DialogueOption optionThree, Action<int> onClick)
     {
         m_ButtonOne.onClick.RemoveAllListeners();

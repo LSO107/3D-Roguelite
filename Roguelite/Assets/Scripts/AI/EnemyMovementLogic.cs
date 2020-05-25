@@ -18,10 +18,13 @@ namespace AI
 
         private List<IMovementBehaviour> m_ExecutingBehaviours;
 
+        private EnemyCombatLogic m_EnemyCombat;
+
         private void Awake()
         {
             m_Movement = GetComponent<CharacterMovement>();
             m_Random = new Random();
+            m_EnemyCombat = GetComponent<EnemyCombatLogic>();
 
             m_ExecutingBehaviours = new List<IMovementBehaviour>();
             m_AllBehaviours = GetComponents<IMovementBehaviour>();
@@ -43,10 +46,26 @@ namespace AI
 
             if (m_ExecutingBehaviours.Any())
             {
-                if (m_ExecutingBehaviours.First() != m_CurrentBehaviour)
+                if (m_CurrentBehaviour is CirclingBehaviour)
+                {
+                    var behaviour = m_ExecutingBehaviours.FirstOrDefault
+                        (b => b is CirclingBehaviour == false);
+
+                    if (behaviour != null)
+                    {
+                        ChangeBehaviour(behaviour);
+                    }
+                }
+
+                if (m_CurrentBehaviour == null)
                 {
                     ChangeBehaviour(m_ExecutingBehaviours.First());
                 }
+            }
+
+            if (m_CurrentBehaviour == null)
+            {
+                m_Movement.Move(Vector3.zero);
             }
         }
 
@@ -66,10 +85,20 @@ namespace AI
             }
         }
 
+        public void BlockCombat()
+        {
+            m_EnemyCombat.BlockCombat();
+        }
+
+        public void UnblockCombat()
+        {
+            m_EnemyCombat.UnblockCombat();
+        }
+
         public void StopCurrentRoutine()
         {
             m_CurrentBehaviour.Stop();
-            // Pick a new behaviour
+            m_CurrentBehaviour = null;
         }
 
         private void ChangeBehaviour(IMovementBehaviour behaviour)

@@ -9,17 +9,10 @@ namespace Debugging
 {
     public class ItemFactoryTest : MonoBehaviour
     {
-#pragma warning disable
         [SerializeField] private EquipmentDefinition[] m_Helmets;
         [SerializeField] private EquipmentDefinition[] m_Chestplates;
         [SerializeField] private EquipmentDefinition[] m_Platelegs;
         [SerializeField] private EquipmentDefinition[] m_Weapons;
-#pragma warning restore
-
-        private ILog m_HelmLog;
-        private ILog m_ChestLog;
-        private ILog m_LegsLog;
-        private ILog m_WeaponsLog;
 
         private Random m_Random;
         private HelmetGenerator m_HelmetGenerator;
@@ -31,15 +24,10 @@ namespace Debugging
         {
             m_Random = new Random();
 
-            m_HelmLog = new FileLog(@"C:\Users\leeok\Desktop\helm.txt");
-            m_ChestLog = new FileLog(@"C:\Users\leeok\Desktop\chest.txt");
-            m_LegsLog = new FileLog(@"C:\Users\leeok\Desktop\legs.txt");
-            m_WeaponsLog = new FileLog(@"C:\Users\leeok\Desktop\weapon.txt");
-
-            m_HelmetGenerator = new HelmetGenerator(m_Random, m_HelmLog);
-            m_ChestplateGenerator = new ChestplateGenerator(m_Random, m_ChestLog);
-            m_PlatelegsGenerator = new PlatelegsGenerator(m_Random, m_LegsLog);
-            m_WeaponGenerator = new WeaponGenerator(m_Random, m_WeaponsLog);
+            m_HelmetGenerator = new HelmetGenerator(m_Random);
+            m_ChestplateGenerator = new ChestplateGenerator(m_Random);
+            m_PlatelegsGenerator = new PlatelegsGenerator(m_Random);
+            m_WeaponGenerator = new WeaponGenerator(m_Random);
         }
 
         private void Start()

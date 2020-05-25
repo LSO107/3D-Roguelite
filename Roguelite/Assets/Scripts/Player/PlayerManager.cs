@@ -23,11 +23,9 @@ namespace Player
         public PlayerEquipment Equipment { get; private set; }
         public PlayerStats PlayerStats { get; private set; }
 
-#pragma warning disable 0649
         public InventoryUI InventoryUI;
         public EquipmentUI EquipmentUI;
         public SoundEffectsManager SoundEffects;
-#pragma warning restore 0649
 
         private CameraFollow m_Camera;
 

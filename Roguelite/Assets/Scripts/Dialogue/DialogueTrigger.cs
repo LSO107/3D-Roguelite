@@ -6,10 +6,8 @@ namespace Dialogue
     [RequireComponent(typeof(NpcData))]
     internal sealed class DialogueTrigger : MonoBehaviour
     {
-#pragma warning disable 0649
         [SerializeField] private int NpcId;
         [SerializeField] private InteractNotice m_InteractNotice;
-#pragma warning restore 0649
 
         private bool m_IsInTrigger;
 

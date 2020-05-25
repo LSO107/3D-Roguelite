@@ -4,7 +4,7 @@ namespace Character.Combat
 {
     internal sealed class CharacterCombat : MonoBehaviour
     {
-        public CombatState CombatState;
+        public CombatState CombatState { get; private set; }
 
         public void UpdateState(CombatState state)
         {

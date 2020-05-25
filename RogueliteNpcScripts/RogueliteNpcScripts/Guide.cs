@@ -48,8 +48,7 @@ namespace RogueliteNpcScripts
                                             "Left-click items in the inventory to use them quickly, right-click to see available options.", 4);
                     break;
                 case 7:
-                    Dialogue.SendNpcOneLine("Talk to me when you are ready to begin fighting, I advise you visit the stores and invest in some equipment. " +
-                                            "Fighting will grant you experience and prepare you for the worst. Remember... the greatest foes will drop the greatest loot.", 4);
+                    Dialogue.SendNpcOneLine("Use left-click to attack, and right-click to block. You can also use numbers 1, 2 and 3 for other attacks.", 4);
                     break;
                 default:
                     Dialogue.EndChat();

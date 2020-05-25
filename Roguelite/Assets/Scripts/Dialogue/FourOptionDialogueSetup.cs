@@ -7,7 +7,6 @@ namespace Dialogue
 {
     public class FourOptionDialogueSetup : MonoBehaviour
     {
-#pragma warning disable 0649
         [SerializeField] private Text m_OptionOne;
         [SerializeField] private Button m_ButtonOne;
 
@@ -19,7 +18,6 @@ namespace Dialogue
 
         [SerializeField] private Text m_OptionFour;
         [SerializeField] private Button m_ButtonFour;
-#pragma warning restore 0649
 
         public void Setup(DialogueOption optionOne, DialogueOption optionTwo, DialogueOption optionThree, DialogueOption optionFour, Action<int> onClick)
         {

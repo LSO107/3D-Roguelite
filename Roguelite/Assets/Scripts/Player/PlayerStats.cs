@@ -42,7 +42,8 @@ namespace Player
             Damage = new Stat();
             Defence = new Stat();
 
-            Damage.SetBaseValue(5);
+            Damage.SetBaseValue(10);
+            Defence.SetBaseValue(10);
 
             UpdateStats();
         }
@@ -62,7 +63,9 @@ namespace Player
             if (m_HealthObject.CurrentHealth <= 0)
             {
                 Debug.Log("Player Died.");
-                SceneManager.LoadScene("Game");
+                DayNightCycle.Instance.EndDay();
+                //SceneManager.LoadScene("Game");
+                GameManager.Instance.InstantiatePuff(transform.position);
             }
         }
 

@@ -22,7 +22,6 @@ namespace Character.Health
         {
             // Lose items?
             // Particle effect or inventory flash effect etc?
-
             m_HealthDefinition.ResetHealth();
 
             if (m_Anim.GetCurrentAnimatorStateInfo(2).IsName("Death"))

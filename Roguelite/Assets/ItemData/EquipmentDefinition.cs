@@ -13,10 +13,10 @@ namespace ItemData
         public EquipmentSlotId EquipmentSlotId;
         public Dictionary<StatBonus, int> StatBonuses;
 
-        [SerializeField] public int m_Attack;
-        [SerializeField] public int m_Strength;
-        [SerializeField] public int m_Defence;
-        [SerializeField] public int m_Agility;
+        public int m_Attack;
+        public int m_Strength;
+        public int m_Defence;
+        public int m_Agility;
 
         public void OnEnable()
         {

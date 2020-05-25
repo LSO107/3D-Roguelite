@@ -11,13 +11,11 @@ namespace UI.ShopUI
 {
     internal sealed class ShopUI : MonoBehaviour
     {
-#pragma warning disable 0649
         [SerializeField] private List<ShopSlotUI> m_Slots = new List<ShopSlotUI>();
         [SerializeField] private List<Button> m_BuyButton = new List<Button>();
 
         [SerializeField] private Text m_PlayerCurrencyText;
         [SerializeField] private Shop m_Shop;
-#pragma warning restore 0649
 
         private CanvasGroup m_CanvasGroup;
 

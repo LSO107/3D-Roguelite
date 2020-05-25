@@ -1,8 +1,6 @@
 ﻿using AI;
-using Character.Combat;
 using Extensions;
 using UnityEngine;
-using CombatState = AI.CombatState;
 using Random = System.Random;
 
 internal sealed class BlockingBehaviour : MonoBehaviour, ICombatBehaviour

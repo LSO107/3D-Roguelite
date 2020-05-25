@@ -45,19 +45,13 @@ namespace AI
             }
         }
 
-        private void OnGUI()
-        {
-            GUILayout.Label($"Me: {transform.position}");
-            GUILayout.Label($"Player: {m_LastFrameData.PlayerLocation}");
-            GUILayout.Label($"Charge: {m_ChargeLocation}");
-            GUILayout.Label($"Charging: {m_IsCharging}");
-            GUILayout.Label($"Time: {m_CurrentTime} / {m_ChargeTime}");
-        }
-
         public void ProcessData(AiDataObject dataObject)
         {
             m_LastFrameData = dataObject;
-            if (dataObject.DistanceFromPlayer >= 7.5f)
+
+            var percentage = m_LastFrameData.Health.MaxHealth / 100 * 15;
+
+            if (dataObject.DistanceFromPlayer >= 10f && m_LastFrameData.Health.DamageTaken <= percentage)
             {
                 m_Parent.RegisterExecutionRequest(this);
             }
@@ -72,6 +66,7 @@ namespace AI
             Debug.Log("Executing charge");
             m_IsCharging = true;
             m_ChargeLocation = m_LastFrameData.PlayerLocation;
+            m_Parent.BlockCombat();
         }
 
         public void Stop()
@@ -79,6 +74,7 @@ namespace AI
             Debug.Log("Stopping charge");
             m_IsCharging = false;
             m_CurrentTime = 0;
+            m_Parent.UnblockCombat();
         }
 
         private void Charge()

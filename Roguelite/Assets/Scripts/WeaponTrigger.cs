@@ -26,33 +26,34 @@ internal sealed class WeaponTrigger : MonoBehaviour
         if (targetCombatData == null)
             return;
 
+        if (m_MyCombatData.CombatState != CombatState.Attacking)
+            return;
+
         if (m_MyActorData.ActorType == ActorType.Player)
         {
             if (targetCombatData.CombatState == CombatState.Blocking)
             {
                 Debug.Log("Blocked Attack.");
                 other.GetComponent<CharacterStats>().splatMarker.Show(0);
+                other.GetComponent<Animator>().SetTrigger("Impact");
+                return;
             }
-            else
-            {
-                Debug.Log("Hit enemy");
-                PlayerManager.Instance.SoundEffects.Play(m_HitAudioClip);
-                other.GetComponentInParent<CharacterMovement>().KnockBack(transform.position);
-                other.GetComponent<CharacterStats>().TakeDamage();
-            }
+
+            Debug.Log("Hit enemy");
+            PlayerManager.Instance.SoundEffects.Play(m_HitAudioClip);
+            other.GetComponentInParent<CharacterMovement>().KnockBack(transform.position);
+            other.GetComponent<CharacterStats>().TakeDamage();
         }
         else if (m_MyActorData.ActorType == ActorType.Enemy)
         {
-            if (m_MyCombatData.CombatState != CombatState.Attacking)
-                return;
-
             if (targetCombatData.CombatState == CombatState.Blocking)
             {
                 Debug.Log("Blocked Attack.");
+                other.GetComponent<Animator>().SetTrigger("Impact");
                 return;
             }
 
-            other.GetComponentInParent<CharacterMovement>().KnockBack(transform.position);
+            //other.GetComponentInParent<CharacterMovement>().KnockBack(transform.position);
             var damage = m_MyActorData.GetComponentInParent<CharacterStats>().Damage.GetBaseValue();
             other.GetComponentInParent<PlayerStats>().TakeDamage(damage);
         }

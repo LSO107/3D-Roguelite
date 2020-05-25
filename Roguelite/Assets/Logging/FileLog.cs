@@ -9,7 +9,6 @@ namespace Logging
 
         public FileLog(string filePath)
         {
-#if UNITY_EDITOR
             var logPath = @"C:\Users\leeok\Desktop\logs";
             if (!Directory.Exists(logPath))
             {
@@ -21,18 +20,15 @@ namespace Logging
                 File.CreateText(filePath).Dispose();
             }
 
-#endif
             m_Path = filePath;
         }
 
         public void Log(string message, LogLevel level)
         {
-#if UNITY_EDITOR
             using (var stream = File.AppendText(m_Path))
             {
                 stream.Write($"{GetPrefixForLevel(level)} {message}\n");
             }
-#endif
         }
 
         private string GetPrefixForLevel(LogLevel level)

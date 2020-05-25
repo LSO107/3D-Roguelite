@@ -9,12 +9,11 @@ namespace Character.Combat
     [RequireComponent(typeof(HealthObject))]
     internal sealed class CharacterStats : MonoBehaviour
     {
-#pragma warning disable 0649
         [SerializeField] public SplatMarker splatMarker;
         [SerializeField] private int CombatLevel;
         public Stat Damage;
         public Stat Defence;
-#pragma warning restore 0649
+        public float experienceGiven;
 
         private HealthObject m_HealthObject;
         private ExperienceObject m_PlayerExperience;
@@ -25,6 +24,7 @@ namespace Character.Combat
         {
             m_HealthObject = GetComponent<HealthObject>();
             m_Random = new Random();
+            experienceGiven = CombatLevel;
         }
 
         private void Start()

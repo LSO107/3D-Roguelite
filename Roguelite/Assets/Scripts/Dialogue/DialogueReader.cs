@@ -13,10 +13,10 @@ namespace Dialogue
 
         private void Awake()
         {
-            const string scriptsPath = "Assets/Scripts/Dialogue/RogueliteNpcScripts.dll";
+            var scriptsPath = Application.streamingAssetsPath + "/RogueliteNpcScripts.dll";
             if (!File.Exists(scriptsPath))
             { 
-                Debug.LogError("Could not find RogueliteNpcScripts.dll");
+                Debug.LogError($"Could not find RogueliteNpcScripts.dll at path {scriptsPath}");
                 return;
             }
 

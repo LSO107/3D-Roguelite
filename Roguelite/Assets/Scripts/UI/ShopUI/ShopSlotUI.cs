@@ -11,10 +11,8 @@ namespace UI.ShopUI
         private Item m_Item;
         private Image m_Image;
 
-#pragma warning disable 0649
         [SerializeField] private Text m_Price;
         [SerializeField] private Button m_BuyButton;
-#pragma warning restore 0649
 
         private TooltipPointerHandler m_TooltipPointerHandler;
 

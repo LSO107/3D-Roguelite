@@ -24,14 +24,6 @@ namespace AI
             m_Movement = movement;
         }
 
-        private void OnGUI()
-        {
-            GUILayout.Label($"Retreating: {m_IsRetreating}");
-            GUILayout.Label($"Distance: {m_LastFrameData.DistanceFromPlayer}");
-            GUILayout.Label($"Damage In Past 5 Secs: {m_LastFrameData.Health.DamageTaken}");
-            GUILayout.Label($"Time: {m_CurrentTime} / {m_RetreatTime}");
-        }
-
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.O))
@@ -72,7 +64,7 @@ namespace AI
         {
             Debug.Log("EXECUTE RETREAT.");
             m_IsRetreating = true;
-            // Tell parent to stop combat
+            m_Parent.BlockCombat();
         }
 
         public void Stop()
@@ -80,7 +72,7 @@ namespace AI
             Debug.Log("STOP RETREAT.");
             m_IsRetreating = false;
             m_CurrentTime = 0;
-            // Tell parent we can do combat again
+            m_Parent.UnblockCombat();
         }
 
         private void Retreat(Vector3 playerLocation)

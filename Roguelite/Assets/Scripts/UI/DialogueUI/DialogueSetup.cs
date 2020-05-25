@@ -8,7 +8,6 @@ namespace UI.DialogueUI
 {
     internal sealed class DialogueSetup : MonoBehaviour
     {
-#pragma warning disable 0649
         [SerializeField] private FourOptionDialogueSetup m_FourOptions;
         [SerializeField] private ThreeOptionDialogueSetup m_ThreeOptions;
         [SerializeField] private TwoOptionDialogueSetup m_TwoOptions;
@@ -21,7 +20,6 @@ namespace UI.DialogueUI
 
         [SerializeField] private ShopUI.ShopUI m_Blacksmith;
         [SerializeField] private ShopUI.ShopUI m_PotionShop;
-#pragma warning restore 0649
 
         private CanvasGroup m_ActiveCanvasGroup;
 

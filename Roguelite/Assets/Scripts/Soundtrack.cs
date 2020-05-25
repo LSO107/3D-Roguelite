@@ -3,10 +3,8 @@ using UnityEngine;
 
 internal sealed class Soundtrack : MonoBehaviour
 {
-#pragma warning disable 0649
     [SerializeField] private AudioClip m_DaySoundTrack;
     [SerializeField] private AudioClip m_NightSoundTrack;
-#pragma warning disable 0649
 
     private AudioSource m_AudioSource;
 

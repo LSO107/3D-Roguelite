@@ -8,12 +8,10 @@ namespace UI.EquipmentUI
 {
     internal sealed class EquipmentSlotUI : MonoBehaviour
     {
-#pragma warning disable 0649
         public Image spriteImage;
         public Sprite DefaultIcon;
 
         public EquipmentSlotId SlotId;
-#pragma warning restore 0649
 
         private TooltipPointerHandler m_TooltipPointerHandler;
 
