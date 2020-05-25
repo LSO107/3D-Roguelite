@@ -22,11 +22,17 @@ namespace UI
 
         private void OnTriggerEnter(Collider other)
         {
+            if (!other.CompareTag("Player"))
+                return;
+
             m_InteractNotice.Show(m_Message);
         }
 
         private void OnTriggerExit(Collider other)
         {
+            if (!other.CompareTag("Player"))
+                return;
+
             m_InteractNotice.Hide();
         }
     }
