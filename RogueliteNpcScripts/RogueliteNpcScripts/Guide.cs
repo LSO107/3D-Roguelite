@@ -36,7 +36,7 @@ namespace RogueliteNpcScripts
                         new DialogueOption("Navigation", 5),
                         new DialogueOption("Inventory", 6),
                         new DialogueOption("Fighting", 7),
-                        new DialogueOption("That's all, thanks", -1) 
+                        new DialogueOption("That's all, thanks", 0) 
                     });
                     break;
                 case 5:

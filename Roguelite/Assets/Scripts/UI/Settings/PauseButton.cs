@@ -2,6 +2,7 @@
 using Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 namespace UI.Settings
 {
@@ -30,9 +31,9 @@ namespace UI.Settings
             PlayerManager.Instance.EnableInput();
         }
 
-        public void Quit()
+        public void Logout()
         {
-            Application.Quit();
+            SceneManager.LoadScene("LoginScreen");
         }
 
         public void OnPointerEnter(PointerEventData eventData)
