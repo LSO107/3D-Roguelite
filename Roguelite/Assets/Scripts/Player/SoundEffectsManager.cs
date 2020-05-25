@@ -4,7 +4,7 @@ namespace Player
 {
     internal sealed class SoundEffectsManager : MonoBehaviour
     {
-        [SerializeField] private AudioSource m_AudioSource;
+        [SerializeField] private AudioSource m_AudioSource = null;
 
         public void Play(AudioClip clip)
         {

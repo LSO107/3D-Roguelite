@@ -27,9 +27,9 @@ namespace AI
 
         public void Initialize(Random random, CharacterMovement movement)
         {
+            m_Parent = GetComponent<EnemyMovementLogic>();
             m_Random = random;
             m_CharacterMovement = movement;
-
         }
 
         private void Update()
