@@ -48,7 +48,8 @@ namespace RogueliteNpcScripts
                                             "Left-click items in the inventory to use them quickly, right-click to see available options.", 4);
                     break;
                 case 7:
-                    Dialogue.SendNpcOneLine("Use left-click to attack, and right-click to block. You can also use numbers 1, 2 and 3 for other attacks.", 4);
+                    Dialogue.SendNpcOneLine("Hold right-click to block attacks. Press numbers 1, 2 and 3 for different attacks, alternatively, you" +
+                                            " can use the other mouse keys for attacks.", 4);
                     break;
                 default:
                     Dialogue.EndChat();

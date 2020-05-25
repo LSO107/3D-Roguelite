@@ -59,14 +59,6 @@ namespace Player
 
             m_HealthObject.Damage(finalDamage);
             m_SplatMarker.Show(finalDamage);
-
-            if (m_HealthObject.CurrentHealth <= 0)
-            {
-                Debug.Log("Player Died.");
-                DayNightCycle.Instance.EndDay();
-                //SceneManager.LoadScene("Game");
-                GameManager.Instance.InstantiatePuff(transform.position);
-            }
         }
 
         public Dictionary<StatBonus, int> GetBaseStats()

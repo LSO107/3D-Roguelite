@@ -30,12 +30,10 @@ namespace AI
 
             m_CurrentTime += Time.deltaTime;
 
-            // probably add timer to stop it charging forever if player dodges
             if (   m_LastFrameData.DistanceFromPlayer <= 2f
                 || Vector3.Distance(transform.position, m_ChargeLocation) <= 2f 
                 || m_CurrentTime >= m_ChargeTime)
             {
-                Debug.Log("Should stop charge now :D");
                 m_Parent.StopCurrentRoutine();
                 m_IsCharging = false;
             }
@@ -63,7 +61,6 @@ namespace AI
 
         public void Execute()
         {
-            Debug.Log("Executing charge");
             m_IsCharging = true;
             m_ChargeLocation = m_LastFrameData.PlayerLocation;
             m_Parent.BlockCombat();
@@ -71,7 +68,6 @@ namespace AI
 
         public void Stop()
         {
-            Debug.Log("Stopping charge");
             m_IsCharging = false;
             m_CurrentTime = 0;
             m_Parent.UnblockCombat();

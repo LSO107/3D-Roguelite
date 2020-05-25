@@ -56,7 +56,7 @@ namespace Player
 
         private void Start()
         {
-            PlayerStats.Initialize(1);
+            PlayerStats.Initialize(3);
             InventoryUI.Instantiate();
             EquipmentUI.Instantiate();
         }

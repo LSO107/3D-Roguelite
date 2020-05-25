@@ -21,6 +21,7 @@ namespace Character.Movement
         private static readonly int Lateral = Animator.StringToHash("Lateral");
 
         public bool CanMove = true;
+        public bool CanKnockBack = true;
 
         private void Awake()
 		{
@@ -46,14 +47,14 @@ namespace Character.Movement
         public void KnockBack(Vector3 attackerPosition)
         {
             m_Rigidbody.AddExplosionForce(200, attackerPosition, 50, 0f);
-            CanMove = false;
+            CanKnockBack = false;
             StartCoroutine(ResetCanMove());
         }
 
         private IEnumerator ResetCanMove()
         {
             yield return new WaitForSeconds(2);
-            CanMove = true;
+            CanKnockBack = true;
         }
 
         private void UpdateAnimator(Vector3 move)

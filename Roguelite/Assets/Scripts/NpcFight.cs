@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Character.Health;
 using Player;
 using UnityEngine;
 using Random = System.Random;
@@ -49,7 +50,7 @@ internal sealed class NpcFight : MonoBehaviour
     public void BeginNpcFight(int numberOfEnemies)
     {
         m_FightHasBegun = true;
-        RemoveCurrentEnemies();
+        EndCurrentFight();
 
         for (var i = 0; i < numberOfEnemies; i++)
         {
@@ -59,8 +60,6 @@ internal sealed class NpcFight : MonoBehaviour
             newNpc.transform.LookAt(PlayerManager.Instance.transform);
             m_CurrentNpcs.Add(newNpc);
         }
-
-        //InstantiateCurrentNpcs();
     }
 
     private GameObject GetRandomNpc()
@@ -76,7 +75,7 @@ internal sealed class NpcFight : MonoBehaviour
         return new Vector3(randomX, 0, randomZ);
     }
 
-    private void RemoveCurrentEnemies()
+    public void EndCurrentFight()
     {
         if (m_CurrentNpcs.Count <= 0)
             return;
@@ -84,7 +83,7 @@ internal sealed class NpcFight : MonoBehaviour
         foreach (var npc in m_CurrentNpcs)
         {
             GameManager.Instance.InstantiatePuff(npc.transform.position);
-            Destroy(npc.gameObject);
+            npc.GetComponent<EnemyHealth>().Destruct();
         }
 
         m_CurrentNpcs.Clear();

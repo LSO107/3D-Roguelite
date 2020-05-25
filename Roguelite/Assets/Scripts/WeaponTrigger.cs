@@ -46,6 +46,9 @@ internal sealed class WeaponTrigger : MonoBehaviour
         }
         else if (m_MyActorData.ActorType == ActorType.Enemy)
         {
+            if (!other.CompareTag("Player"))
+                return;
+
             if (targetCombatData.CombatState == CombatState.Blocking)
             {
                 Debug.Log("Blocked Attack.");
@@ -53,9 +56,9 @@ internal sealed class WeaponTrigger : MonoBehaviour
                 return;
             }
 
-            //other.GetComponentInParent<CharacterMovement>().KnockBack(transform.position);
+            other.GetComponentInParent<CharacterMovement>().KnockBack(transform.position);
             var damage = m_MyActorData.GetComponentInParent<CharacterStats>().Damage.GetBaseValue();
-            other.GetComponentInParent<PlayerStats>().TakeDamage(damage);
+            other.GetComponent<PlayerStats>().TakeDamage(damage);
         }
     }
 }

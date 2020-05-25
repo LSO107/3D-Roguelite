@@ -49,13 +49,19 @@ namespace Character.Health
             }
         }
 
+        public void Destruct()
+        {
+            Destroy(m_HealthBarInstantiated);
+            Destroy(gameObject);
+        }
+
         protected override void ActionOnDeath()
         {
-            var randomGold = m_Random.Next(0, 30);
+            var randomGold = m_Random.Next(0, 10);
             PlayerManager.Instance.Currency.AddGold(randomGold);
             NpcFight.Instance.RemoveCurrentNpc(gameObject);
             GameManager.Instance.InstantiatePuff(transform.position);
-            PlayerManager.Instance.Experience.IncreaseExperience(GetComponent<CharacterStats>().experienceGiven);
+            PlayerManager.Instance.Experience.IncreaseExperience(GetComponent<CharacterStats>().CombatLevel * 75);
             InstantiateRandomItem();
             Destroy(m_HealthBarInstantiated);
             Destroy(gameObject);

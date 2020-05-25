@@ -26,11 +26,6 @@ namespace AI
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                GetComponent<EnemyHealth>().Damage(10);
-            }
-
             if (!m_IsRetreating)
                 return;
 
@@ -42,7 +37,6 @@ namespace AI
                 || m_CurrentTime >= m_RetreatTime)
             {
                 m_Parent.UnregisterExecutionRequest(this);
-                // Probably add a retreat timer too 
                 m_Parent.StopCurrentRoutine();
                 m_IsRetreating = false;
             }
@@ -62,14 +56,12 @@ namespace AI
 
         public void Execute()
         {
-            Debug.Log("EXECUTE RETREAT.");
             m_IsRetreating = true;
             m_Parent.BlockCombat();
         }
 
         public void Stop()
         {
-            Debug.Log("STOP RETREAT.");
             m_IsRetreating = false;
             m_CurrentTime = 0;
             m_Parent.UnblockCombat();
@@ -77,7 +69,6 @@ namespace AI
 
         private void Retreat(Vector3 playerLocation)
         {
-            Debug.Log("RETREATING NOW");
             var myPos = transform.position;
             var dir = myPos - playerLocation;
             m_Movement.Move(dir * 0.6f);

@@ -10,45 +10,45 @@ namespace Character.Combat
     internal sealed class CharacterStats : MonoBehaviour
     {
         [SerializeField] public SplatMarker splatMarker;
-        [SerializeField] private int CombatLevel;
+        public int CombatLevel = 1;
         public Stat Damage;
         public Stat Defence;
         public float experienceGiven;
 
-        private HealthObject m_HealthObject;
-        private ExperienceObject m_PlayerExperience;
+        private EnemyHealth m_HealthObject;
 
         private Random m_Random;
 
         private void Awake()
         {
-            m_HealthObject = GetComponent<HealthObject>();
+            m_HealthObject = GetComponent<EnemyHealth>();
             m_Random = new Random();
-            experienceGiven = CombatLevel;
+            Damage = new Stat();
+            Defence = new Stat();
         }
 
         private void Start()
         {
-            m_PlayerExperience = PlayerManager.Instance.Experience;
+            var random1 = m_Random.Next(0, 11);
+            var random2 = m_Random.Next(0, 11);
+
+            Damage.SetBaseValue(random1);
+            Defence.SetBaseValue(random2);
         }
 
         public void TakeDamage()
         {
             var damageRange = m_Random.Next(Damage.GetBaseValue());
             var defenceRange = m_Random.Next(Defence.GetBaseValue());
+
             var range = (damageRange - defenceRange);
+            //var range = m_Random.Next(0, 20);
 
             if (range < 0)
                 range = 0;
 
             splatMarker.Show(range);
             m_HealthObject.Damage(range);
-
-            if (m_HealthObject.CurrentHealth <= 0)
-            {
-                m_PlayerExperience.IncreaseExperience(CombatLevel * 10);
-                Debug.Log("Character dead.");
-            }
         }
     }
 }
