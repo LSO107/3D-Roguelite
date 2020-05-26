@@ -61,7 +61,7 @@ namespace Character.Health
             PlayerManager.Instance.Currency.AddGold(randomGold);
             NpcFight.Instance.RemoveCurrentNpc(gameObject);
             GameManager.Instance.InstantiatePuff(transform.position);
-            PlayerManager.Instance.Experience.IncreaseExperience(GetComponent<CharacterStats>().CombatLevel * 75);
+            PlayerManager.Instance.Experience.IncreaseExperience(GetComponent<CharacterStats>().CombatLevel * 125);
             InstantiateRandomItem();
             Destroy(m_HealthBarInstantiated);
             Destroy(gameObject);

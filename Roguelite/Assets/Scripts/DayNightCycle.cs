@@ -37,18 +37,9 @@ internal sealed class DayNightCycle : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            StartNewDay();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            EndDay();
-        }
-
         if (currentTimeOfDay >= 1)
         {
+            UpdateSun();
             return;
         }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Items.Inventory;
 using UnityEngine;
 
 using Random = System.Random;
@@ -20,6 +21,9 @@ namespace ItemData
 
         [Header("Consumables (Scriptable Objects)")]
         [SerializeField] private List<PotionDefinition> m_HealthPotions = new List<PotionDefinition>();
+
+        [Header("Starter Weapon (Scriptable Objects)")] 
+        [SerializeField] private EquipmentDefinition m_StarterWeapon;
 
         private Random m_Random;
 
@@ -76,6 +80,11 @@ namespace ItemData
         public EquipmentDefinition GetRandomPlatelegs()
         {
             return m_Platelegs[m_Random.Next(m_Platelegs.Count)];
+        }
+
+        public Equipment GetStarterWeapon()
+        {
+            return new Equipment(m_StarterWeapon, RarityModifier.Common);
         }
     }
 }

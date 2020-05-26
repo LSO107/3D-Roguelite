@@ -49,7 +49,7 @@ namespace AI
 
             var percentage = m_LastFrameData.Health.MaxHealth / 100 * 15;
 
-            if (dataObject.DistanceFromPlayer >= 10f && m_LastFrameData.Health.DamageTaken <= percentage)
+            if (dataObject.DistanceFromPlayer >= 8f && m_LastFrameData.Health.DamageTaken <= percentage)
             {
                 m_Parent.RegisterExecutionRequest(this);
             }

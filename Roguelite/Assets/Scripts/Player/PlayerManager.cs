@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Character.Health;
 using Character.Movement;
 using Currency;
+using ItemData;
 using Items.Definitions;
 using Items.Inventory;
 using Player.Experience;
@@ -56,9 +57,13 @@ namespace Player
 
         private void Start()
         {
-            PlayerStats.Initialize(3);
+            PlayerStats.Initialize(1);
             InventoryUI.Instantiate();
             EquipmentUI.Instantiate();
+
+            var db = GameManager.Instance.ItemDatabase;
+            var starterItem = db.GetStarterWeapon();
+            Inventory.AddItem(starterItem);
         }
 
         public void EquipItem(int slotIndex)

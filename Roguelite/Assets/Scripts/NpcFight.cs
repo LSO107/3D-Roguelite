@@ -6,15 +6,17 @@ using Random = System.Random;
 
 internal sealed class NpcFight : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> npcPrefabs = null;
+    [SerializeField] private List<GameObject> npcPrefabs;
 
-    [SerializeField] private List<GameObject> m_CurrentNpcs = null;
+    [SerializeField] private List<GameObject> m_CurrentNpcs;
 
     private Random m_Random;
 
     private bool m_FightHasBegun;
 
     public static NpcFight Instance;
+
+    [SerializeField] private List<SkinnedMeshRenderer> m_Meshes;
 
     private void Awake()
     {
@@ -56,6 +58,7 @@ internal sealed class NpcFight : MonoBehaviour
         {
             var npc = GetRandomNpc();
             var newNpc = Instantiate(npc, GetRandomLocation(), Quaternion.identity);
+            AssignRandomMesh(newNpc);
             GameManager.Instance.InstantiatePuff(newNpc.transform.position);
             newNpc.transform.LookAt(PlayerManager.Instance.transform);
             m_CurrentNpcs.Add(newNpc);
@@ -73,6 +76,12 @@ internal sealed class NpcFight : MonoBehaviour
         var randomX = m_Random.Next(-75, -60);
         var randomZ = m_Random.Next(-100, -85);
         return new Vector3(randomX, 0, randomZ);
+    }
+
+    private void AssignRandomMesh(GameObject npc)
+    {
+        var random = m_Random.Next(0, m_Meshes.Count);
+        npc.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = m_Meshes[random].sharedMesh;
     }
 
     public void EndCurrentFight()
