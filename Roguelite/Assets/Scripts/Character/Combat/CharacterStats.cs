@@ -29,21 +29,20 @@ namespace Character.Combat
 
         private void Start()
         {
-            var random1 = m_Random.Next(0, 11);
-            var random2 = m_Random.Next(0, 11);
+            var random1 = m_Random.Next(5, 11);
+            var random2 = m_Random.Next(0, 5);
 
             Damage.SetBaseValue(random1);
             Defence.SetBaseValue(random2);
         }
 
-        public void TakeDamage()
+        public void TakeDamage(int damage)
         {
-            var damageRange = m_Random.Next(Damage.GetBaseValue());
-            var defenceRange = m_Random.Next(Defence.GetBaseValue());
+            var damageRange = m_Random.Next(damage);
+            var defenceRange = m_Random.Next(Defence.GetBaseValue() / 2);
 
-            var range = (damageRange - defenceRange);
-            //var range = m_Random.Next(0, 20);
-
+            var range = damageRange - defenceRange;
+           
             if (range < 0)
                 range = 0;
 

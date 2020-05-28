@@ -1,4 +1,5 @@
-﻿using Character.Combat;
+﻿using System.Runtime.InteropServices;
+using Character.Combat;
 using Character.Movement;
 using Player;
 using UnityEngine;
@@ -42,7 +43,8 @@ internal sealed class WeaponTrigger : MonoBehaviour
             Debug.Log("Hit enemy");
             PlayerManager.Instance.SoundEffects.Play(m_HitAudioClip);
             other.GetComponentInParent<CharacterMovement>().KnockBack(transform.position);
-            other.GetComponent<CharacterStats>().TakeDamage();
+            var damage = m_MyActorData.GetComponentInParent<PlayerStats>().Damage.GetBaseValue();
+            other.GetComponent<CharacterStats>().TakeDamage(damage);
         }
         else if (m_MyActorData.ActorType == ActorType.Enemy)
         {

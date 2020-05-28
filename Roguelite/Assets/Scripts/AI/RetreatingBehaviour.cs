@@ -33,7 +33,7 @@ namespace AI
 
             Retreat(m_LastFrameData.PlayerLocation);
 
-            if (   m_LastFrameData.DistanceFromPlayer >= 7.5f
+            if (   m_LastFrameData.DistanceFromPlayer >= 5f
                 || m_CurrentTime >= m_RetreatTime)
             {
                 m_Parent.UnregisterExecutionRequest(this);
@@ -46,7 +46,7 @@ namespace AI
         {
             m_LastFrameData = dataObject;
 
-            var healthPercentage = (dataObject.Health.MaxHealth / 100) * 20;
+            var healthPercentage = (dataObject.Health.MaxHealth / 100) * 30;
 
             if (dataObject.Health.DamageTaken >= healthPercentage)
             {

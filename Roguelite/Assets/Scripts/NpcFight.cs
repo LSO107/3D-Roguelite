@@ -40,6 +40,8 @@ internal sealed class NpcFight : MonoBehaviour
             {
                 DayNightCycle.Instance.EndDay();
                 m_FightHasBegun = false;
+                var health = PlayerManager.Instance.Health;
+                health.Heal(health.MaxHealth);
             }
         }
     }

@@ -63,7 +63,9 @@ namespace Player
 
             var db = GameManager.Instance.ItemDatabase;
             var starterItem = db.GetStarterWeapon();
-            Inventory.AddItem(starterItem);
+            Equipment.Equip(starterItem);
+            EquipmentUI.UpdateSlot(EquipmentSlotId.Weapon);
+            Currency.AddGold(10);
         }
 
         public void EquipItem(int slotIndex)
@@ -110,6 +112,9 @@ namespace Player
             StartCoroutine(DisableInputForSeconds(seconds));
         }
 
+        /// <summary>
+        /// Disables player movement and combat and frees the camera
+        /// </summary>
         public void EnableInput()
         {
             GetComponent<CharacterUserInput>().IsFrozen = false;
@@ -117,6 +122,9 @@ namespace Player
             m_Camera.FreeCamera();
         }
 
+        /// <summary>
+        /// Disable the user input temporarily
+        /// </summary>
         private IEnumerator DisableInputForSeconds(float seconds)
         {
             DisableInput();

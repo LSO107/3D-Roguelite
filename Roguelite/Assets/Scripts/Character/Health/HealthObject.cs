@@ -20,7 +20,7 @@ namespace Character.Health
 
         protected void Awake()
         {
-            m_HealthDefinition = new HealthDefinition();
+            m_HealthDefinition = new HealthDefinition(100, 100);
         }
 
         public void Heal(int amount)

@@ -363,7 +363,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Slash
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2829063658454899944}
@@ -904,9 +904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideClip: {fileID: 8300000, guid: 095395e4b15ec9e42a911ef53080dc17, type: 3}
-  slideDelay: 0
   attackClip: {fileID: 8300000, guid: 9c68495536fb5bc4a94b31edc3e31593, type: 3}
-  attackDelay: 0
 --- !u!1107 &4036435498087798624
 AnimatorStateMachine:
   serializedVersion: 5

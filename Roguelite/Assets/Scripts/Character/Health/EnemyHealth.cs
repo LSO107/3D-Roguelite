@@ -13,7 +13,7 @@ namespace Character.Health
 {
     internal sealed class EnemyHealth : HealthObject
     {
-        [SerializeField] private GameObject m_HealthBarPrefab = null;
+        [SerializeField] private GameObject m_HealthBarPrefab;
 
         private GameObject m_HealthBarInstantiated;
 
@@ -67,6 +67,9 @@ namespace Character.Health
             Destroy(gameObject);
         }
 
+        /// <summary>
+        /// Creates and registers a new item
+        /// </summary>
         private void InstantiateRandomItem()
         {
             var item = GetRandomItem();

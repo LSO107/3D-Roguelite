@@ -71,6 +71,9 @@ internal sealed class DayNightCycle : MonoBehaviour
         m_EndOfDayEvents.Add(action);
     }
 
+    /// <summary>
+    /// Reset time and scheduled events, run start of day events
+    /// </summary>
     public void StartNewDay()
     {
         print("Starting new day");
@@ -88,6 +91,9 @@ internal sealed class DayNightCycle : MonoBehaviour
         currentTimeOfDay = 0f;
     }
 
+    /// <summary>
+    /// Run all end of day events and set time to 1
+    /// </summary>
     public void EndDay()
     {
         foreach (var endEvent in m_EndOfDayEvents)
@@ -102,8 +108,13 @@ internal sealed class DayNightCycle : MonoBehaviour
         }
 
         currentTimeOfDay = 1f;
+
+        GameManager.Instance.Blacksmith.GenerateShopItems();
     }
 
+    /// <summary>
+    /// Run all scheduled events that have not ran today
+    /// </summary>
     private void HandleScheduledEvents()
     {
         foreach (var scheduledEvent in m_ScheduledEvents)
@@ -117,7 +128,7 @@ internal sealed class DayNightCycle : MonoBehaviour
 
     private void UpdateSun()
     {
-        //TODO: Fix rotation, shadows too long, looks retarded
+        //TODO: Fix rotation, shadows too long, looks weird
         var x = currentTimeOfDay * 360f - 90;
         transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) - 90, 170, 0);
 

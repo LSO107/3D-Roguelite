@@ -4,7 +4,6 @@ using Character.Combat;
 using Character.Health;
 using Items.Definitions;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Player
 {
@@ -22,8 +21,10 @@ namespace Player
 
         private System.Random m_Random;
 
-        [SerializeField] private SplatMarker m_SplatMarker = null;
+        [SerializeField] private SplatMarker m_SplatMarker;
 
+        // Initialize base stats
+        //
         public void Initialize(int combatLevel)
         {
             m_Random = new System.Random();
@@ -43,7 +44,7 @@ namespace Player
             Defence = new Stat();
 
             Damage.SetBaseValue(10);
-            Defence.SetBaseValue(10);
+            Defence.SetBaseValue(5);
 
             UpdateStats();
         }
@@ -76,6 +77,9 @@ namespace Player
             equipment.UpdateLabels();
         }
 
+        /// <summary>
+        /// Combines the base stats with equipment stats, then updates the damage and defence
+        /// </summary>
         public void UpdateStats()
         {
             m_EquipmentStats = PlayerManager.Instance.Equipment.GetEquipmentStatBonuses();
